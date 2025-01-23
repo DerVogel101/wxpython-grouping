@@ -1,19 +1,24 @@
-from typing import Optional, Union
+from typing import Optional, Union, Self
+from pydantic import ValidationError
 
+from .core.exceptions import AmountPeopleError
 from .core.base import GroupCalculatorInterface
-from .core.data_models import Round, Rounds, Group, Person
+from .core.data_models import Round, Rounds, Group, Person, GroupConfig
 
 
 class GroupCalculator(GroupCalculatorInterface):
     def __init__(self, amount_people: int, group_size: int):
         """
         Initialize a new instance of the GroupCalculator class.
-        :raises ValidationError: If the amount of people or group size is invalid.
+        :raises AmountPeopleError: If the amount of people or group size is invalid.
         :raises AmountPeopleError: If the amount of people is less than the group_size.
-        :param amount_people:
-        :param group_size:
+        :param amount_people: The amount of people.
+        :param group_size: The group size.
         """
-        pass
+        try:
+            self._group_config = GroupConfig(amount_people=amount_people, group_size=group_size)
+        except ValidationError as e:
+            raise AmountPeopleError from e
 
     def reset_groups(self) -> None:
         """

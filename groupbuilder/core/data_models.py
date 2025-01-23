@@ -1,10 +1,13 @@
-from pydantic import BaseModel, field_validator, PositiveInt
+from pydantic import BaseModel, field_validator, PositiveInt, model_validator
 from typing import Optional
 
 class Person(BaseModel):
     id_: PositiveInt
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+
+    class Config:
+        frozen = True
 
 
 class Group(BaseModel):
@@ -153,6 +156,19 @@ class Rounds(BaseModel):
         return hash(frozenset(self.rounds.items()))
 
 
+class GroupConfig(BaseModel):
+    amount_people: PositiveInt
+    group_size: PositiveInt
+
+    @model_validator(mode="before")
+    def check_amount_people_greater_than_group_size(cls, values):
+        amount_people = values.get('amount_people')
+        group_size = values.get('group_size')
+        if amount_people < group_size:
+            raise ValueError('amount_people must be greater than or equal to group_size')
+        return values
+
+
 if __name__ == "__main__":
     person = Person(id_=1)
     person2 = Person(id_=2)
@@ -171,3 +187,8 @@ if __name__ == "__main__":
             "b":Group(items=[person6])
         })
     })
+
+    GroupConfig(amount_people=6, group_size=2)
+    GroupConfig(amount_people=6, group_size=3)
+    GroupConfig(amount_people=6, group_size=6)
+    GroupConfig(amount_people=6, group_size=7)
