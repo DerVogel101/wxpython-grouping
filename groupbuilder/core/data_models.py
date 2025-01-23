@@ -1,5 +1,5 @@
 from pydantic import BaseModel, field_validator, PositiveInt
-from typing import Optional, List, Dict, Set
+from typing import Optional
 
 class Person(BaseModel):
     id_: PositiveInt
@@ -8,7 +8,7 @@ class Person(BaseModel):
 
 
 class Group(BaseModel):
-    items: List[Person]
+    items: list[Person]
 
     def __getitem__(self, index):
         return self.items[index]
@@ -49,7 +49,7 @@ class Group(BaseModel):
     def sort(self, *, key=None, reverse=False):
         self.items.sort(key=key, reverse=reverse)
 
-    def get_ids(self) -> Set[PositiveInt]:
+    def get_ids(self) -> set[PositiveInt]:
         return set([person.id_ for person in self.items])
 
     @field_validator('items', mode="before")
@@ -62,7 +62,7 @@ class Group(BaseModel):
 
 
 class Round(BaseModel):
-    round_: Dict[str, Group]
+    round_: dict[str, Group]
 
     def __getitem__(self, key):
         return self.round_[key]
@@ -77,7 +77,7 @@ class Round(BaseModel):
         return len(self.round_)
 
     def __iter__(self):
-        return iter(self.round_)
+        return iter(self.round_.items())
 
     def __contains__(self, item):
         return item in self.round_
@@ -99,8 +99,9 @@ class Round(BaseModel):
     def __hash__(self):
         return hash(frozenset(self.round_.items()))
 
+
     @field_validator('round_', mode="before")
-    def validate_ids(cls, v: Dict[str, Group]):
+    def validate_ids(cls, v: dict[str: Group]):
         items: tuple[Group] = tuple(v.values())
         len_items = 0
         ids = set()
@@ -112,8 +113,9 @@ class Round(BaseModel):
             raise ValueError("No Unique Groups in Round")
         return v
 
+
 class Rounds(BaseModel):
-    rounds: Dict[int, Round]
+    rounds: dict[int, Round]
 
     def __getitem__(self, key):
         return self.rounds[key]
@@ -128,7 +130,7 @@ class Rounds(BaseModel):
         return len(self.rounds)
 
     def __iter__(self):
-        return iter(self.rounds)
+        return iter(self.rounds.items())
 
     def __contains__(self, item):
         return item in self.rounds
@@ -149,6 +151,7 @@ class Rounds(BaseModel):
 
     def __hash__(self):
         return hash(frozenset(self.rounds.items()))
+
 
 if __name__ == "__main__":
     person = Person(id_=1)
