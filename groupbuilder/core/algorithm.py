@@ -1,5 +1,7 @@
 import itertools
 import math
+from functools import reduce
+from operator import or_
 
 from typing_extensions import deprecated
 
@@ -40,7 +42,13 @@ class GroupingAlgorithm:
             total_people += 1
 
         all_combinations_list = list(itertools.combinations(people, self._group_size))
-        return set([frozenset(x) for x in all_combinations_list])
+        all_combs_set = set()
+        for comb in all_combinations_list:
+            comb_set = set(comb)
+            if -1 in comb_set:
+                comb_set.remove(-1)
+            all_combs_set.add(frozenset(comb_set))
+        return all_combs_set
 
     def get_round(self):
         return self._rounds[self._current_round_ind - 1]
@@ -50,21 +58,68 @@ class GroupingAlgorithm:
         if self.__all_combinations == set():
             raise StopIteration("No more rounds can be generated.")
 
-        for i, round_combination in enumerate(itertools.permutations(self.__all_combinations, self.__groups_per_round)):
+        combs_iter = self.__all_combinations.copy()
+        while True:
+            for group_comb in combs_iter:
+                combs_working = self.__all_combinations.copy()
+                current_groups = [group_comb]
+                combs_working.remove(group_comb)
+                break
+            new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working, [], 2, self.__groups_per_round, False)
 
-            flat_combination = list(itertools.chain(*round_combination))
+            new_working_set.update(outcast)
+            if not not_found:
+                break
+            combs_iter.remove(group_comb)
+        self.__all_combinations = new_working_set
+        self._rounds[self._current_round_ind] = new_group
+        self._current_round_ind += 1
 
-            if len(set(flat_combination)) != len(flat_combination):
+
+    def __add_next_group(self, old_group: list[frozenset], old_working_set: set[frozenset], outcast: list[frozenset],
+                         self_id: int, max_id: int, not_found: bool) -> tuple[list[frozenset], set[frozenset], list[frozenset], bool]:
+        # Use the provided objects directly so that changes are in place.
+        working_set = old_working_set
+        working_group = old_group
+        reject = False
+
+        # Iterate over a snapshot of the set to avoid modifying the set during iteration.
+        for group_comb in list(working_set):
+            for comb in working_group:
+                groupmask = reduce(or_, (1 << x for x in group_comb), 0)
+                combmask = reduce(or_, (1 << x for x in comb), 0)
+                if groupmask & combmask:
+                    reject = True
+                    break
+                # if not group_comb.isdisjoint(comb):
+                #     reject = True
+                #     break
+            if reject:
+                reject = False
                 continue
-
-            for comb in round_combination:
-                self.__all_combinations.remove(comb)
-
-            round_groups = frozenset(round_combination)
-            self.__unique_rounds.add(round_groups)
-            self._rounds[self._current_round_ind] = round_groups
-            self._current_round_ind += 1
+            working_group.append(group_comb)
+            working_set.remove(group_comb)
             break
+        else:
+            raise StopIteration("No more rounds can be generated.")
+
+        if self_id != max_id:
+            while True:
+                try:
+                    new_group, new_working_set, outcast, not_found = self.__add_next_group(
+                        working_group, working_set, outcast, self_id + 1, max_id, False
+                    )
+                    if not not_found:
+                        return new_group, new_working_set, outcast, False
+                except StopIteration:
+                    outcast.append(working_group.pop())
+                    return old_group, working_set, outcast, True
+                # Update the in-place variables for the next iteration.
+                working_group, working_set, outcast = new_group, new_working_set, outcast
+
+        return working_group, working_set, outcast, False
+
+
 
     def get_remaining_rounds(self) -> int:
         return self._max_rounds - self._current_round_ind
