@@ -59,45 +59,58 @@ class GroupingAlgorithm:
             raise StopIteration("No more rounds can be generated.")
 
         combs_iter = self.__all_combinations.copy()
+        bitmask_cache = {}
         while True:
             for group_comb in combs_iter:
                 combs_working = self.__all_combinations.copy()
                 current_groups = [group_comb]
                 combs_working.remove(group_comb)
+                if group_comb not in bitmask_cache:
+                    bitmask_cache[group_comb] = reduce(or_, (1 << x for x in group_comb), 0)
                 break
-            new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working, [], 2, self.__groups_per_round, False)
+            new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working, [], 2, self.__groups_per_round, False, bitmask_cache)
 
             new_working_set.update(outcast)
             if not not_found:
                 break
-            combs_iter.remove(group_comb)
+
+            try:
+                combs_iter.remove(group_comb)
+            except KeyError:
+                raise StopIteration("No more rounds can be generated.")
         self.__all_combinations = new_working_set
         self._rounds[self._current_round_ind] = new_group
         self._current_round_ind += 1
 
     def __add_next_group(self, old_group: list[frozenset], old_working_set: set[frozenset], outcast: list[frozenset],
-                         self_id: int, max_id: int, not_found: bool) -> tuple[
+                         self_id: int, max_id: int, not_found: bool, bitmask_cache: dict[frozenset, int] = None) -> tuple[
         list[frozenset], set[frozenset], list[frozenset], bool]:
+
+        # Initialize bitmask cache if not provided
+        if bitmask_cache is None:
+            bitmask_cache = {}
+
         # Use in-place modifications
         working_set = old_working_set
         working_group = old_group
 
-        # Precompute bitmasks for faster intersection checks
-        precomputed_bitmasks = {comb: reduce(or_, (1 << x for x in comb), 0) for comb in working_group}
 
         while working_set:
             group_comb = working_set.pop()  # Efficient O(1) removal instead of iteration
 
-            groupmask = reduce(or_, (1 << x for x in group_comb), 0)
+            # Get or compute bitmask for the current group_comb
+            if group_comb not in bitmask_cache:
+                bitmask_cache[group_comb] = reduce(or_, (1 << x for x in group_comb), 0)
+            groupmask = bitmask_cache[group_comb]
 
-            # Check for intersection using bitmasks (fast lookup)
-            if any(groupmask & precomputed_bitmasks[comb] for comb in working_group):
+            # Check for intersection using cached bitmasks
+            if any(groupmask & bitmask_cache[comb] for comb in working_group):
                 outcast.append(group_comb)
                 continue  # Skip invalid groups
 
             # Add to group and update precomputed bitmasks
             working_group.append(group_comb)
-            precomputed_bitmasks[group_comb] = groupmask
+            bitmask_cache[group_comb] = groupmask
             break
         else:
             raise StopIteration("No more rounds can be generated.")
@@ -107,13 +120,14 @@ class GroupingAlgorithm:
             while True:
                 try:
                     new_group, new_working_set, outcast, not_found = self.__add_next_group(
-                        working_group, working_set, outcast, self_id + 1, max_id, False
+                        working_group, working_set, outcast, self_id + 1, max_id, False, bitmask_cache
                     )
                     if not not_found:
                         return new_group, new_working_set, outcast, False
                 except StopIteration:
-                    outcast.append(working_group.pop())
-                    del precomputed_bitmasks[group_comb]  # Remove from bitmask cache
+                    removed_group = working_group.pop()
+                    outcast.append(removed_group)
+                    bitmask_cache.pop(removed_group, None)  # Remove from cache
                     return old_group, working_set, outcast, True
 
                 working_group, working_set, outcast = new_group, new_working_set, outcast
@@ -199,30 +213,3 @@ This formula calculates the total number of unique round combinations based on t
         # Upper bound on the number of rounds
         max_rounds = total_groups // R
         return max_rounds
-
-    @deprecated("Use generate_next_round instead and get_round to get the current round.")
-    def get_possibilities(self):
-        """Returns the number of possible unique Round combinations."""
-        people = list(range(self._amount_people))
-
-        # Add placeholders (-1) for missing people to make total divisible by group size
-        total_people = self._amount_people
-        while total_people % self._group_size != 0:
-            people.append(-1)
-            total_people += 1
-
-        all_combinations = list(itertools.combinations(people, self._group_size))
-        unique_rounds = set()
-
-        groups_per_round = total_people // self._group_size
-
-        for round_combination in itertools.permutations(all_combinations, groups_per_round):
-            flat_combination = list(itertools.chain(*round_combination))
-
-            if len(set(flat_combination)) != len(flat_combination):
-                continue
-
-            round_groups = frozenset(round_combination)
-            unique_rounds.add(round_groups)
-
-        return unique_rounds
