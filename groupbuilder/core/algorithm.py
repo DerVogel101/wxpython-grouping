@@ -75,50 +75,54 @@ class GroupingAlgorithm:
 
     def _get_max_possibilities(self) -> int:
         """
-        Calculate an upper bound on the number of rounds possible.
+Calculate an upper bound on the number of rounds possible.
 
-        This function computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
-        that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
-        it is divisible by the group size by adding placeholders if necessary.
+This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
+that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
+it is divisible by the group size by adding placeholders if necessary.
 
-        Let:
+Given
+~~~~~
+- :math:`P`: Total number of people.
+- :math:`G`: Group size.
+- :math:`\\text{remainder}`: Number of placeholders (added if :math:`P` is not divisible by :math:`G`).
+- :math:`P_{adjusted}`: Total number of participants (including placeholders).
+- :math:`R`: The number of groups formed in a round.
+- :math:`\\text{total_groups}`: The product of binomial coefficients for each group.
 
-        - :math:`P` be the original number of people.
-        - :math:`G` be the group size.
-        - :math:`P'` be the adjusted number of people defined as:
+Formula Steps
+~~~~~~~~~~~~~
+1. **Adjustment of the Number of People**
 
-          .. math::
-             P' = P + \left(G - \left(P \mod G\right)\right)
+  - Calculate the remainder when the number of people is divided by the group size:
+      .. math::
+        \\text{remainder} = P \\mod G
+  - If the remainder is not zero, increase the number of people by the missing value to allow even group division:
+      .. math::
+        P_{adjusted} = P + (G - \\text{remainder}) \\quad \\text{if } \\text{remainder} \\neq 0
+    If there is no remainder, the number of people remains unchanged:
+      .. math::
+        P_{adjusted} = P
 
-          if :math:`P` is not divisible by :math:`G`, and :math:`P' = P` otherwise.
+2. **Calculation of Groups per Round**
 
-        - :math:`R` be the number of groups per round:
+  - The number of groups per round is given by:
+      .. math::
+        R = \\frac{P_{adjusted}}{G}
 
-          .. math::
-             R = \frac{P'}{G}
+3. **Total Number of Unique Groups (Combinations)**
 
-        - The total number of unique groups is given by the combination:
+  - The number of possible unique groups is given by the binomial coefficient:
+      .. math::
+        \\text{total_groups} = \\binom{P_{adjusted}}{G}
 
-          .. math::
-             \binom{P'}{G}
+4. **Maximum Number of Rounds**
 
-        The maximum number of rounds is then approximated by:
+  - The upper bound for the number of rounds is given by:
+      .. math::
+        \\text{max_rounds} = \\frac{\\text{total_groups}}{R}
 
-        .. math::
-             \max \, \text{Rounds} = \frac{\binom{P'}{G}}{R}
-
-        **Parameters:**
-
-          - **amount_people** (*int*):
-            The number of people available.
-
-          - **group_size** (*int*):
-            The number of people per group.
-
-        **Returns:**
-
-          - *int*:
-        An approximate maximum number of rounds that can be generated.
+This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.
         """
         # Adjust the number of people to include placeholders if needed.
         P = self._amount_people

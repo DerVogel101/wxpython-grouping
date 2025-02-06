@@ -46,85 +46,126 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.core.algorithm.</span></span><span class="sig-name descname"><span class="pre">GroupingAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#groupbuilder.core.data_models.GroupConfig" title="groupbuilder.core.data_models.GroupConfig"><span class="pre">GroupConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities">
-<span class="sig-name descname"><span class="pre">get_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities" title="Link to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Calculates the number of possible unique round combinations in a scenario where people are divided into groups of a specified size.</p>
-<p><strong>Parameters</strong>:</p>
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__generate_all_possible_combs">
+<span class="sig-name descname"><span class="pre">__generate_all_possible_combs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span></span></span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__generate_all_possible_combs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__get_groups_per_round">
+<span class="sig-name descname"><span class="pre">__get_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__get_groups_per_round" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities">
+<span class="sig-name descname"><span class="pre">_get_max_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm._get_max_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate an upper bound on the number of rounds possible.</p>
+<p>This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
+that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
+it is divisible by the group size by adding placeholders if necessary.</p>
+<section id="given">
+<h3>Given<a class="headerlink" href="#given" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: Group size.</p></li>
-<li><p><span class="math notranslate nohighlight">\(H\)</span>: Number of placeholders (added if <span class="math notranslate nohighlight">\(P\)</span> is not divisible by <span class="math notranslate nohighlight">\(G\)</span>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(T\)</span>: Total number of participants (including placeholders).</p></li>
-<li><p>:math:`       ext{groups_per_round}`: The number of groups formed in a round.</p></li>
-<li><p>:math:`       ext{numerator}`: The product of binomial coefficients for each group.</p></li>
-<li><p>:math:`       ext{denominator}`: The factorial of the number of groups.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{remainder}\)</span>: Number of placeholders (added if <span class="math notranslate nohighlight">\(P\)</span> is not divisible by <span class="math notranslate nohighlight">\(G\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{adjusted}\)</span>: Total number of participants (including placeholders).</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span>: The number of groups formed in a round.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{total_groups}\)</span>: The product of binomial coefficients for each group.</p></li>
 </ul>
-<p><strong>Formula Steps</strong>:</p>
-<ol class="arabic">
-<li><dl>
-<dt>Calculate placeholders <span class="math notranslate nohighlight">\(H\)</span> (if necessary):</dt><dd><div class="math notranslate nohighlight">
-\[H =
-egin{cases}
-0 &amp;     ext{if } P \mod G = 0 \
-G - (P \mod G) &amp;        ext{if } P \mod G\]</div>
-</dd>
-</dl>
-</li>
+</section>
+<section id="formula-steps">
+<h3>Formula Steps<a class="headerlink" href="#formula-steps" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Adjustment of the Number of People</strong></p></li>
 </ol>
-</div></blockquote>
-<dl>
-<dt>eq 0</dt><dd><blockquote>
-<div><p>end{cases}</p>
-</div></blockquote>
-<ol class="arabic" start="2">
-<li><dl>
-<dt>Total participants <span class="math notranslate nohighlight">\(T\)</span>:</dt><dd><div class="math notranslate nohighlight">
-\[T = P + H\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Groups per round :math:`     ext{groups_per_round}`:</dt><dd><div class="math notranslate nohighlight">
-\[ext{groups_per_round} =\]</div>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-<dt>rac{T}{G}</dt><dd><ol class="arabic" start="4">
-<li><dl>
-<dt>Numerator: The product of the binomial coefficients:</dt><dd><div class="math notranslate nohighlight">
-\[ext{numerator} = \prod_{i=0}^{  ext{groups_per_round}-1} inom{T - i \cdot G}{G}\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Denominator: The factorial of the number of groups:</dt><dd><div class="math notranslate nohighlight">
-\[ext{denominator} = (    ext{groups_per_round})!\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Unique rounds: The total number of unique round combinations:</dt><dd><div class="math notranslate nohighlight">
-\[ext{unique_rounds} =\]</div>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-</dl>
-<p>rac{      ext{numerator}}{        ext{denominator}}</p>
 <blockquote>
-<div><p>This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</p>
-<dl class="simple">
-<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
-<li><p>: The number of possible unique round combinations.</p></li>
-</ul>
+<div><ul>
+<li><dl>
+<dt>Calculate the remainder when the number of people is divided by the group size:</dt><dd><div class="math notranslate nohighlight">
+\[\text{remainder} = P \mod G\]</div>
 </dd>
 </dl>
+</li>
+<li><dl>
+<dt>If the remainder is not zero, increase the number of people by the missing value to allow even group division:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P + (G - \text{remainder}) \quad \text{if } \text{remainder} \neq 0\]</div>
+</dd>
+<dt>If there is no remainder, the number of people remains unchanged:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P\]</div>
+</dd>
+</dl>
+</li>
+</ul>
 </div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><strong>Calculation of Groups per Round</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of groups per round is given by:</dt><dd><div class="math notranslate nohighlight">
+\[R = \frac{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><strong>Total Number of Unique Groups (Combinations)</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of possible unique groups is given by the binomial coefficient:</dt><dd><div class="math notranslate nohighlight">
+\[\text{total_groups} = \binom{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p><strong>Maximum Number of Rounds</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The upper bound for the number of rounds is given by:</dt><dd><div class="math notranslate nohighlight">
+\[\text{max_rounds} = \frac{\text{total_groups}}{R}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</p>
+</section>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round">
+<span class="sig-name descname"><span class="pre">generate_next_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.generate_next_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of possible unique Round combinations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds">
+<span class="sig-name descname"><span class="pre">get_max_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_max_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities">
+<span class="sig-name descname"><span class="pre">get_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of possible unique Round combinations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds">
+<span class="sig-name descname"><span class="pre">get_remaining_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_remaining_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_round">
+<span class="sig-name descname"><span class="pre">get_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_round" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -157,16 +198,16 @@ Avoids usage of the same person in the same group.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.get_all_groups">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_all_groups" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#groupbuilder.core.data_models.Rounds" title="groupbuilder.core.data_models.Rounds"><span class="pre">Rounds</span></a></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_all_groups" title="Link to this definition">¶</a></dt>
 <dd><p>Gets all the groups.
-:return dict: All the groups.</p>
+:return Union[dict, Rounds]: All the groups.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.get_current_groups">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_current_groups" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#groupbuilder.core.data_models.Round" title="groupbuilder.core.data_models.Round"><span class="pre">Round</span></a></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_current_groups" title="Link to this definition">¶</a></dt>
 <dd><p>Gets the current groups.
-:return dict: The current groups.</p>
+:return Union[dict, Round]: The current groups.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -186,7 +227,7 @@ Avoids usage of the same person in the same group.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">has_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_firstname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_lastname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">has_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_firstname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_lastname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file" title="Link to this definition">¶</a></dt>
 <dd><p>Selects the students from a CSV file.
 :param has_header_row: If the CSV file has a header row.
 :param student_firstname_col: The column index or name of the student first name.
@@ -218,7 +259,7 @@ Avoids usage of the same person in the same group.
 <dt class="sig sig-object py" id="groupbuilder.core.data_model_converter.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.data_model_converter.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#groupbuilder.core.data_models.Round" title="groupbuilder.core.data_models.Round"><span class="pre">Round</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.data_model_converter.convert_round_to_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id1"><span class="problematic" id="id2">round_</span></a>: The Round object to convert.
+:param <a href="#id3"><span class="problematic" id="id4">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 </dd></dl>
 
@@ -611,16 +652,16 @@ Avoids usage of the same person in the same group.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.GroupCalculatorInterface.get_all_groups">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.get_all_groups" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#groupbuilder.core.data_models.Rounds" title="groupbuilder.core.data_models.Rounds"><span class="pre">Rounds</span></a></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.get_all_groups" title="Link to this definition">¶</a></dt>
 <dd><p>Gets all the groups.
-:return dict: All the groups.</p>
+:return Union[dict, Rounds]: All the groups.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.GroupCalculatorInterface.get_current_groups">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.get_current_groups" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pyd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#groupbuilder.core.data_models.Round" title="groupbuilder.core.data_models.Round"><span class="pre">Round</span></a></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.get_current_groups" title="Link to this definition">¶</a></dt>
 <dd><p>Gets the current groups.
-:return dict: The current groups.</p>
+:return Union[dict, Round]: The current groups.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -640,7 +681,7 @@ Avoids usage of the same person in the same group.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.GroupCalculatorInterface.select_from_csv_file">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">has_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_firstname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_lastname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.select_from_csv_file" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">has_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_firstname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">student_lastname_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/base.html#GroupCalculatorInterface.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupCalculatorInterface.select_from_csv_file" title="Link to this definition">¶</a></dt>
 <dd><p>Selects the students from a CSV file.
 :param has_header_row: If the CSV file has a header row.
 :param student_firstname_col: The column index or name of the student first name.
@@ -700,85 +741,126 @@ Avoids usage of the same person in the same group.
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.core.</span></span><span class="sig-name descname"><span class="pre">GroupingAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#groupbuilder.core.data_models.GroupConfig" title="groupbuilder.core.data_models.GroupConfig"><span class="pre">GroupConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_possibilities">
-<span class="sig-name descname"><span class="pre">get_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_possibilities" title="Link to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Calculates the number of possible unique round combinations in a scenario where people are divided into groups of a specified size.</p>
-<p><strong>Parameters</strong>:</p>
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.__generate_all_possible_combs">
+<span class="sig-name descname"><span class="pre">__generate_all_possible_combs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span></span></span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__generate_all_possible_combs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.__get_groups_per_round">
+<span class="sig-name descname"><span class="pre">__get_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__get_groups_per_round" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm._get_max_possibilities">
+<span class="sig-name descname"><span class="pre">_get_max_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm._get_max_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm._get_max_possibilities" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate an upper bound on the number of rounds possible.</p>
+<p>This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
+that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
+it is divisible by the group size by adding placeholders if necessary.</p>
+<section id="id1">
+<h3>Given<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: Group size.</p></li>
-<li><p><span class="math notranslate nohighlight">\(H\)</span>: Number of placeholders (added if <span class="math notranslate nohighlight">\(P\)</span> is not divisible by <span class="math notranslate nohighlight">\(G\)</span>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(T\)</span>: Total number of participants (including placeholders).</p></li>
-<li><p>:math:`       ext{groups_per_round}`: The number of groups formed in a round.</p></li>
-<li><p>:math:`       ext{numerator}`: The product of binomial coefficients for each group.</p></li>
-<li><p>:math:`       ext{denominator}`: The factorial of the number of groups.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{remainder}\)</span>: Number of placeholders (added if <span class="math notranslate nohighlight">\(P\)</span> is not divisible by <span class="math notranslate nohighlight">\(G\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{adjusted}\)</span>: Total number of participants (including placeholders).</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span>: The number of groups formed in a round.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{total_groups}\)</span>: The product of binomial coefficients for each group.</p></li>
 </ul>
-<p><strong>Formula Steps</strong>:</p>
-<ol class="arabic">
-<li><dl>
-<dt>Calculate placeholders <span class="math notranslate nohighlight">\(H\)</span> (if necessary):</dt><dd><div class="math notranslate nohighlight">
-\[H =
-egin{cases}
-0 &amp;     ext{if } P \mod G = 0 \
-G - (P \mod G) &amp;        ext{if } P \mod G\]</div>
-</dd>
-</dl>
-</li>
+</section>
+<section id="id2">
+<h3>Formula Steps<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Adjustment of the Number of People</strong></p></li>
 </ol>
-</div></blockquote>
-<dl>
-<dt>eq 0</dt><dd><blockquote>
-<div><p>end{cases}</p>
-</div></blockquote>
-<ol class="arabic" start="2">
-<li><dl>
-<dt>Total participants <span class="math notranslate nohighlight">\(T\)</span>:</dt><dd><div class="math notranslate nohighlight">
-\[T = P + H\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Groups per round :math:`     ext{groups_per_round}`:</dt><dd><div class="math notranslate nohighlight">
-\[ext{groups_per_round} =\]</div>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-<dt>rac{T}{G}</dt><dd><ol class="arabic" start="4">
-<li><dl>
-<dt>Numerator: The product of the binomial coefficients:</dt><dd><div class="math notranslate nohighlight">
-\[ext{numerator} = \prod_{i=0}^{  ext{groups_per_round}-1} inom{T - i \cdot G}{G}\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Denominator: The factorial of the number of groups:</dt><dd><div class="math notranslate nohighlight">
-\[ext{denominator} = (    ext{groups_per_round})!\]</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Unique rounds: The total number of unique round combinations:</dt><dd><div class="math notranslate nohighlight">
-\[ext{unique_rounds} =\]</div>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-</dl>
-<p>rac{      ext{numerator}}{        ext{denominator}}</p>
 <blockquote>
-<div><p>This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</p>
-<dl class="simple">
-<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
-<li><p>: The number of possible unique round combinations.</p></li>
-</ul>
+<div><ul>
+<li><dl>
+<dt>Calculate the remainder when the number of people is divided by the group size:</dt><dd><div class="math notranslate nohighlight">
+\[\text{remainder} = P \mod G\]</div>
 </dd>
 </dl>
+</li>
+<li><dl>
+<dt>If the remainder is not zero, increase the number of people by the missing value to allow even group division:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P + (G - \text{remainder}) \quad \text{if } \text{remainder} \neq 0\]</div>
+</dd>
+<dt>If there is no remainder, the number of people remains unchanged:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P\]</div>
+</dd>
+</dl>
+</li>
+</ul>
 </div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><strong>Calculation of Groups per Round</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of groups per round is given by:</dt><dd><div class="math notranslate nohighlight">
+\[R = \frac{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><strong>Total Number of Unique Groups (Combinations)</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of possible unique groups is given by the binomial coefficient:</dt><dd><div class="math notranslate nohighlight">
+\[\text{total_groups} = \binom{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p><strong>Maximum Number of Rounds</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The upper bound for the number of rounds is given by:</dt><dd><div class="math notranslate nohighlight">
+\[\text{max_rounds} = \frac{\text{total_groups}}{R}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</p>
+</section>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.generate_next_round">
+<span class="sig-name descname"><span class="pre">generate_next_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.generate_next_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.generate_next_round" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of possible unique Round combinations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_max_rounds">
+<span class="sig-name descname"><span class="pre">get_max_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_max_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_max_rounds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_possibilities">
+<span class="sig-name descname"><span class="pre">get_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_possibilities" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of possible unique Round combinations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_remaining_rounds">
+<span class="sig-name descname"><span class="pre">get_remaining_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_remaining_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_remaining_rounds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_round">
+<span class="sig-name descname"><span class="pre">get_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_round" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -886,7 +968,7 @@ G - (P \mod G) &amp;        ext{if } P \mod G\]</div>
 <dt class="sig sig-object py" id="groupbuilder.core.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#groupbuilder.core.data_models.Round" title="groupbuilder.core.data_models.Round"><span class="pre">Round</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.convert_round_to_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id3"><span class="problematic" id="id4">round_</span></a>: The Round object to convert.
+:param <a href="#id5"><span class="problematic" id="id6">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 </dd></dl>
 

@@ -34,7 +34,9 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.data_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfig</span><span class="p">,</span> <span class="n">Rounds</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.data_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfig</span>
 
 <div class="viewcode-block" id="GroupingAlgorithm">
 <a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm">[docs]</a>
@@ -42,79 +44,185 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">GroupConfig</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">amount_people</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">group_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span> <span class="o">=</span> <span class="n">Rounds</span><span class="p">(</span><span class="n">rounds</span><span class="o">=</span><span class="p">{})</span>
 
-<div class="viewcode-block" id="GroupingAlgorithm.get_possibilities">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_possibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__unique_rounds</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__groups_per_round</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_groups_per_round</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__generate_all_possible_combs</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_rounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_max_possibilities</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__get_groups_per_round</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">remainder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
+        <span class="k">if</span> <span class="n">remainder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span> <span class="o">-</span> <span class="n">remainder</span><span class="p">))</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__generate_all_possible_combs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">))</span>
+
+        <span class="c1"># Add placeholders (-1) for missing people to make total divisible by group size</span>
+        <span class="n">total_people</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span>
+        <span class="k">while</span> <span class="n">total_people</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">total_people</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">all_combinations_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">([</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_combinations_list</span><span class="p">])</span>
+
+<div class="viewcode-block" id="GroupingAlgorithm.get_round">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_round">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_round</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="GroupingAlgorithm.generate_next_round">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_next_round</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of possible unique Round combinations.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span> <span class="o">==</span> <span class="nb">set</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="s2">&quot;No more rounds can be generated.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">round_combination</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__groups_per_round</span><span class="p">)):</span>
+
+            <span class="n">flat_combination</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">round_combination</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flat_combination</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_combination</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="k">for</span> <span class="n">comb</span> <span class="ow">in</span> <span class="n">round_combination</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">comb</span><span class="p">)</span>
+
+            <span class="n">round_groups</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">round_combination</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__unique_rounds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">round_groups</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">round_groups</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">break</span></div>
+
+
+<div class="viewcode-block" id="GroupingAlgorithm.get_remaining_rounds">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_remaining_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_rounds</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span></div>
+
+
+<div class="viewcode-block" id="GroupingAlgorithm.get_max_rounds">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_max_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_rounds</span></div>
+
+
+
+<div class="viewcode-block" id="GroupingAlgorithm._get_max_possibilities">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_max_possibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculates the number of possible unique round combinations in a scenario where people are divided into groups of a specified size.</span>
+<span class="sd">Calculate an upper bound on the number of rounds possible.</span>
 
-<span class="sd">        **Parameters**:</span>
+<span class="sd">This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups</span>
+<span class="sd">that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that</span>
+<span class="sd">it is divisible by the group size by adding placeholders if necessary.</span>
 
-<span class="sd">        - :math:`P`: Total number of people.</span>
-<span class="sd">        - :math:`G`: Group size.</span>
-<span class="sd">        - :math:`H`: Number of placeholders (added if :math:`P` is not divisible by :math:`G`).</span>
-<span class="sd">        - :math:`T`: Total number of participants (including placeholders).</span>
-<span class="sd">        - :math:`\text{groups_per_round}`: The number of groups formed in a round.</span>
-<span class="sd">        - :math:`\text{numerator}`: The product of binomial coefficients for each group.</span>
-<span class="sd">        - :math:`\text{denominator}`: The factorial of the number of groups.</span>
+<span class="sd">Given</span>
+<span class="sd">~~~~~</span>
+<span class="sd">- :math:`P`: Total number of people.</span>
+<span class="sd">- :math:`G`: Group size.</span>
+<span class="sd">- :math:`\\text{remainder}`: Number of placeholders (added if :math:`P` is not divisible by :math:`G`).</span>
+<span class="sd">- :math:`P_{adjusted}`: Total number of participants (including placeholders).</span>
+<span class="sd">- :math:`R`: The number of groups formed in a round.</span>
+<span class="sd">- :math:`\\text{total_groups}`: The product of binomial coefficients for each group.</span>
 
-<span class="sd">        **Formula Steps**:</span>
+<span class="sd">Formula Steps</span>
+<span class="sd">~~~~~~~~~~~~~</span>
+<span class="sd">1. **Adjustment of the Number of People**</span>
 
-<span class="sd">        1. Calculate placeholders :math:`H` (if necessary):</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                H =</span>
-<span class="sd">                \begin{cases}</span>
-<span class="sd">                0 &amp; \text{if } P \mod G = 0 \\</span>
-<span class="sd">                G - (P \mod G) &amp; \text{if } P \mod G \neq 0</span>
-<span class="sd">                \end{cases}</span>
-<span class="sd">        2. Total participants :math:`T`:</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                T = P + H</span>
-<span class="sd">        3. Groups per round :math:`\text{groups_per_round}`:</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                \text{groups_per_round} = \frac{T}{G}</span>
-<span class="sd">        4. Numerator: The product of the binomial coefficients:</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                \text{numerator} = \prod_{i=0}^{\text{groups_per_round}-1} \binom{T - i \cdot G}{G}</span>
-<span class="sd">        5. Denominator: The factorial of the number of groups:</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                \text{denominator} = (\text{groups_per_round})!</span>
-<span class="sd">        6. Unique rounds: The total number of unique round combinations:</span>
-<span class="sd">            .. math::</span>
-<span class="sd">                \text{unique_rounds} = \frac{\text{numerator}}{\text{denominator}}</span>
+<span class="sd">  - Calculate the remainder when the number of people is divided by the group size:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        \\text{remainder} = P \\mod G</span>
+<span class="sd">  - If the remainder is not zero, increase the number of people by the missing value to allow even group division:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        P_{adjusted} = P + (G - \\text{remainder}) \\quad \\text{if } \\text{remainder} \\neq 0</span>
+<span class="sd">    If there is no remainder, the number of people remains unchanged:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        P_{adjusted} = P</span>
 
-<span class="sd">        This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</span>
+<span class="sd">2. **Calculation of Groups per Round**</span>
 
-<span class="sd">        **Returns**:</span>
-<span class="sd">            - : The number of possible unique round combinations.</span>
+<span class="sd">  - The number of groups per round is given by:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        R = \\frac{P_{adjusted}}{G}</span>
+
+<span class="sd">3. **Total Number of Unique Groups (Combinations)**</span>
+
+<span class="sd">  - The number of possible unique groups is given by the binomial coefficient:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        \\text{total_groups} = \\binom{P_{adjusted}}{G}</span>
+
+<span class="sd">4. **Maximum Number of Rounds**</span>
+
+<span class="sd">  - The upper bound for the number of rounds is given by:</span>
+<span class="sd">      .. math::</span>
+<span class="sd">        \\text{max_rounds} = \\frac{\\text{total_groups}}{R}</span>
+
+<span class="sd">This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
+        <span class="c1"># Adjust the number of people to include placeholders if needed.</span>
         <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span>
         <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
 
-        <span class="c1"># Calculate the number of placeholders required</span>
-        <span class="k">if</span> <span class="n">P</span> <span class="o">%</span> <span class="n">G</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">remainder</span> <span class="o">=</span> <span class="n">P</span> <span class="o">%</span> <span class="n">G</span>
+        <span class="k">if</span> <span class="n">remainder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">P_adjusted</span> <span class="o">=</span> <span class="n">P</span> <span class="o">+</span> <span class="p">(</span><span class="n">G</span> <span class="o">-</span> <span class="n">remainder</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="n">G</span> <span class="o">-</span> <span class="p">(</span><span class="n">P</span> <span class="o">%</span> <span class="n">G</span><span class="p">)</span>
+            <span class="n">P_adjusted</span> <span class="o">=</span> <span class="n">P</span>
 
-        <span class="c1"># Total number of participants after adding placeholders</span>
-        <span class="n">T</span> <span class="o">=</span> <span class="n">P</span> <span class="o">+</span> <span class="n">H</span>
+        <span class="c1"># Calculate groups per round (R)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">P_adjusted</span> <span class="o">//</span> <span class="n">G</span>
 
-        <span class="c1"># Calculate the total number of unique round combinations</span>
-        <span class="n">groups_per_round</span> <span class="o">=</span> <span class="n">T</span> <span class="o">//</span> <span class="n">G</span>
-        <span class="n">numerator</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">groups_per_round</span><span class="p">):</span>
-            <span class="n">numerator</span> <span class="o">*=</span> <span class="n">math</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="n">G</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
+        <span class="c1"># Total number of unique groups (combinations)</span>
+        <span class="n">total_groups</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="n">P_adjusted</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
 
-        <span class="n">denominator</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">groups_per_round</span><span class="p">)</span>
-        <span class="n">unique_rounds</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">//</span> <span class="n">denominator</span>
+        <span class="c1"># Upper bound on the number of rounds</span>
+        <span class="n">max_rounds</span> <span class="o">=</span> <span class="n">total_groups</span> <span class="o">//</span> <span class="n">R</span>
+        <span class="k">return</span> <span class="n">max_rounds</span></div>
+
+
+<div class="viewcode-block" id="GroupingAlgorithm.get_possibilities">
+<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_possibilities">[docs]</a>
+    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Use generate_next_round instead and get_round to get the current round.&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_possibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of possible unique Round combinations.&quot;&quot;&quot;</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">))</span>
+
+        <span class="c1"># Add placeholders (-1) for missing people to make total divisible by group size</span>
+        <span class="n">total_people</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span>
+        <span class="k">while</span> <span class="n">total_people</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">total_people</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">all_combinations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span><span class="p">))</span>
+        <span class="n">unique_rounds</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">groups_per_round</span> <span class="o">=</span> <span class="n">total_people</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
+
+        <span class="k">for</span> <span class="n">round_combination</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">all_combinations</span><span class="p">,</span> <span class="n">groups_per_round</span><span class="p">):</span>
+            <span class="n">flat_combination</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">round_combination</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flat_combination</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_combination</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">round_groups</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">round_combination</span><span class="p">)</span>
+            <span class="n">unique_rounds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">round_groups</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">unique_rounds</span></div>
 </div>
-
 
 </pre></div>
 
