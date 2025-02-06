@@ -75,34 +75,34 @@ class GroupingAlgorithm:
         self._rounds[self._current_round_ind] = new_group
         self._current_round_ind += 1
 
-
     def __add_next_group(self, old_group: list[frozenset], old_working_set: set[frozenset], outcast: list[frozenset],
-                         self_id: int, max_id: int, not_found: bool) -> tuple[list[frozenset], set[frozenset], list[frozenset], bool]:
-        # Use the provided objects directly so that changes are in place.
+                         self_id: int, max_id: int, not_found: bool) -> tuple[
+        list[frozenset], set[frozenset], list[frozenset], bool]:
+        # Use in-place modifications
         working_set = old_working_set
         working_group = old_group
-        reject = False
 
-        # Iterate over a snapshot of the set to avoid modifying the set during iteration.
-        for group_comb in list(working_set):
-            for comb in working_group:
-                groupmask = reduce(or_, (1 << x for x in group_comb), 0)
-                combmask = reduce(or_, (1 << x for x in comb), 0)
-                if groupmask & combmask:
-                    reject = True
-                    break
-                # if not group_comb.isdisjoint(comb):
-                #     reject = True
-                #     break
-            if reject:
-                reject = False
-                continue
+        # Precompute bitmasks for faster intersection checks
+        precomputed_bitmasks = {comb: reduce(or_, (1 << x for x in comb), 0) for comb in working_group}
+
+        while working_set:
+            group_comb = working_set.pop()  # Efficient O(1) removal instead of iteration
+
+            groupmask = reduce(or_, (1 << x for x in group_comb), 0)
+
+            # Check for intersection using bitmasks (fast lookup)
+            if any(groupmask & precomputed_bitmasks[comb] for comb in working_group):
+                outcast.append(group_comb)
+                continue  # Skip invalid groups
+
+            # Add to group and update precomputed bitmasks
             working_group.append(group_comb)
-            working_set.remove(group_comb)
+            precomputed_bitmasks[group_comb] = groupmask
             break
         else:
             raise StopIteration("No more rounds can be generated.")
 
+        # Recursive case
         if self_id != max_id:
             while True:
                 try:
@@ -113,8 +113,9 @@ class GroupingAlgorithm:
                         return new_group, new_working_set, outcast, False
                 except StopIteration:
                     outcast.append(working_group.pop())
+                    del precomputed_bitmasks[group_comb]  # Remove from bitmask cache
                     return old_group, working_set, outcast, True
-                # Update the in-place variables for the next iteration.
+
                 working_group, working_set, outcast = new_group, new_working_set, outcast
 
         return working_group, working_set, outcast, False
