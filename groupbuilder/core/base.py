@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Optional, Union
 
+from .data_models import Rounds, Round
+
 class GroupCalculatorInterface(ABC):
 
     @abstractmethod
@@ -48,18 +50,18 @@ class GroupCalculatorInterface(ABC):
         pass
 
     @abstractmethod
-    def get_current_groups(self, pyd: bool = False) -> dict:
+    def get_current_groups(self, pyd: bool = False) -> Union[dict, Round]:
         """
         Gets the current groups.
-        :return dict: The current groups.
+        :return Union[dict, Round]: The current groups.
         """
         pass
 
     @abstractmethod
-    def get_all_groups(self, pyd: bool = False) -> dict:
+    def get_all_groups(self, pyd: bool = False) -> Union[dict, Rounds]:
         """
         Gets all the groups.
-        :return dict: All the groups.
+        :return Union[dict, Rounds]: All the groups.
         """
         pass
 
