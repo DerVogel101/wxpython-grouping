@@ -48,6 +48,7 @@ class GroupingAlgorithm:
             if -1 in comb_set:
                 comb_set.remove(-1)
             all_combs_set.add(frozenset(comb_set))
+        # print(len(all_combs_set) // self.__groups_per_round)
         return all_combs_set
 
     def get_round(self):
@@ -142,9 +143,12 @@ class GroupingAlgorithm:
     def get_max_rounds(self) -> int:
         return self._max_rounds
 
-
+    @deprecated("This calculation is not accurate anymore.")
     def _get_max_possibilities(self) -> int:
         """
+.. note::
+  Method is deprecated, because it is not accurate anymore, the cause for this is that it does not take into account that the algorithm is not allowed to generate the same group twice.
+
 Calculate an upper bound on the number of rounds possible.
 
 This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
