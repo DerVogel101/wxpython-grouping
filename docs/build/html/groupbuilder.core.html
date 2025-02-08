@@ -9,7 +9,7 @@
   <title>groupbuilder.core package &mdash; Student Grouper 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css" />
+      <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css?v=a0a71c94" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -104,7 +104,7 @@
 <span class="sig-name descname"><span class="pre">__add_next_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_working_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcast</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_found</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bitmask_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__add_next_group" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -114,17 +114,17 @@
 <span class="sig-name descname"><span class="pre">__generate_all_possible_combs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__generate_all_possible_combs" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__get_groups_per_round">
-<span class="sig-name descname"><span class="pre">__get_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__get_groups_per_round" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__set_groups_per_round">
+<span class="sig-name descname"><span class="pre">__set_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__set_groups_per_round" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -242,6 +242,98 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ops_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_ops_needed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed" title="Link to this definition"></a></dt>
+<dd><p>Calculate an estimate of the number of operations needed to generate all possible unique round combinations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.</p>
+<p>The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.</p>
+</div>
+<section id="complexity-formula">
+<h3>Complexity Formula<a class="headerlink" href="#complexity-formula" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: Total number of people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>: Group size.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[O\left(\binom{n}{k} * 2^{n/k} \right)\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[O\left(\frac{n!}{k!(n-k)!} * 2^{n/k} \right)\]</div>
+</section>
+<section id="id1">
+<h3>Given<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{amount_people}\)</span> : The total number of real people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{group_size}\)</span> : The size of each group.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Formula Steps<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ol class="arabic" start="0">
+<li><dl>
+<dt><strong>Calculate the Number of People and Group Size</strong></dt><dd><div class="math notranslate nohighlight">
+\[n = \text{amount_people} + (\text{amount_people} \mod \text{group_size})\]</div>
+<div class="math notranslate nohighlight">
+\[k = \text{group_size}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate All Possible Combinations</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{combinations} = \binom{n}{k}\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[\text{combinations} = \frac{n!}{k!(n-k)!}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Generating a Round</strong></dt><dd><dl>
+<dt>2.1. <strong>Calculate the Number of Groups per Round</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{groups_per_round} = \frac{n}{k}\]</div>
+</dd>
+<dt>2.2. <strong>Calculate the Worst-Case Backtracking Scenario</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{back_track_poss} = 2^{\text{groups_per_round}}\]</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate the Number of Operations Needed</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{ops_needed} = \text{combinations} * \text{back_track_poss}\]</div>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">type amount_people<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">param amount_people<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of people.</p>
+</dd>
+<dt class="field-odd">type group_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">param group_size<span class="colon">:</span></dt>
+<dd class="field-even"><p>The size of each group.</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>The estimated number of operations needed to generate all possible unique round combinations.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
@@ -381,7 +473,7 @@ Avoids usage of the same person in the same group.
 <dt class="sig sig-object py" id="groupbuilder.core.data_model_converter.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.data_model_converter.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.data_model_converter.convert_round_to_dict" title="Link to this definition"></a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id3"><span class="problematic" id="id4">round_</span></a>: The Round object to convert.
+:param <a href="#id8"><span class="problematic" id="id9">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1400,7 +1492,7 @@ Avoids usage of the same person in the same group.
 <span class="sig-name descname"><span class="pre">__add_next_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_working_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcast</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_found</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bitmask_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__add_next_group" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1410,17 +1502,17 @@ Avoids usage of the same person in the same group.
 <span class="sig-name descname"><span class="pre">__generate_all_possible_combs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__generate_all_possible_combs" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.__get_groups_per_round">
-<span class="sig-name descname"><span class="pre">__get_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__get_groups_per_round" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.__set_groups_per_round">
+<span class="sig-name descname"><span class="pre">__set_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.__set_groups_per_round" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1441,8 +1533,8 @@ Avoids usage of the same person in the same group.
 <p>This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
 that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
 it is divisible by the group size by adding placeholders if necessary.</p>
-<section id="id1">
-<h3>Given<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="id3">
+<h3>Given<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: Group size.</p></li>
@@ -1452,8 +1544,8 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <li><p><span class="math notranslate nohighlight">\(\text{total_groups}\)</span>: The product of binomial coefficients for each group.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h3>Formula Steps<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id4">
+<h3>Formula Steps<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Adjustment of the Number of People</strong></p></li>
 </ol>
@@ -1538,6 +1630,98 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_ops_needed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ops_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_ops_needed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_ops_needed" title="Link to this definition"></a></dt>
+<dd><p>Calculate an estimate of the number of operations needed to generate all possible unique round combinations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.</p>
+<p>The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.</p>
+</div>
+<section id="id5">
+<h3>Complexity Formula<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: Total number of people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>: Group size.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[O\left(\binom{n}{k} * 2^{n/k} \right)\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[O\left(\frac{n!}{k!(n-k)!} * 2^{n/k} \right)\]</div>
+</section>
+<section id="id6">
+<h3>Given<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{amount_people}\)</span> : The total number of real people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{group_size}\)</span> : The size of each group.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Formula Steps<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<ol class="arabic" start="0">
+<li><dl>
+<dt><strong>Calculate the Number of People and Group Size</strong></dt><dd><div class="math notranslate nohighlight">
+\[n = \text{amount_people} + (\text{amount_people} \mod \text{group_size})\]</div>
+<div class="math notranslate nohighlight">
+\[k = \text{group_size}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate All Possible Combinations</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{combinations} = \binom{n}{k}\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[\text{combinations} = \frac{n!}{k!(n-k)!}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Generating a Round</strong></dt><dd><dl>
+<dt>2.1. <strong>Calculate the Number of Groups per Round</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{groups_per_round} = \frac{n}{k}\]</div>
+</dd>
+<dt>2.2. <strong>Calculate the Worst-Case Backtracking Scenario</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{back_track_poss} = 2^{\text{groups_per_round}}\]</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate the Number of Operations Needed</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{ops_needed} = \text{combinations} * \text{back_track_poss}\]</div>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">type amount_people<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">param amount_people<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of people.</p>
+</dd>
+<dt class="field-odd">type group_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">param group_size<span class="colon">:</span></dt>
+<dd class="field-even"><p>The size of each group.</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>The estimated number of operations needed to generate all possible unique round combinations.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
@@ -1903,7 +2087,7 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dt class="sig sig-object py" id="groupbuilder.core.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.convert_round_to_dict" title="Link to this definition"></a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id5"><span class="problematic" id="id6">round_</span></a>: The Round object to convert.
+:param <a href="#id10"><span class="problematic" id="id11">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>

@@ -12,27 +12,30 @@ class GroupingAlgorithm:
         self._amount_people: int = config.amount_people
         self._group_size: int = config.group_size
 
-        self.__unique_rounds = set()
+        self.__unique_rounds: set = set()
 
-        self.__groups_per_round = self.__get_groups_per_round()
+        self.__groups_per_round: int | None = None
+        self.__set_groups_per_round()
 
-        self.__all_combinations = self.__generate_all_possible_combs()
+        self.__all_combinations: set | None = None
+        self._max_rounds: int | None = None
+        self.__generate_all_possible_combs()
 
-        self._current_round_ind = 0
-        self._max_rounds = self._get_max_possibilities()
-
-        self._rounds = {}
+        self._current_round_ind: int = 0
 
 
-    def __get_groups_per_round(self) -> int:
+        self._rounds: dict = {}
+
+
+    def __set_groups_per_round(self) -> None:
         remainder = self._amount_people % self._group_size
         if remainder != 0:
-            return (self._amount_people + (self._group_size - remainder)) // self._group_size
+            self.__groups_per_round = (self._amount_people + (self._group_size - remainder)) // self._group_size
         else:
-            return self._amount_people // self._group_size
+            self.__groups_per_round = self._amount_people // self._group_size
 
 
-    def __generate_all_possible_combs(self) -> set:
+    def __generate_all_possible_combs(self) -> None:
         people = list(range(self._amount_people))
 
         # Add placeholders (-1) for missing people to make total divisible by group size
@@ -48,8 +51,8 @@ class GroupingAlgorithm:
             if -1 in comb_set:
                 comb_set.remove(-1)
             all_combs_set.add(frozenset(comb_set))
-        # print(len(all_combs_set) // self.__groups_per_round)
-        return all_combs_set
+        self._max_rounds = len(all_combs_set) // self.__groups_per_round
+        self.__all_combinations = all_combs_set
 
     def get_round(self):
         return self._rounds[self._current_round_ind - 1]
@@ -58,6 +61,7 @@ class GroupingAlgorithm:
         """Returns the number of possible unique Round combinations."""
         if self.__all_combinations == set():
             raise StopIteration("No more rounds can be generated.")
+        is_reversed = False  # TODO: implement reversed generation for multithreading
 
         combs_iter = self.__all_combinations.copy()
         bitmask_cache = {}
@@ -66,11 +70,15 @@ class GroupingAlgorithm:
                 combs_working = self.__all_combinations.copy()
                 current_groups = [group_comb]
                 combs_working.remove(group_comb)
+                combs_working = list(combs_working)[::-1] if is_reversed else list(combs_working)
                 if group_comb not in bitmask_cache:
                     bitmask_cache[group_comb] = reduce(or_, (1 << x for x in group_comb), 0)
                 break
-            new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working, [], 2, self.__groups_per_round, False, bitmask_cache)
+            new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working,
+                                                                                   [], 2, self.__groups_per_round,
+                                                                                   False, bitmask_cache)
 
+            new_working_set = set(new_working_set)
             new_working_set.update(outcast)
             if not not_found:
                 break
@@ -83,9 +91,9 @@ class GroupingAlgorithm:
         self._rounds[self._current_round_ind] = new_group
         self._current_round_ind += 1
 
-    def __add_next_group(self, old_group: list[frozenset], old_working_set: set[frozenset], outcast: list[frozenset],
+    def __add_next_group(self, old_group: list[frozenset], old_working_set: list[frozenset], outcast: list[frozenset],
                          self_id: int, max_id: int, not_found: bool, bitmask_cache: dict[frozenset, int] = None) -> tuple[
-        list[frozenset], set[frozenset], list[frozenset], bool]:
+        list[frozenset], list[frozenset], list[frozenset], bool]:
 
         # Initialize bitmask cache if not provided
         if bitmask_cache is None:
@@ -142,6 +150,92 @@ class GroupingAlgorithm:
 
     def get_max_rounds(self) -> int:
         return self._max_rounds
+
+    @staticmethod
+    def get_ops_needed(amount_people: int, group_size: int) -> int:
+        """
+        Calculate an estimate of the number of operations needed to generate all possible unique round combinations.
+
+        .. note::
+          This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.\n
+          The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.
+
+        Complexity Formula
+        ~~~~~~~~~~~~~~~~~~~
+
+        - :math:`n`: Total number of people.
+        - :math:`k`: Group size.
+
+        .. math::
+          O\\left(\\binom{n}{k} * 2^{n/k} \\right)
+        .. raw:: html
+
+                <div style="text-align: center;">
+                    Or
+                </div>
+        .. math::
+            O\\left(\\frac{n!}{k!(n-k)!} * 2^{n/k} \\right)
+
+        Given
+        ~~~~~
+        - :math:`\\text{amount_people}` : The total number of real people.
+        - :math:`\\text{group_size}` : The size of each group.
+
+        Formula Steps
+        ~~~~~~~~~~~~~
+
+        0. **Calculate the Number of People and Group Size**
+            .. math::
+                n = \\text{amount_people} + (\\text{amount_people} \\mod \\text{group_size})
+            .. math::
+                k = \\text{group_size}
+
+        1. **Calculate All Possible Combinations**
+            .. math::
+                \\text{combinations} = \\binom{n}{k}
+            .. raw:: html
+
+                <div style="text-align: center;">
+                    Or
+                </div>
+            .. math::
+                \\text{combinations} = \\frac{n!}{k!(n-k)!}
+
+        2. **Generating a Round**
+            2.1. **Calculate the Number of Groups per Round**
+                .. math::
+                    \\text{groups_per_round} = \\frac{n}{k}
+
+            2.2. **Calculate the Worst-Case Backtracking Scenario**
+                .. math::
+                    \\text{back_track_poss} = 2^{\\text{groups_per_round}}
+
+        3. **Calculate the Number of Operations Needed**
+            .. math::
+                \\text{ops_needed} = \\text{combinations} * \\text{back_track_poss}
+
+        :param amount_people: The total number of people.
+        :param group_size: The size of each group.
+        :return: The estimated number of operations needed to generate all possible unique round combinations.
+        """
+        # 0. Calculate the number of people and group size
+        n = amount_people + (amount_people % group_size)
+        k = group_size
+
+        # 1. Calculate all the possible combinations, using binomial coefficient
+        combinations = math.comb(n, k)
+        print("space", combinations)
+
+        # 2. Generating a round
+        # 2.1. Calculate the number of groups per round
+        groups_per_round = n // k
+        # 2.2. Calculate the worst case backtracking scenario
+        back_track_poss = 2 ** groups_per_round
+
+        # 3. Calculate the number of operations needed
+        ops_needed = combinations * back_track_poss
+
+        return ops_needed
 
     @deprecated("This calculation is not accurate anymore.")
     def _get_max_possibilities(self) -> int:

@@ -2,12 +2,15 @@ from groupbuilder.groupcalculator import GroupCalculator
 from groupbuilder import GroupingAlgorithm
 from groupbuilder.core.data_models import GroupConfig
 import cProfile
+import math
 
 
 if __name__ == "__main__":
     # print(GroupingAlgorithm(GroupConfig(amount_people=4, group_size=2)).get_max_rounds())
     def main():
-        conf1 = GroupingAlgorithm(GroupConfig(amount_people=19, group_size=3))
+        print(GroupingAlgorithm.get_ops_needed(30, 4))
+        print(GroupingAlgorithm.get_ops_needed(30, 6))
+        conf1 = GroupingAlgorithm(GroupConfig(amount_people=30, group_size=6))
         print(conf1.get_max_rounds())
         try:
             for _ in range(conf1.get_remaining_rounds() + 1):
