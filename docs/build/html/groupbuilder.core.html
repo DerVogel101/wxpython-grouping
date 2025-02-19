@@ -247,14 +247,17 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ops_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_ops_needed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed" title="Link to this definition"></a></dt>
-<dd><p>Calculate an estimate of the number of operations needed to generate all possible unique round combinations.</p>
+<dd><p>Calculate an estimate of the number of operations needed to generate all possible
+unique round combinations, along with the number of combinations and an approximate
+amount of RAM needed based on an internal regression model.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.</p>
-<p>The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.</p>
+<p>This method calculates the number of operations needed to generate all possible
+unique round combinations based on the total number of people and the group size.
+The calculation involves determining the number of possible combinations, the worst-case
+backtracking scenario, and an estimate of RAM usage.</p>
 </div>
-<section id="complexity-formula">
-<h3>Complexity Formula<a class="headerlink" href="#complexity-formula" title="Link to this heading"></a></h3>
+<p><strong>Complexity Formula</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(k\)</span>: Group size.</p></li>
@@ -265,16 +268,12 @@ it is divisible by the group size by adding placeholders if necessary.</p>
     Or
 </div><div class="math notranslate nohighlight">
 \[O\left(\frac{n!}{k!(n-k)!} * 2^{n/k} \right)\]</div>
-</section>
-<section id="id1">
-<h3>Given<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p><strong>Given</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{amount_people}\)</span> : The total number of real people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{group_size}\)</span> : The size of each group.</p></li>
 </ul>
-</section>
-<section id="id2">
-<h3>Formula Steps<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p><strong>Formula Steps</strong></p>
 <ol class="arabic" start="0">
 <li><dl>
 <dt><strong>Calculate the Number of People and Group Size</strong></dt><dd><div class="math notranslate nohighlight">
@@ -312,28 +311,36 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 </dd>
 </dl>
 </li>
-</ol>
-<dl class="field-list simple">
-<dt class="field-odd">type amount_people<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">param amount_people<span class="colon">:</span></dt>
-<dd class="field-even"><p>The total number of people.</p>
-</dd>
-<dt class="field-odd">type group_size<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">param group_size<span class="colon">:</span></dt>
-<dd class="field-even"><p>The size of each group.</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">return<span class="colon">:</span></dt>
-<dd class="field-even"><p>The estimated number of operations needed to generate all possible unique round combinations.</p>
+<li><dl>
+<dt><strong>Calculate the Approximate Amount of RAM Needed</strong></dt><dd><p>This estimate is determined by a regression model, based on this <a class="reference external" href="https://de.planetcalc.com/5992/?xstring=12720%2091390%20658008%201581580%202123555%202794155%203921225%206210820%207059052%2010009125%2012082785%2021374050%2045379620&amp;ystring=40%2070%20440%20580%20820%201000%201300%202100%202800%203500%204200%208000%2014000&amp;dolinear=1&amp;doquadratic=0&amp;dopower=0&amp;docubic=0&amp;doexponential=0&amp;dologarithmic=0&amp;dohyperbolic=0&amp;doeexponential=0">Website</a>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{ram_needed} = 0.000315294762088087 \times \text{combinations} + 200\]</div>
+</div></blockquote>
+<p>If <span class="math notranslate nohighlight">\(\text{combinations} &gt; 92000\)</span>, use the formula above.
+Then round <span class="math notranslate nohighlight">\(\text{ram_needed}\)</span> up to the nearest multiple of 10.
+Otherwise, default to 100 MB.</p>
 </dd>
 </dl>
-</section>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount_people</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of people.</p></li>
+<li><p><strong>group_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of each group.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing:
+1. The estimated number of operations needed (ops_needed).
+2. The number of combinations.
+3. The approximate amount of RAM needed (in MB).</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -473,7 +480,7 @@ Avoids usage of the same person in the same group.
 <dt class="sig sig-object py" id="groupbuilder.core.data_model_converter.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.data_model_converter.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.data_model_converter.convert_round_to_dict" title="Link to this definition"></a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id8"><span class="problematic" id="id9">round_</span></a>: The Round object to convert.
+:param <a href="#id4"><span class="problematic" id="id5">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1533,8 +1540,8 @@ Avoids usage of the same person in the same group.
 <p>This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
 that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
 it is divisible by the group size by adding placeholders if necessary.</p>
-<section id="id3">
-<h3>Given<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id1">
+<h3>Given<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: Group size.</p></li>
@@ -1544,8 +1551,8 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <li><p><span class="math notranslate nohighlight">\(\text{total_groups}\)</span>: The product of binomial coefficients for each group.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h3>Formula Steps<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<section id="id2">
+<h3>Formula Steps<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Adjustment of the Number of People</strong></p></li>
 </ol>
@@ -1635,14 +1642,17 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.core.GroupingAlgorithm.get_ops_needed">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ops_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_ops_needed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.GroupingAlgorithm.get_ops_needed" title="Link to this definition"></a></dt>
-<dd><p>Calculate an estimate of the number of operations needed to generate all possible unique round combinations.</p>
+<dd><p>Calculate an estimate of the number of operations needed to generate all possible
+unique round combinations, along with the number of combinations and an approximate
+amount of RAM needed based on an internal regression model.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.</p>
-<p>The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.</p>
+<p>This method calculates the number of operations needed to generate all possible
+unique round combinations based on the total number of people and the group size.
+The calculation involves determining the number of possible combinations, the worst-case
+backtracking scenario, and an estimate of RAM usage.</p>
 </div>
-<section id="id5">
-<h3>Complexity Formula<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p><strong>Complexity Formula</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n\)</span>: Total number of people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(k\)</span>: Group size.</p></li>
@@ -1653,16 +1663,12 @@ it is divisible by the group size by adding placeholders if necessary.</p>
     Or
 </div><div class="math notranslate nohighlight">
 \[O\left(\frac{n!}{k!(n-k)!} * 2^{n/k} \right)\]</div>
-</section>
-<section id="id6">
-<h3>Given<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p><strong>Given</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{amount_people}\)</span> : The total number of real people.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{group_size}\)</span> : The size of each group.</p></li>
 </ul>
-</section>
-<section id="id7">
-<h3>Formula Steps<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p><strong>Formula Steps</strong></p>
 <ol class="arabic" start="0">
 <li><dl>
 <dt><strong>Calculate the Number of People and Group Size</strong></dt><dd><div class="math notranslate nohighlight">
@@ -1700,28 +1706,36 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 </dd>
 </dl>
 </li>
-</ol>
-<dl class="field-list simple">
-<dt class="field-odd">type amount_people<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">param amount_people<span class="colon">:</span></dt>
-<dd class="field-even"><p>The total number of people.</p>
-</dd>
-<dt class="field-odd">type group_size<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">param group_size<span class="colon">:</span></dt>
-<dd class="field-even"><p>The size of each group.</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-even">return<span class="colon">:</span></dt>
-<dd class="field-even"><p>The estimated number of operations needed to generate all possible unique round combinations.</p>
+<li><dl>
+<dt><strong>Calculate the Approximate Amount of RAM Needed</strong></dt><dd><p>This estimate is determined by a regression model, based on this <a class="reference external" href="https://de.planetcalc.com/5992/?xstring=12720%2091390%20658008%201581580%202123555%202794155%203921225%206210820%207059052%2010009125%2012082785%2021374050%2045379620&amp;ystring=40%2070%20440%20580%20820%201000%201300%202100%202800%203500%204200%208000%2014000&amp;dolinear=1&amp;doquadratic=0&amp;dopower=0&amp;docubic=0&amp;doexponential=0&amp;dologarithmic=0&amp;dohyperbolic=0&amp;doeexponential=0">Website</a>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{ram_needed} = 0.000315294762088087 \times \text{combinations} + 200\]</div>
+</div></blockquote>
+<p>If <span class="math notranslate nohighlight">\(\text{combinations} &gt; 92000\)</span>, use the formula above.
+Then round <span class="math notranslate nohighlight">\(\text{ram_needed}\)</span> up to the nearest multiple of 10.
+Otherwise, default to 100 MB.</p>
 </dd>
 </dl>
-</section>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount_people</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of people.</p></li>
+<li><p><strong>group_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of each group.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing:
+1. The estimated number of operations needed (ops_needed).
+2. The number of combinations.
+3. The approximate amount of RAM needed (in MB).</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -2087,7 +2101,7 @@ it is divisible by the group size by adding placeholders if necessary.</p>
 <dt class="sig sig-object py" id="groupbuilder.core.convert_round_to_dict">
 <span class="sig-prename descclassname"><span class="pre">groupbuilder.core.</span></span><span class="sig-name descname"><span class="pre">convert_round_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/groupbuilder/core/data_model_converter.html#convert_round_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.convert_round_to_dict" title="Link to this definition"></a></dt>
 <dd><p>Convert a Round object to a dictionary.
-:param <a href="#id10"><span class="problematic" id="id11">round_</span></a>: The Round object to convert.
+:param <a href="#id6"><span class="problematic" id="id7">round_</span></a>: The Round object to convert.
 :return dict: The dictionary representation of the Round object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>

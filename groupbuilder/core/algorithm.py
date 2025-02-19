@@ -152,16 +152,19 @@ class GroupingAlgorithm:
         return self._max_rounds
 
     @staticmethod
-    def get_ops_needed(amount_people: int, group_size: int) -> int:
+    def get_ops_needed(amount_people: int, group_size: int) -> tuple[int, int, int]:
         """
-        Calculate an estimate of the number of operations needed to generate all possible unique round combinations.
+        Calculate an estimate of the number of operations needed to generate all possible
+        unique round combinations, along with the number of combinations and an approximate
+        amount of RAM needed based on an internal regression model.
 
         .. note::
-          This method calculates the number of operations needed to generate all possible unique round combinations based on the total number of people and the group size.\n
-          The calculation involves determining the number of possible combinations and the worst-case backtracking scenario.
+            This method calculates the number of operations needed to generate all possible
+            unique round combinations based on the total number of people and the group size.
+            The calculation involves determining the number of possible combinations, the worst-case
+            backtracking scenario, and an estimate of RAM usage.
 
-        Complexity Formula
-        ~~~~~~~~~~~~~~~~~~~
+        **Complexity Formula**
 
         - :math:`n`: Total number of people.
         - :math:`k`: Group size.
@@ -176,13 +179,12 @@ class GroupingAlgorithm:
         .. math::
             O\\left(\\frac{n!}{k!(n-k)!} * 2^{n/k} \\right)
 
-        Given
-        ~~~~~
+        **Given**
+
         - :math:`\\text{amount_people}` : The total number of real people.
         - :math:`\\text{group_size}` : The size of each group.
 
-        Formula Steps
-        ~~~~~~~~~~~~~
+        **Formula Steps**
 
         0. **Calculate the Number of People and Group Size**
             .. math::
@@ -214,9 +216,23 @@ class GroupingAlgorithm:
             .. math::
                 \\text{ops_needed} = \\text{combinations} * \\text{back_track_poss}
 
+        4. **Calculate the Approximate Amount of RAM Needed**
+            This estimate is determined by a regression model, based on this `Website <https://de.planetcalc.com/5992/?xstring=12720%2091390%20658008%201581580%202123555%202794155%203921225%206210820%207059052%2010009125%2012082785%2021374050%2045379620&ystring=40%2070%20440%20580%20820%201000%201300%202100%202800%203500%204200%208000%2014000&dolinear=1&doquadratic=0&dopower=0&docubic=0&doexponential=0&dologarithmic=0&dohyperbolic=0&doeexponential=0>`_:
+
+                .. math::
+                    \\text{ram_needed} = 0.000315294762088087 \\times \\text{combinations} + 200
+
+            If :math:`\\text{combinations} > 92000`, use the formula above.
+            Then round :math:`\\text{ram_needed}` up to the nearest multiple of 10.
+            Otherwise, default to 100 MB.
+
         :param amount_people: The total number of people.
         :param group_size: The size of each group.
-        :return: The estimated number of operations needed to generate all possible unique round combinations.
+        :return: A tuple containing:
+            1. The estimated number of operations needed (ops_needed).
+            2. The number of combinations.
+            3. The approximate amount of RAM needed (in MB).
+
         """
         # 0. Calculate the number of people and group size
         n = amount_people + (amount_people % group_size)
@@ -224,7 +240,6 @@ class GroupingAlgorithm:
 
         # 1. Calculate all the possible combinations, using binomial coefficient
         combinations = math.comb(n, k)
-        print("space", combinations)
 
         # 2. Generating a round
         # 2.1. Calculate the number of groups per round
@@ -235,7 +250,14 @@ class GroupingAlgorithm:
         # 3. Calculate the number of operations needed
         ops_needed = combinations * back_track_poss
 
-        return ops_needed
+        # 4. Calculate the approximate amount of RAM needed, using a regression model
+        if combinations > 92000:
+            ram_needed = 0.000315294762088087 * combinations + 200
+            ram_needed = (ram_needed + 9) // 10 * 10  # Round up to nearest multiple of 10
+        else:
+            ram_needed = 100
+
+        return ops_needed, combinations, ram_needed
 
     @deprecated("This calculation is not accurate anymore.")
     def _get_max_possibilities(self) -> int:
