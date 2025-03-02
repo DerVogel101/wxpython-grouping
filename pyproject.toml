@@ -9,6 +9,7 @@ dependencies = [
     "autodoc-pydantic==2.2.0",
     "babel==2.16.0",
     "certifi==2025.1.31",
+    "chardet>=5.2.0",
     "charset-normalizer==3.4.1",
     "colorama==0.4.6",
     "cython==3.0.11",
