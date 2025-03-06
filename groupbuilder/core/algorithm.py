@@ -12,7 +12,7 @@ class GroupingAlgorithm:
         self._amount_people: int = config.amount_people
         self._group_size: int = config.group_size
 
-        self.__unique_rounds: set = set()
+        self._unique_rounds: set = set()
 
         self.__groups_per_round: int | None = None
         self.__set_groups_per_round()
@@ -63,6 +63,8 @@ class GroupingAlgorithm:
             raise StopIteration("No more rounds can be generated.")
         is_reversed = False  # TODO: implement reversed generation for multithreading
 
+        all_person_mask = reduce(or_, (1 << x for x in range(self._amount_people)), 0)
+
         combs_iter = self.__all_combinations.copy()
         bitmask_cache = {}
         while True:
@@ -76,7 +78,7 @@ class GroupingAlgorithm:
                 break
             new_group, new_working_set, outcast, not_found = self.__add_next_group(current_groups, combs_working,
                                                                                    [], 2, self.__groups_per_round,
-                                                                                   False, bitmask_cache)
+                                                                                   False, bitmask_cache, all_person_mask)
 
             new_working_set = set(new_working_set)
             new_working_set.update(outcast)
@@ -90,9 +92,10 @@ class GroupingAlgorithm:
         self.__all_combinations = new_working_set
         self._rounds[self._current_round_ind] = new_group
         self._current_round_ind += 1
+        self._unique_rounds.add(frozenset(new_group))
 
     def __add_next_group(self, old_group: list[frozenset], old_working_set: list[frozenset], outcast: list[frozenset],
-                         self_id: int, max_id: int, not_found: bool, bitmask_cache: dict[frozenset, int] = None) -> tuple[
+                         self_id: int, max_id: int, not_found: bool, bitmask_cache: dict[frozenset, int] = None, all_person_mask: int = None) -> tuple[
         list[frozenset], list[frozenset], list[frozenset], bool]:
 
         # Initialize bitmask cache if not provided
@@ -129,7 +132,7 @@ class GroupingAlgorithm:
             while True:
                 try:
                     new_group, new_working_set, outcast, not_found = self.__add_next_group(
-                        working_group, working_set, outcast, self_id + 1, max_id, False, bitmask_cache
+                        working_group, working_set, outcast, self_id + 1, max_id, False, bitmask_cache, all_person_mask
                     )
                     if not not_found:
                         return new_group, new_working_set, outcast, False
@@ -140,7 +143,10 @@ class GroupingAlgorithm:
                     return old_group, working_set, outcast, True
 
                 working_group, working_set, outcast = new_group, new_working_set, outcast
-
+        
+        if not reduce(or_, (1 << x for x in itertools.chain.from_iterable(working_group)), 0) == all_person_mask:
+            return working_group, working_set, outcast, True
+        
         return working_group, working_set, outcast, False
 
 
