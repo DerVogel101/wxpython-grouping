@@ -1,14 +1,12 @@
-from groupbuilder.groupcalculator import GroupCalculator
 from groupbuilder import GroupingAlgorithm
 from groupbuilder.core.data_models import GroupConfig
 import cProfile
-import math
 
 
 if __name__ == "__main__":
     # print(GroupingAlgorithm(GroupConfig(amount_people=4, group_size=2)).get_max_rounds())
     def main():
-        am, gs = 40, 2
+        am, gs = 25, 5
         print(GroupingAlgorithm.get_ops_needed(am, gs))
         conf1 = GroupingAlgorithm(GroupConfig(amount_people=am, group_size=gs))
         print(conf1.get_max_rounds())

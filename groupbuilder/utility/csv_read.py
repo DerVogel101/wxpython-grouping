@@ -26,7 +26,6 @@ def detect_csv_separator_and_load(file_path):
             result_data.append(row)
     return result_data, dialect.delimiter, encoding
 
-
 if __name__ == "__main__":
     file_path = 'dqi_user2.csv'
     data, delimiter, encoding = detect_csv_separator_and_load(file_path)
