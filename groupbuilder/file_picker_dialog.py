@@ -7,6 +7,12 @@ class FilePickDialog(CSVPickDialog):
         self.parent = parent
 
     def on_done( self, event ):
-        self.parent.csv_path = self.csv_pick.GetPath()
-        self.EndModal(wx.ID_OK)
+        if self.csv_pick.GetPath():
+            self.parent.csv_path = self.csv_pick.GetPath()
+            self.EndModal(wx.ID_OK)
+        event.Skip()
+
+    def on_close_window( self, event ):
+        self.parent.csv_cancel = True
+        self.EndModal(wx.ID_CANCEL)
         event.Skip()

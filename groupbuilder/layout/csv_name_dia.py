@@ -100,6 +100,7 @@ class CSVNameDialog ( wx.Dialog ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_CLOSE, self.on_close_window )
         self.Bind( wx.EVT_INIT_DIALOG, self.on_load )
         self.check_name.Bind( wx.EVT_CHECKLISTBOX, self.on_name_check )
         self.check_sur_name.Bind( wx.EVT_CHECKLISTBOX, self.on_surname_check )
@@ -112,6 +113,9 @@ class CSVNameDialog ( wx.Dialog ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_close_window( self, event ):
+        event.Skip()
+
     def on_load( self, event ):
         event.Skip()
 

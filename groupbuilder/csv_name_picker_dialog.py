@@ -11,6 +11,11 @@ class NameDialog(CSVNameDialog):
         self.delimiter: str | None = None
         self.encoding: str | None = None
 
+    def on_close_window( self, event ):
+        self.parent.csv_cancel = True
+        self.EndModal(wx.ID_CANCEL)
+        event.Skip()
+
     def on_header_check( self, event ):
         self.parent.csv_has_header = self.has_header_box.GetValue()
         event.Skip()

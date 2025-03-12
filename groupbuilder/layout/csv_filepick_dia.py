@@ -31,7 +31,7 @@ class CSVPickDialog ( wx.Dialog ):
 
         bSizer5.Add( self.m_staticText3, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 
-        self.csv_pick = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a file"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE|wx.FLP_FILE_MUST_EXIST )
+        self.csv_pick = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a file"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_FILE_MUST_EXIST )
         bSizer5.Add( self.csv_pick, 0, wx.ALL, 5 )
 
         self.pick_done = wx.Button( self, wx.ID_ANY, _(u"Fertig"), wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -45,6 +45,7 @@ class CSVPickDialog ( wx.Dialog ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_CLOSE, self.on_close_window )
         self.pick_done.Bind( wx.EVT_BUTTON, self.on_done )
 
     def __del__( self ):
@@ -52,6 +53,9 @@ class CSVPickDialog ( wx.Dialog ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_close_window( self, event ):
+        event.Skip()
+
     def on_done( self, event ):
         event.Skip()
 

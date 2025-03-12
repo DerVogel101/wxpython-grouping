@@ -1,73 +1,65 @@
-from layout_base import MyFrame
 import wx
+from .layout.layout_base import AppFrame
+from .csv_name_picker_dialog import NameDialog
+from .file_picker_dialog import FilePickDialog
+
+class GroupApp(AppFrame):
+    def __init__(self, parent):
+        super(GroupApp, self).__init__(parent)
+        self.csv_pick_dialog: NameDialog | None = None
+        self.csv_name_dialog: FilePickDialog | None = None
+        self.csv_path: str | None = None
+        self.csv_data: list[list] | None = None
+        self.csv_has_header: bool | None = None
+        self.csv_name_index: int | None = None
+        self.csv_surname_index: int | None = None
+        self.csv_cancel: bool = False
 
 
-class MyAPPFrame(MyFrame):
-    def __init__(self):
-        super().__init__(None)
-        self.SetTitle("MyAPP")
-        self.SetColumnWidths([-1, -1])
-        self.Bind(wx.EVT_SIZE, self.OnSize)
 
-    def SetColumnWidths(self, widths):
-        total_width = self.grid.GetClientSize().GetWidth()
-        fixed_width = 0
-        proportional_count = 0
+    def on_round_left_click( self, event ):
+        event.Skip()
 
-        for width in widths:
-            if width > 0:
-                fixed_width += width
-            else:
-                proportional_count += -width
+    def on_round_selector_enter( self, event ):
+        event.Skip()
 
-        for i, width in enumerate(widths):
-            if width > 0:
-                self.grid.SetColSize(i, width)
-            else:
-                proportion_width = (total_width - fixed_width) * (-width) / proportional_count
-                self.grid.SetColSize(i, int(proportion_width))
-        self.grid.ForceRefresh()
+    def on_round_right_click( self, event ):
+        event.Skip()
 
-    def SetRowHeigths(self, heigths):
-        flex_height = self.fgSizer1.GetSize().GetHeight()
-        print(flex_height)
-        total_height = self.grid.GetClientSize().GetHeight()
-        label_height = self.grid.GetColLabelSize()
-        print(label_height, total_height)
-        usable_height = total_height - label_height
-        fixed_height = 0
-        proportional_count = 0
+    def on_csv_load_button_click( self, event ):
+        self.csv_path = None
+        self.csv_data = None
+        self.csv_has_header = None
+        self.csv_name_index = None
+        self.csv_surname_index = None
 
-        for height in heigths:
-            if height > 0:
-                fixed_height += height
-            else:
-                proportional_count += -height
+        self.csv_pick_dialog = FilePickDialog(self)
+        self.csv_pick_dialog.ShowModal()
+        if self.csv_cancel:
+            self.csv_cancel = False
+            event.Skip()
+            return
 
-        for i, height in enumerate(heigths):
-            if height > 0:
-                if height < 1:
-                    pass
-                else:
-                    self.grid.SetRowSize(i, height)
-            else:
-                proportion_height = (usable_height - fixed_height) * (-height) / proportional_count
-                if proportion_height < 1:
-                    pass
-                else:
-                    self.grid.SetRowSize(i, int(proportion_height))
-        self.grid.ForceRefresh()
+        self.csv_name_dialog = NameDialog(self)
+        self.csv_name_dialog.ShowModal()
+        if self.csv_cancel:
+            self.csv_cancel = False
+            event.Skip()
+            return
 
-    def OnSize( self, event ):
-        self.SetColumnWidths([-1, -1])
-        row_number = self.grid.GetNumberRows()
-        heigths = [-1 for _ in range(row_number)]
-        print(heigths)
-        self.SetRowHeigths(heigths)
+        event.Skip()
+
+    def on_gconfig_button_click( self, event ):
+        event.Skip()
+
+    def on_pause_button_click( self, event ):
+        event.Skip()
+
+    def on_csv_export_change( self, event ):
         event.Skip()
 
 if __name__ == '__main__':
-    app = wx.App(False)
-    frame = MyAPPFrame()
+    app = wx.App()
+    frame = GroupApp(None)
     frame.Show()
     app.MainLoop()
