@@ -15,8 +15,6 @@ class GroupApp(AppFrame):
         self.csv_surname_index: int | None = None
         self.csv_cancel: bool = False
 
-
-
     def on_round_left_click( self, event ):
         event.Skip()
 

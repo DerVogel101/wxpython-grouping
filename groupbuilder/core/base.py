@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional, Union
 
-from .data_models import Rounds, Round
 
 class GroupCalculatorInterface(ABC):
 
@@ -50,38 +48,27 @@ class GroupCalculatorInterface(ABC):
         pass
 
     @abstractmethod
-    def get_current_groups(self, pyd: bool = False) -> Union[dict, Round]:
+    def get_current_groups(self) -> dict:
         """
         Gets the current groups.
-        :return Union[dict, Round]: The current groups.
+        :return dict: The current groups.
         """
         pass
 
     @abstractmethod
-    def get_all_groups(self, pyd: bool = False) -> Union[dict, Rounds]:
+    def get_all_groups(self) -> dict:
         """
         Gets all the groups.
-        :return Union[dict, Rounds]: All the groups.
+        :return dict: All the groups.
         """
         pass
 
+    @staticmethod
     @abstractmethod
-    def select_from_csv_file(self, has_header_row: bool, student_firstname_col: Union[int, str],
-                             student_lastname_col: Optional[Union[int, str]]) -> None:
+    def select_from_csv_file(file_path: str) -> list[list[str]]:
         """
-        Selects the students from a CSV file.
-        :param has_header_row: If the CSV file has a header row.
-        :param student_firstname_col: The column index or name of the student first name.
-        :param student_lastname_col: The column index or name of the student last name.
-        :return: None
-        """
-        pass
-
-    @abstractmethod
-    def select_csv_file(self, file_path: str)  -> dict:
-        """
-        Selects the students from a CSV file.
+        Reads the CSV file and prepares the data for selection.
         :param file_path: The path to the CSV file.
-        :return: The column indexes and column names to choose from.
+        :return: CSV data
         """
         pass

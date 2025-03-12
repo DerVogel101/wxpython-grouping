@@ -57,6 +57,9 @@ class GroupingAlgorithm:
     def get_round(self):
         return self._rounds[self._current_round_ind - 1]
 
+    def get_all_rounds(self):
+        return self._rounds
+
     def generate_next_round(self) -> None:
         """Returns the number of possible unique Round combinations."""
         if self.__all_combinations == set():
