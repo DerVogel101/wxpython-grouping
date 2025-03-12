@@ -2000,7 +2000,7 @@
         </object>
       </object>
     </object>
-    <object class="Dialog" expanded="true">
+    <object class="Dialog" expanded="false">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
       <property name="bg"></property>
@@ -2028,8 +2028,9 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style"></property>
+      <event name="OnClose">on_close_window</event>
       <event name="OnInitDialog">on_load</event>
-      <object class="wxFlexGridSizer" expanded="true">
+      <object class="wxFlexGridSizer" expanded="false">
         <property name="cols">3</property>
         <property name="flexible_direction">wxBOTH</property>
         <property name="growablecols"></property>
@@ -2041,21 +2042,21 @@
         <property name="permission">none</property>
         <property name="rows">3</property>
         <property name="vgap">0</property>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
-          <object class="spacer" expanded="true">
+          <object class="spacer" expanded="false">
             <property name="height">0</property>
             <property name="permission">protected</property>
             <property name="width">0</property>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALIGN_CENTER|wxALL</property>
           <property name="proportion">0</property>
-          <object class="wxStaticText" expanded="true">
+          <object class="wxStaticText" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2113,11 +2114,11 @@
             <property name="wrap">-1</property>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALIGN_CENTER|wxALL</property>
           <property name="proportion">0</property>
-          <object class="wxStaticText" expanded="true">
+          <object class="wxStaticText" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2175,11 +2176,11 @@
             <property name="wrap">-1</property>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALL</property>
           <property name="proportion">0</property>
-          <object class="wxGrid" expanded="true">
+          <object class="wxGrid" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2264,11 +2265,11 @@
             <property name="window_style"></property>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALL|wxEXPAND</property>
           <property name="proportion">0</property>
-          <object class="wxCheckListBox" expanded="true">
+          <object class="wxCheckListBox" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2329,11 +2330,11 @@
             <event name="OnCheckListBoxToggled">on_name_check</event>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALL|wxEXPAND</property>
           <property name="proportion">0</property>
-          <object class="wxCheckListBox" expanded="true">
+          <object class="wxCheckListBox" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2394,11 +2395,11 @@
             <event name="OnCheckListBoxToggled">on_surname_check</event>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxALIGN_CENTER|wxALL</property>
           <property name="proportion">0</property>
-          <object class="wxCheckBox" expanded="true">
+          <object class="wxCheckBox" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>
@@ -2640,6 +2641,7 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style"></property>
+      <event name="OnClose">on_close_window</event>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size"></property>
         <property name="name">bSizer5</property>

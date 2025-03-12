@@ -1,13 +1,16 @@
-from typing import Optional, Union, Self
 from pydantic import ValidationError
+from typing_extensions import deprecated
 
 from .core.exceptions import AmountPeopleError
 from .core.base import GroupCalculatorInterface
-from .core.data_models import Round, Rounds, Group, Person, GroupConfig
+from .core.data_models import GroupConfig
+from .core.algorithm import GroupingAlgorithm
+from .utility.number_to_text import number_to_column
+from .utility.csv_read import detect_csv_separator_and_load
 
 
 class GroupCalculator(GroupCalculatorInterface):
-    def __init__(self, amount_people: int, group_size: int):
+    def __init__(self, amount_people: int, group_size: int, usable_indexes: bool = False):
         """
         Initialize a new instance of the GroupCalculator class.
         :raises AmountPeopleError: If the amount of people or group size is invalid.
@@ -16,16 +19,18 @@ class GroupCalculator(GroupCalculatorInterface):
         :param group_size: The group size.
         """
         try:
-            self._group_config = GroupConfig(amount_people=amount_people, group_size=group_size)
+            self.__group_config = GroupConfig(amount_people=amount_people, group_size=group_size)
         except ValidationError as e:
             raise AmountPeopleError from e
+        self.__algorithm = GroupingAlgorithm(self.__group_config)
+        self.__ui = usable_indexes
 
     def reset_groups(self) -> None:
         """
         Reset the groups and round to be initial.
         :return: None
         """
-        pass
+        self.__algorithm = GroupingAlgorithm(self.__group_config)
 
     def create_groups(self) -> None:
         """
@@ -33,51 +38,48 @@ class GroupCalculator(GroupCalculatorInterface):
         Avoids usage of the same person in the same group.
         :return: None
         """
-        pass
+        self.__algorithm.generate_next_round()
 
     def visualize_groups(self) -> None:
         """
         Print the groups in a readable format.
         :return: None
         """
-        pass
+        groups = self.get_all_groups()
+        for rnd in groups:
+            for i, g in groups[rnd].items():
+                print(f"Gruppe {rnd+1}{i}: {g}")
+
 
     def can_repeat(self) -> int:
         """
         Calculates the maximum number of unique groups that can be created.
         :return int: The maximum number of unique groups.
         """
-        pass
+        return self.__algorithm.get_max_rounds()
 
-    def get_current_groups(self, pyd: bool = False) -> dict:
+    def get_current_groups(self) -> dict:
         """
         Gets the current groups.
         :return dict: The current groups.
         """
-        pass
+        return {i if self.__ui else number_to_column(i+1): [p for p in g] for i, g in enumerate(self.__algorithm.get_round())}
 
-    def get_all_groups(self, pyd: bool = False) -> dict:
+    def get_all_groups(self) -> dict:
         """
         Gets all the groups.
         :return dict: All the groups.
         """
-        pass
+        data = self.__algorithm.get_all_rounds()
+        return {rnd: {i if self.__ui else number_to_column(i+1): [p for p in g] for i, g in enumerate(data[rnd])} for rnd in data}
 
-    def select_from_csv_file(self, has_header_row: bool, student_firstname_col: Union[int, str],
-                             student_lastname_col: Optional[Union[int, str]]) -> None:
+    @staticmethod
+    @deprecated("Use the 'detect_csv_separator_and_load' function from the 'csv_read' module instead")
+    def select_from_csv_file(file_path: str) -> list[list[str]]:
         """
-        Selects the students from a CSV file.
-        :param has_header_row: If the CSV file has a header row.
-        :param student_firstname_col: The column index or name of the student first name.
-        :param student_lastname_col: The column index or name of the student last name.
-        :return: None
-        """
-        pass
-
-    def select_csv_file(self, file_path: str) -> dict:
-        """
-        Selects the students from a CSV file.
+        Reads the CSV file and prepares the data for selection.
         :param file_path: The path to the CSV file.
-        :return: The column indexes and column names to choose from.
+        :return: CSV data
         """
-        pass
+        data, _, _ = detect_csv_separator_and_load(file_path)
+        return data
