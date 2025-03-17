@@ -22,22 +22,30 @@ class NameDialog(CSVNameDialog):
 
     def on_name_check( self, event ):
         checked_index = event.GetSelection()
+        is_checked = self.check_name.IsChecked(checked_index)
         for i in range(self.check_name.GetCount()):
             if i != checked_index:
                 self.check_name.Check(i, False)
         for i in range(self.check_sur_name.GetCount()):
             if i == checked_index:
                 self.check_sur_name.Check(i, False)
+        if checked_index == self.parent.csv_surname_index:
+            self.parent.csv_surname_index = None
+        self.parent.csv_name_index = checked_index if is_checked else None
         event.Skip()
 
-    def on_surname_check( self, event ):
+    def on_surname_check(self, event):
         checked_index = event.GetSelection()
+        is_checked = self.check_sur_name.IsChecked(checked_index)
         for i in range(self.check_sur_name.GetCount()):
             if i != checked_index:
                 self.check_sur_name.Check(i, False)
         for i in range(self.check_name.GetCount()):
             if i == checked_index:
                 self.check_name.Check(i, False)
+        if checked_index == self.parent.csv_name_index:
+            self.parent.csv_name_index = None
+        self.parent.csv_surname_index = checked_index if is_checked else None
         event.Skip()
 
     def on_nothing( self, event ):
@@ -45,8 +53,8 @@ class NameDialog(CSVNameDialog):
         event.Skip()
 
     def on_done_click( self, event ):
-        self.parent.csv_name_index = self.check_name.GetSelection()
-        self.parent.csv_surname_index = self.check_sur_name.GetSelection()
+        # self.parent.csv_name_index = self.check_name.GetSelection()
+        # self.parent.csv_surname_index = self.check_sur_name.GetSelection()
         self.EndModal(wx.ID_OK)
         event.Skip()
 
