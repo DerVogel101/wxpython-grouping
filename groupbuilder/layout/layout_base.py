@@ -23,7 +23,7 @@ class AppFrame ( wx.Frame ):
     def __init__( self, parent ):
         wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Gruppenerzeuger | Einzigartig"), pos = wx.DefaultPosition, size = wx.Size( 853,507 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
-        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+        self.SetSizeHints( wx.Size( 853,507 ), wx.DefaultSize )
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 
         fgSizer1 = wx.FlexGridSizer( 4, 0, 5, 0 )
@@ -111,12 +111,12 @@ class AppFrame ( wx.Frame ):
 
         bSizer3.SetMinSize( wx.Size( -1,33 ) )
         self.csv_load_button = wx.Button( self, wx.ID_ANY, _(u"CSV Datei laden"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer3.Add( self.csv_load_button, 0, wx.ALL, 5 )
+        bSizer3.Add( self.csv_load_button, 1, wx.ALL, 5 )
 
         self.group_config_button = wx.Button( self, wx.ID_ANY, _(u"Gruppenkonfiguration"), wx.DefaultPosition, wx.DefaultSize, 0 )
 
         self.group_config_button.SetDefault()
-        bSizer3.Add( self.group_config_button, 0, wx.ALL, 5 )
+        bSizer3.Add( self.group_config_button, 1, wx.ALL, 5 )
 
 
         bSizer3.Add( ( 0, 0), 5, wx.EXPAND, 5 )

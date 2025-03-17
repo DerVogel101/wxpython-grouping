@@ -56,6 +56,17 @@ class GroupApp(AppFrame):
     def on_csv_export_change( self, event ):
         event.Skip()
 
+    def OnSize( self, event ):
+        total_width = self.GetClientSize().GetWidth() - 10  # 10 is a magic number / the border width of the grid
+        num_cols = self.grid.GetNumberCols()
+        col_width = total_width // num_cols
+
+        for col in range(num_cols):
+            self.grid.SetColSize(col, col_width)
+
+        if event:
+            event.Skip()
+
 if __name__ == '__main__':
     app = wx.App()
     frame = GroupApp(None)
