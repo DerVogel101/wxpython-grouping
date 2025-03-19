@@ -262,9 +262,10 @@ class GroupingAlgorithm:
         # 4. Calculate the approximate amount of RAM needed, using a regression model
         if combinations > 92000:
             ram_needed = 0.000315294762088087 * combinations + 200
+            ram_needed *= 1.5  # Increase due to overhead
             ram_needed = (ram_needed + 9) // 10 * 10  # Round up to nearest multiple of 10
         else:
-            ram_needed = 100
+            ram_needed = 200
 
         return ops_needed, combinations, ram_needed
 
