@@ -54,7 +54,7 @@ class AppFrame ( wx.Frame ):
         # Label Appearance
 
         # Cell Defaults
-        self.grid.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_CENTER )
+        self.grid.SetDefaultCellAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
         fgSizer1.Add( self.grid, 0, wx.ALL|wx.EXPAND, 5 )
 
         self.m_staticline5 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
@@ -114,8 +114,6 @@ class AppFrame ( wx.Frame ):
         bSizer3.Add( self.csv_load_button, 1, wx.ALL, 5 )
 
         self.group_config_button = wx.Button( self, wx.ID_ANY, _(u"Gruppenkonfiguration"), wx.DefaultPosition, wx.DefaultSize, 0 )
-
-        self.group_config_button.SetDefault()
         bSizer3.Add( self.group_config_button, 1, wx.ALL, 5 )
 
 
@@ -137,6 +135,7 @@ class AppFrame ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_CLOSE, self.on_close )
         self.grid.Bind( wx.EVT_SIZE, self.OnSize )
         self.round_left_button.Bind( wx.EVT_BUTTON, self.on_round_left_click )
         self.round_selector_tctrl.Bind( wx.EVT_TEXT_ENTER, self.on_round_selector_enter )
@@ -151,6 +150,9 @@ class AppFrame ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_close( self, event ):
+        event.Skip()
+
     def OnSize( self, event ):
         event.Skip()
 
