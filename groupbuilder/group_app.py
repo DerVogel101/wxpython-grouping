@@ -11,6 +11,7 @@ from .file_picker_dialog import FilePickDialog
 from .group_config_dialog import GroupConfigDialog
 
 from .utility.number_to_text import number_to_column
+from .utility.grid_export import export_grid_to_csv
 
 class GroupApp(AppFrame):
     def __init__(self, parent):
@@ -150,6 +151,7 @@ class GroupApp(AppFrame):
         event.Skip()
 
     def on_csv_export_change( self, event ):
+        export_grid_to_csv(self.grid, event.GetPath())
         event.Skip()
 
     def OnSize( self, event ):
