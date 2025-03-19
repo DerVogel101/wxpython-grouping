@@ -2,12 +2,14 @@ import wx
 from .layout.layout_base import AppFrame
 from .csv_name_picker_dialog import NameDialog
 from .file_picker_dialog import FilePickDialog
+from .group_config_dialog import GroupConfigDialog
 
 class GroupApp(AppFrame):
     def __init__(self, parent):
         super(GroupApp, self).__init__(parent)
         self.csv_pick_dialog: NameDialog | None = None
         self.csv_name_dialog: FilePickDialog | None = None
+        self.group_config_dialog: GroupConfigDialog | None = None
         self.csv_path: str | None = None
         self.csv_data: list[list] | None = None
         self.csv_has_header: bool | None = None
@@ -15,7 +17,13 @@ class GroupApp(AppFrame):
         self.csv_surname_index: int | None = None
         self.csv_cancel: bool = False
 
+        self.group_config_cancel: bool = False
+        self.person_size: int | None = None
+        self.group_size: int | None = None
+
         self.grid_data: dict[int, str] | None = None
+
+        self.paused: bool = False
 
     def on_round_left_click( self, event ):
         event.Skip()
@@ -60,11 +68,23 @@ class GroupApp(AppFrame):
             self.grid_data = {i: row[self.csv_surname_index] for i, row in enumerate(self.csv_data)}
         else:
             self.grid_data = {i: f"Person {i + 1}" for i in range(len(self.csv_data))}
-        print(self.grid_data)
 
+        self.group_config_dialog = GroupConfigDialog(self, len(self.csv_data), True)
+        self.group_config_dialog.ShowModal()
+        if self.group_config_cancel:
+            self.group_config_cancel = False
+            event.Skip()
+            return
         event.Skip()
 
     def on_gconfig_button_click( self, event ):
+        self.group_config_dialog = GroupConfigDialog(self)
+        self.group_config_dialog.ShowModal()
+        if self.group_config_cancel:
+            self.group_config_cancel = False
+            event.Skip()
+            return
+        self.grid_data = {i: f"Person {i + 1}" for i in range(self.person_size)}
         event.Skip()
 
     def on_pause_button_click( self, event ):
@@ -83,6 +103,13 @@ class GroupApp(AppFrame):
 
         if event:
             event.Skip()
+
+    def render_grid(self):
+        pass
+
+    def change_to_page(self, page):
+        pass
+
 
 if __name__ == '__main__':
     app = wx.App()
