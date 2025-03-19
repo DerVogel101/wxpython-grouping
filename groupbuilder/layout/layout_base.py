@@ -26,42 +26,18 @@ class AppFrame ( wx.Frame ):
         self.SetSizeHints( wx.Size( 853,507 ), wx.DefaultSize )
         self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 
-        fgSizer1 = wx.FlexGridSizer( 4, 0, 5, 0 )
+        fgSizer1 = wx.FlexGridSizer( 5, 0, 5, 0 )
         fgSizer1.AddGrowableCol( 0 )
-        fgSizer1.AddGrowableRow( 0 )
+        fgSizer1.AddGrowableRow( 4 )
         fgSizer1.SetFlexibleDirection( wx.BOTH )
         fgSizer1.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_ALL )
 
-        self.grid = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-
-        # Grid
-        self.grid.CreateGrid( 2, 2 )
-        self.grid.EnableEditing( False )
-        self.grid.EnableGridLines( True )
-        self.grid.EnableDragGridSize( False )
-        self.grid.SetMargins( 0, 0 )
-
-        # Columns
-        self.grid.EnableDragColMove( False )
-        self.grid.EnableDragColSize( False )
-        self.grid.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-        # Rows
-        self.grid.EnableDragRowSize( False )
-        self.grid.SetRowLabelSize( 0 )
-        self.grid.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-        # Label Appearance
-
-        # Cell Defaults
-        self.grid.SetDefaultCellAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-        fgSizer1.Add( self.grid, 0, wx.ALL|wx.EXPAND, 5 )
-
-        self.m_staticline5 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
-        fgSizer1.Add( self.m_staticline5, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 5 )
+        self.m_staticline6 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        fgSizer1.Add( self.m_staticline6, 0, 0, 5 )
 
         bSizer9 = wx.BoxSizer( wx.HORIZONTAL )
 
+        bSizer9.SetMinSize( wx.Size( -1,33 ) )
         self.round_left_button = wx.Button( self, wx.ID_ANY, _(u"<---"), wx.DefaultPosition, wx.DefaultSize, 0 )
         bSizer9.Add( self.round_left_button, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
@@ -105,7 +81,7 @@ class AppFrame ( wx.Frame ):
         bSizer9.Add( self.round_right_button, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
 
-        fgSizer1.Add( bSizer9, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
+        fgSizer1.Add( bSizer9, 0, wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, 5 )
 
         bSizer3 = wx.BoxSizer( wx.HORIZONTAL )
 
@@ -126,7 +102,35 @@ class AppFrame ( wx.Frame ):
         bSizer3.Add( self.export_file_picker, 1, wx.ALL, 5 )
 
 
-        fgSizer1.Add( bSizer3, 0, wx.BOTTOM|wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
+        fgSizer1.Add( bSizer3, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
+
+        self.m_staticline5 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        fgSizer1.Add( self.m_staticline5, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 5 )
+
+        self.grid = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+
+        # Grid
+        self.grid.CreateGrid( 2, 2 )
+        self.grid.EnableEditing( False )
+        self.grid.EnableGridLines( True )
+        self.grid.EnableDragGridSize( False )
+        self.grid.SetMargins( 0, 0 )
+
+        # Columns
+        self.grid.EnableDragColMove( False )
+        self.grid.EnableDragColSize( False )
+        self.grid.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+        # Rows
+        self.grid.EnableDragRowSize( False )
+        self.grid.SetRowLabelSize( 0 )
+        self.grid.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+        # Label Appearance
+
+        # Cell Defaults
+        self.grid.SetDefaultCellAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+        fgSizer1.Add( self.grid, 10, wx.ALL|wx.EXPAND, 5 )
 
 
         self.SetSizer( fgSizer1 )
@@ -136,7 +140,6 @@ class AppFrame ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_CLOSE, self.on_close )
-        self.grid.Bind( wx.EVT_SIZE, self.OnSize )
         self.round_left_button.Bind( wx.EVT_BUTTON, self.on_round_left_click )
         self.round_selector_tctrl.Bind( wx.EVT_TEXT_ENTER, self.on_round_selector_enter )
         self.round_right_button.Bind( wx.EVT_BUTTON, self.on_round_right_click )
@@ -144,6 +147,7 @@ class AppFrame ( wx.Frame ):
         self.group_config_button.Bind( wx.EVT_BUTTON, self.on_gconfig_button_click )
         self.pause_button.Bind( wx.EVT_BUTTON, self.on_pause_button_click )
         self.export_file_picker.Bind( wx.EVT_FILEPICKER_CHANGED, self.on_csv_export_change )
+        self.grid.Bind( wx.EVT_SIZE, self.OnSize )
 
     def __del__( self ):
         pass
@@ -151,9 +155,6 @@ class AppFrame ( wx.Frame ):
 
     # Virtual event handlers, override them in your derived class
     def on_close( self, event ):
-        event.Skip()
-
-    def OnSize( self, event ):
         event.Skip()
 
     def on_round_left_click( self, event ):
@@ -175,6 +176,9 @@ class AppFrame ( wx.Frame ):
         event.Skip()
 
     def on_csv_export_change( self, event ):
+        event.Skip()
+
+    def OnSize( self, event ):
         event.Skip()
 
 
