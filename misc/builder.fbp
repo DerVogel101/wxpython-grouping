@@ -1012,7 +1012,7 @@
             <object class="sizeritem" expanded="false">
               <property name="border">5</property>
               <property name="flag">wxALL</property>
-              <property name="proportion">0</property>
+              <property name="proportion">1</property>
               <object class="wxButton" expanded="false">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
@@ -1087,7 +1087,7 @@
             <object class="sizeritem" expanded="false">
               <property name="border">5</property>
               <property name="flag">wxALL</property>
-              <property name="proportion">0</property>
+              <property name="proportion">1</property>
               <object class="wxButton" expanded="false">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
@@ -1343,6 +1343,7 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style"></property>
+      <event name="OnClose">on_config_cancel_click</event>
       <event name="OnInitDialog">on_init</event>
       <object class="wxFlexGridSizer" expanded="true">
         <property name="cols">0</property>
@@ -1871,7 +1872,7 @@
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
                 <property name="current"></property>
-                <property name="default">1</property>
+                <property name="default">0</property>
                 <property name="default_pane">0</property>
                 <property name="disabled"></property>
                 <property name="dock">Dock</property>
