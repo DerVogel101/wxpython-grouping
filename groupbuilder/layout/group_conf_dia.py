@@ -96,6 +96,7 @@ class GroupConfigurationDialog ( wx.Dialog ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_INIT_DIALOG, self.on_init )
         self.person_comb.Bind( wx.EVT_COMBOBOX, self.on_person_select )
         self.person_comb.Bind( wx.EVT_TEXT_ENTER, self.on_person_enter )
         self.group_comb.Bind( wx.EVT_COMBOBOX, self.on_group_select )
@@ -108,6 +109,9 @@ class GroupConfigurationDialog ( wx.Dialog ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_init( self, event ):
+        event.Skip()
+
     def on_person_select( self, event ):
         event.Skip()
 
