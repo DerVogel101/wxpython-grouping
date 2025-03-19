@@ -36,7 +36,7 @@ class GroupConfigurationDialog ( wx.Dialog ):
         bSizer1.Add( self.m_staticText1, 7, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         person_combChoices = [ _(u"8"), _(u"10"), _(u"13"), _(u"15"), _(u"20") ]
-        self.person_comb = wx.ComboBox( self, wx.ID_ANY, _(u"8"), wx.DefaultPosition, wx.DefaultSize, person_combChoices, 0 )
+        self.person_comb = wx.ComboBox( self, wx.ID_ANY, _(u"8"), wx.DefaultPosition, wx.DefaultSize, person_combChoices, wx.TE_PROCESS_ENTER )
         bSizer1.Add( self.person_comb, 2, wx.ALL, 5 )
 
 
@@ -50,7 +50,7 @@ class GroupConfigurationDialog ( wx.Dialog ):
         bSizer2.Add( self.m_staticText2, 7, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         group_combChoices = [ _(u"2"), _(u"3"), _(u"4"), _(u"5"), _(u"6") ]
-        self.group_comb = wx.ComboBox( self, wx.ID_ANY, _(u"2"), wx.DefaultPosition, wx.DefaultSize, group_combChoices, 0 )
+        self.group_comb = wx.ComboBox( self, wx.ID_ANY, _(u"2"), wx.DefaultPosition, wx.DefaultSize, group_combChoices, wx.TE_PROCESS_ENTER )
         bSizer2.Add( self.group_comb, 2, wx.ALL, 5 )
 
 
