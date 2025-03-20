@@ -1,19 +1,32 @@
-from codecs import ignore_errors
-
 import chardet
 import csv
 
+def detect_file_encoding(file_path: str) -> str:
+    """
+    Detect the encoding of a file.
 
-# Function to detect the encoding of a file
-def detect_file_encoding(file_path):
+    :param file_path: The path to the file whose encoding is to be detected.
+    :type file_path: str
+    :return: The detected encoding of the file.
+    :rtype: str
+    """
     with open(file_path, 'rb') as f:
         raw_data = f.read(2048)  # Read a portion of the file for encoding detection
         detected_encoding = chardet.detect(raw_data)
     return detected_encoding['encoding']
 
+def detect_csv_separator_and_load(file_path: str) -> tuple:
+    """
+    Detect the CSV separator and load the file content.
 
-# Function to detect the CSV separator and load the file
-def detect_csv_separator_and_load(file_path):
+    :param file_path: The path to the CSV file to be loaded.
+    :type file_path: str
+    :return: A tuple containing:
+        - list: The content of the CSV file as a list of rows.
+        - str: The detected delimiter used in the CSV file.
+        - str: The detected encoding of the CSV file.
+    :rtype: tuple
+    """
     encoding = detect_file_encoding(file_path)
     with open(file_path, 'r', encoding=encoding, errors="ignore") as file:
         dialect = csv.Sniffer().sniff(file.read(1024))
