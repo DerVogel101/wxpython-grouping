@@ -8,7 +8,26 @@ from typing_extensions import deprecated
 from .data_models import GroupConfig
 
 class GroupingAlgorithm:
+    """
+    Algorithm for generating groups of people with unique combinations.
+
+    This class implements an algorithm to generate rounds of groups where:
+    1. Each round contains groups of equal size
+    2. Each person appears exactly once per round
+    3. The algorithm attempts to maximize the number of unique group combinations
+       before repeating any previously formed groups
+
+    It uses bitmasking for efficient group intersection checks and backtracking
+    for finding valid group combinations.
+    """
+
     def __init__(self, config: GroupConfig):
+        """
+        Initialize the GroupingAlgorithm with the given configuration.
+
+        :param config: Configuration containing group parameters
+        :type config: GroupConfig
+        """
         self._amount_people: int = config.amount_people
         self._group_size: int = config.group_size
 
@@ -23,11 +42,16 @@ class GroupingAlgorithm:
 
         self._current_round_ind: int = 0
 
-
         self._rounds: dict = {}
 
 
     def __set_groups_per_round(self) -> None:
+        """
+        Calculate the number of groups needed per round.
+
+        Adjusts for cases where the number of people is not evenly divisible
+        by the group size by adding virtual placeholders.
+        """
         remainder = self._amount_people % self._group_size
         if remainder != 0:
             self.__groups_per_round = (self._amount_people + (self._group_size - remainder)) // self._group_size
@@ -36,6 +60,17 @@ class GroupingAlgorithm:
 
 
     def __generate_all_possible_combs(self) -> None:
+        """
+        Generate all possible group combinations.
+
+        Creates all possible group combinations of size `group_size` from the total
+        number of people. If the total number is not divisible by group size,
+        placeholder people (-1) are added and then removed from the final combinations.
+
+        Sets:
+        - `self.__all_combinations`: All possible unique group combinations
+        - `self._max_rounds`: Maximum number of rounds that can be generated
+        """
         people = list(range(self._amount_people))
 
         # Add placeholders (-1) for missing people to make total divisible by group size
@@ -55,13 +90,36 @@ class GroupingAlgorithm:
         self.__all_combinations = all_combs_set
 
     def get_round(self):
+        """
+        Get the most recently generated round.
+
+        :return: List of frozensets representing the groups in the last generated round
+        :rtype: list[frozenset[int]]
+        """
         return self._rounds[self._current_round_ind - 1]
 
     def get_all_rounds(self):
+        """
+        Get all generated rounds.
+
+        :return: Dictionary mapping round indices to lists of groups
+        :rtype: dict[int, list[frozenset[int]]]
+        """
         return self._rounds
 
     def generate_next_round(self) -> None:
-        """Returns the number of possible unique Round combinations."""
+        """
+        Generate the next round of groups.
+
+        This method attempts to find a valid set of groups for the next round
+        where each person appears exactly once and no group has appeared in
+        previous rounds if possible.
+
+        Uses bitmasking for efficient group intersection checks and implements
+        a backtracking algorithm to find valid group combinations.
+
+        :raises StopIteration: When no more rounds can be generated
+        """
         if self.__all_combinations == set():
             raise StopIteration("No more rounds can be generated.")
         is_reversed = False  # TODO: implement reversed generation for multithreading
@@ -100,7 +158,26 @@ class GroupingAlgorithm:
     def __add_next_group(self, old_group: list[frozenset], old_working_set: list[frozenset], outcast: list[frozenset],
                          self_id: int, max_id: int, not_found: bool, bitmask_cache: dict[frozenset, int] = None, all_person_mask: int = None) -> tuple[
         list[frozenset], list[frozenset], list[frozenset], bool]:
+        """
+        Recursively add groups to create a valid round.
 
+        This is the core backtracking algorithm that builds valid rounds by:
+        1. Finding a group that doesn't overlap with existing groups
+        2. Adding it to the current round
+        3. Recursively trying to complete the round with remaining groups
+        4. Backtracking if the current path doesn't lead to a solution
+
+        :param old_group: Current list of selected groups for this round
+        :param old_working_set: Remaining groups to consider
+        :param outcast: Groups that were rejected in this branch
+        :param self_id: Current recursion depth (group number)
+        :param max_id: Maximum recursion depth (total groups needed)
+        :param not_found: Flag indicating if a solution hasn't been found yet
+        :param bitmask_cache: Cache of bitmasks for each group for faster intersection checks
+        :param all_person_mask: Bitmask representing all people that should be in a round
+        :return: Tuple of (completed groups, remaining groups, rejected groups, solution_not_found flag)
+        :rtype: tuple[list[frozenset], list[frozenset], list[frozenset], bool]
+        """
         # Initialize bitmask cache if not provided
         if bitmask_cache is None:
             bitmask_cache = {}
@@ -108,7 +185,6 @@ class GroupingAlgorithm:
         # Use in-place modifications
         working_set = old_working_set
         working_group = old_group
-
 
         while working_set:
             group_comb = working_set.pop()  # Efficient O(1) removal instead of iteration
@@ -146,18 +222,28 @@ class GroupingAlgorithm:
                     return old_group, working_set, outcast, True
 
                 working_group, working_set, outcast = new_group, new_working_set, outcast
-        
+
         if not reduce(or_, (1 << x for x in itertools.chain.from_iterable(working_group)), 0) == all_person_mask:
             return working_group, working_set, outcast, True
-        
+
         return working_group, working_set, outcast, False
 
-
-
     def get_remaining_rounds(self) -> int:
+        """
+        Get the number of remaining rounds that can be generated.
+
+        :return: Number of remaining rounds
+        :rtype: int
+        """
         return self._max_rounds - self._current_round_ind
 
     def get_max_rounds(self) -> int:
+        """
+        Get the maximum number of rounds that can be generated.
+
+        :return: Maximum number of rounds
+        :rtype: int
+        """
         return self._max_rounds
 
     @staticmethod
