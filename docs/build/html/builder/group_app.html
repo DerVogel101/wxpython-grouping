@@ -48,6 +48,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.html">Groupbuilder package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="algo_thread.html">groupbuilder.algorithm_thread module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
@@ -124,7 +126,7 @@ group configuration, and interaction with worker threads for group generation.</
 <area shape="rect" id="node7" href="#groupbuilder.group_app.GroupApp" target="_top" title="Main application class for the Group Builder application." alt="" coords="722,15,765,28"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.group_app.GroupApp.html#groupbuilder.group_app.GroupApp.__init__" title="groupbuilder.group_app.GroupApp.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.__init__" title="groupbuilder.group_app.GroupApp.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
 <td><p>Initialize the GroupApp.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_close" title="groupbuilder.group_app.GroupApp.on_close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_close</span></code></a>(event)</p></td>
@@ -177,6 +179,30 @@ to ensure optimal display of information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>event</strong> (<em>wx.SizeEvent</em>) – The size event (optional)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the GroupApp.</p>
+<p>Sets up the application’s initial state, including UI components,
+data structures, and state variables for CSV handling, group configuration,
+and worker thread management.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>wx.Window</em>) – Parent window</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>

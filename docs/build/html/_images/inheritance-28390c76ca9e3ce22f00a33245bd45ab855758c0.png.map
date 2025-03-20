@@ -1,0 +1,11 @@
+<map id="inheritance5a11d2fd1c" name="inheritance5a11d2fd1c">
+<area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.csv_filepick_dia.CSVPickDialog" target="_top" title="CSVPickDialog" alt="" coords="635,15,690,27"/>
+<area shape="rect" id="node7" href="#groupbuilder.file_picker_dialog.FilePickDialog" target="_top" title="A dialog for picking a CSV file." alt="" coords="713,15,765,27"/>
+<area shape="rect" id="node2" title="Dialog()" alt="" coords="576,15,611,27"/>
+<area shape="rect" id="node3" title="TopLevelWindow()" alt="" coords="492,15,553,27"/>
+<area shape="rect" id="node4" title="EvtHandler()" alt="" coords="204,15,248,27"/>
+<area shape="rect" id="node5" title="Object()" alt="" coords="143,3,178,15"/>
+<area shape="rect" id="node6" title="Add&#45;on base class for a trackable object." alt="" coords="140,27,180,39"/>
+<area shape="rect" id="node8" title="Common base class for all non&#45;child windows." alt="" coords="402,15,469,27"/>
+<area shape="rect" id="node9" title="Window()" alt="" coords="344,15,379,27"/>
+</map>

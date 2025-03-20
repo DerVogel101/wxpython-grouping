@@ -4,6 +4,7 @@ This is the unit test for the `groupbuilder.groupcalculator` module interface.
 
 .. automodule:: test.groupcalculator_test
    :members:
+   :special-members: __init__
    :undoc-members:
    :show-inheritance:
 

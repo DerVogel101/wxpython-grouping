@@ -49,6 +49,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.html">Groupbuilder package</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.algorithm_thread module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#algorithm-thread-module">Algorithm Thread Module</a></li>
@@ -125,7 +126,7 @@ and stopping the generation process.</p>
 <area shape="rect" id="node1" href="#groupbuilder.algorithm_thread.RoundWorkerThread" target="_top" title="A worker thread that generates group assignment rounds in the background." alt="" coords="125,5,275,31"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.algorithm_thread.RoundWorkerThread.html#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="groupbuilder.algorithm_thread.RoundWorkerThread.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent, config)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="groupbuilder.algorithm_thread.RoundWorkerThread.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent, config)</p></td>
 <td><p>Initialize the round worker thread.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.algorithm_thread.RoundWorkerThread.run" title="groupbuilder.algorithm_thread.RoundWorkerThread.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
@@ -142,6 +143,20 @@ and stopping the generation process.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.algorithm_thread.RoundWorkerThread.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/algorithm_thread.html#RoundWorkerThread.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the round worker thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>object</em>) – The parent object that will receive callback notifications.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="../core/data_models.html#groupbuilder.core.data_models.GroupConfig" title="groupbuilder.core.data_models.GroupConfig"><em>GroupConfig</em></a>) – Configuration settings for the grouping algorithm.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.algorithm_thread.RoundWorkerThread.pause">
 <span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/algorithm_thread.html#RoundWorkerThread.pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.algorithm_thread.RoundWorkerThread.pause" title="Link to this definition"></a></dt>

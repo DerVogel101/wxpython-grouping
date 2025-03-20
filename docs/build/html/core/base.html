@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="groupbuilder.core.base.GroupCalculatorInterface" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html" />
-    <link rel="prev" title="groupbuilder.core.algorithm module" href="algorithm.html" /> 
+    <link rel="prev" title="groupbuilder.core.algorithm.GroupingAlgorithm" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,6 +48,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.core.html">Core package</a><ul class="current">
@@ -100,12 +102,12 @@
 <section id="group-builder-base-module">
 <h2>Group Builder Base Module<a class="headerlink" href="#group-builder-base-module" title="Link to this heading"></a></h2>
 <p>This module defines abstract interfaces for group calculation functionality.</p>
-<div class="graphviz"><img src="../_images/inheritance-09e3d4b84fec3c7e9deb5da8bf2529cbaab321e3.png" alt="Inheritance diagram of groupbuilder.core.base" usemap="#inheritanceaf1aa8a05c" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-ae8758b273d89ca4b8b864276b509f262547a418.png" alt="Inheritance diagram of groupbuilder.core.base" usemap="#inheritanceaf1aa8a05c" class="inheritance graphviz" /></div>
 <map id="inheritanceaf1aa8a05c" name="inheritanceaf1aa8a05c">
-<area shape="rect" id="node2" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+<area shape="rect" id="node2" href="#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" title="groupbuilder.core.base.GroupCalculatorInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupCalculatorInterface</span></code></a>(amount_people, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface" title="groupbuilder.core.base.GroupCalculatorInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupCalculatorInterface</span></code></a>(amount_people, ...)</p></td>
 <td><p>Abstract interface for group calculator implementations.</p></td>
 </tr>
 </tbody>
@@ -119,12 +121,12 @@
 <p>This interface defines the core functionality required for any group calculator
 implementation in the system, ensuring consistent behavior across different
 implementations.</p>
-<div class="graphviz"><img src="../_images/inheritance-46b042c2b57af743d3fcbe95abcc5dffce5df7e0.png" alt="Inheritance diagram of groupbuilder.core.base.GroupCalculatorInterface" usemap="#inheritancefe0ac48196" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-906d1f8307dfaf0582a4e644048cf90ba6ddf273.png" alt="Inheritance diagram of groupbuilder.core.base.GroupCalculatorInterface" usemap="#inheritancefe0ac48196" class="inheritance graphviz" /></div>
 <map id="inheritancefe0ac48196" name="inheritancefe0ac48196">
-<area shape="rect" id="node2" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+<area shape="rect" id="node2" href="#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface.__init__" title="groupbuilder.core.base.GroupCalculatorInterface.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(amount_people, group_size)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.__init__" title="groupbuilder.core.base.GroupCalculatorInterface.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(amount_people, group_size)</p></td>
 <td><p>Initialize a new instance of the GroupCalculator class.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.reset_groups" title="groupbuilder.core.base.GroupCalculatorInterface.reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_groups</span></code></a>()</p></td>
@@ -150,6 +152,26 @@ implementations.</p>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.__init__">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a new instance of the GroupCalculator class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount_people</strong> (<em>int</em>) – The total number of people to organize into groups</p></li>
+<li><p><strong>group_size</strong> (<em>int</em>) – The desired size of each group</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValidationError</strong> – If the amount of people or group size is invalid</p></li>
+<li><p><a class="reference internal" href="exceptions.html#groupbuilder.core.exceptions.AmountPeopleError" title="groupbuilder.core.exceptions.AmountPeopleError"><strong>AmountPeopleError</strong></a> – If the amount of people is less than the group_size</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface._abc_impl">
 <span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface._abc_impl" title="Link to this definition"></a></dt>
@@ -276,7 +298,7 @@ typically to the console.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="algorithm.html" class="btn btn-neutral float-left" title="groupbuilder.core.algorithm module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html" class="btn btn-neutral float-left" title="groupbuilder.core.algorithm.GroupingAlgorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="generated/groupbuilder.core.base.GroupCalculatorInterface.html" class="btn btn-neutral float-right" title="groupbuilder.core.base.GroupCalculatorInterface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

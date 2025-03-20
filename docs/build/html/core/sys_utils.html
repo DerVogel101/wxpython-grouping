@@ -48,6 +48,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.core.html">Core package</a><ul class="current">
@@ -57,10 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="data_models.html">groupbuilder.core.data_models module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exceptions.html">groupbuilder.core.exceptions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logger.html">groupbuilder.core.logger module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.core.sys_utils</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#groupbuilder.core.sys_utils.SysUtils"><code class="docutils literal notranslate"><span class="pre">SysUtils</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.core.sys_utils</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
@@ -94,92 +93,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-groupbuilder.core.sys_utils">
-<span id="groupbuilder-core-sys-utils"></span><h1>groupbuilder.core.sys_utils<a class="headerlink" href="#module-groupbuilder.core.sys_utils" title="Link to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="groupbuilder.core.sys_utils.SysUtils">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.core.sys_utils.</span></span><span class="sig-name descname"><span class="pre">SysUtils</span></span><a class="reference internal" href="../_modules/groupbuilder/core/sys_utils.html#SysUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.sys_utils.SysUtils" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Utility class for system information.</p>
-<p>This class provides static methods to retrieve various system metrics
-such as CPU count and memory usage.</p>
-<div class="graphviz"><img src="../_images/inheritance-5b96c19cd7c381cb7e182dc8fb9f9b8e2b4bc8f5.png" alt="Inheritance diagram of groupbuilder.core.sys_utils.SysUtils" usemap="#inheritance0851a9087b" class="inheritance graphviz" /></div>
-<map id="inheritance0851a9087b" name="inheritance0851a9087b">
-<area shape="rect" id="node1" href="#groupbuilder.core.sys_utils.SysUtils" target="_top" title="Utility class for system information." alt="" coords="5,5,78,31"/>
-</map><table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.sys_utils.SysUtils.get_cpu_count" title="groupbuilder.core.sys_utils.SysUtils.get_cpu_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cpu_count</span></code></a>()</p></td>
-<td><p>Returns the number of physical CPU cores.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.sys_utils.SysUtils.get_available_memory" title="groupbuilder.core.sys_utils.SysUtils.get_available_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_available_memory</span></code></a>()</p></td>
-<td><p>Returns the available memory in MB.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.sys_utils.SysUtils.get_used_memory" title="groupbuilder.core.sys_utils.SysUtils.get_used_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_used_memory</span></code></a>()</p></td>
-<td><p>Returns the used memory in MB.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.sys_utils.SysUtils.get_total_memory" title="groupbuilder.core.sys_utils.SysUtils.get_total_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_total_memory</span></code></a>()</p></td>
-<td><p>Returns the total memory in MB.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.sys_utils.SysUtils.get_available_memory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_available_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/sys_utils.html#SysUtils.get_available_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.sys_utils.SysUtils.get_available_memory" title="Link to this definition"></a></dt>
-<dd><p>Returns the available memory in MB.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Available memory in megabytes</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.sys_utils.SysUtils.get_cpu_count">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_cpu_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/sys_utils.html#SysUtils.get_cpu_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.sys_utils.SysUtils.get_cpu_count" title="Link to this definition"></a></dt>
-<dd><p>Returns the number of physical CPU cores.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Number of physical CPU cores</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.sys_utils.SysUtils.get_total_memory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_total_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/sys_utils.html#SysUtils.get_total_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.sys_utils.SysUtils.get_total_memory" title="Link to this definition"></a></dt>
-<dd><p>Returns the total memory in MB.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Total memory in megabytes</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="groupbuilder.core.sys_utils.SysUtils.get_used_memory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_used_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/sys_utils.html#SysUtils.get_used_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.sys_utils.SysUtils.get_used_memory" title="Link to this definition"></a></dt>
-<dd><p>Returns the used memory in MB.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Used memory in megabytes</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="groupbuilder-core-sys-utils">
+<h1>groupbuilder.core.sys_utils<a class="headerlink" href="#groupbuilder-core-sys-utils" title="Link to this heading"></a></h1>
 </section>
 
 

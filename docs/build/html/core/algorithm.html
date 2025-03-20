@@ -50,6 +50,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.core.html">Core package</a><ul class="current">
@@ -102,12 +103,12 @@
 <section id="group-algorithm-module">
 <h2>Group Algorithm Module<a class="headerlink" href="#group-algorithm-module" title="Link to this heading"></a></h2>
 <p>This module implements efficient algorithms for generating optimal group combinations.</p>
-<div class="graphviz"><img src="../_images/inheritance-485bdd46601a93f07026fb58f58ed11d08df7137.png" alt="Inheritance diagram of groupbuilder.core.algorithm" usemap="#inheritance6531eda561" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-d06bf39b3fbc5cb5918e7fb9d3fa3dd6266fb69c.png" alt="Inheritance diagram of groupbuilder.core.algorithm" usemap="#inheritance6531eda561" class="inheritance graphviz" /></div>
 <map id="inheritance6531eda561" name="inheritance6531eda561">
-<area shape="rect" id="node1" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
+<area shape="rect" id="node1" href="#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" title="groupbuilder.core.algorithm.GroupingAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupingAlgorithm</span></code></a>(config)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm" title="groupbuilder.core.algorithm.GroupingAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupingAlgorithm</span></code></a>(config)</p></td>
 <td><p>Algorithm for generating groups of people with unique combinations.</p></td>
 </tr>
 </tbody>
@@ -127,12 +128,12 @@
 </div></blockquote>
 <p>It uses bitmasking for efficient group intersection checks and backtracking
 for finding valid group combinations.</p>
-<div class="graphviz"><img src="../_images/inheritance-ba2bc1641decb479e0c377c5b3f4e4a1779b8002.png" alt="Inheritance diagram of groupbuilder.core.algorithm.GroupingAlgorithm" usemap="#inheritancec27bb38685" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-f69c0f67ba8681561d6ca243a4591e676253b706.png" alt="Inheritance diagram of groupbuilder.core.algorithm.GroupingAlgorithm" usemap="#inheritancec27bb38685" class="inheritance graphviz" /></div>
 <map id="inheritancec27bb38685" name="inheritancec27bb38685">
-<area shape="rect" id="node1" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
+<area shape="rect" id="node1" href="#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.__init__" title="groupbuilder.core.algorithm.GroupingAlgorithm.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(config)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__init__" title="groupbuilder.core.algorithm.GroupingAlgorithm.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(config)</p></td>
 <td><p>Initialize the GroupingAlgorithm with the given configuration.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_round" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_round</span></code></a>()</p></td>
@@ -202,6 +203,17 @@ placeholder people (-1) are added and then removed from the final combinations.<
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the GroupingAlgorithm with the given configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="data_models.html#groupbuilder.core.data_models.GroupConfig" title="groupbuilder.core.data_models.GroupConfig"><em>GroupConfig</em></a>) – Configuration containing group parameters</p>
 </dd>
 </dl>
 </dd></dl>

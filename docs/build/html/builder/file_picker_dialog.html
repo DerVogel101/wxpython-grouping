@@ -48,6 +48,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html#why-the-app-is-manually-tested">Why The App Is Manually Tested</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.html">Groupbuilder package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="algo_thread.html">groupbuilder.algorithm_thread module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
@@ -99,13 +101,13 @@
 <section id="file-picker-dialog-module">
 <h2>File Picker Dialog Module<a class="headerlink" href="#file-picker-dialog-module" title="Link to this heading"></a></h2>
 <p>This module provides a dialog interface for selecting CSV files to be used in the application.</p>
-<div class="graphviz"><img src="../_images/inheritance-1021c01714078e725dbd2a5bb3e2f2940bd37f36.png" alt="Inheritance diagram of groupbuilder.file_picker_dialog" usemap="#inheritance81d3d929bd" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-a2d670e0f44d070f0318bb19e07f206e46491376.png" alt="Inheritance diagram of groupbuilder.file_picker_dialog" usemap="#inheritance81d3d929bd" class="inheritance graphviz" /></div>
 <map id="inheritance81d3d929bd" name="inheritance81d3d929bd">
 <area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.csv_filepick_dia.CSVPickDialog" target="_top" title="CSVPickDialog" alt="" coords="635,15,690,27"/>
-<area shape="rect" id="node7" href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html#groupbuilder.file_picker_dialog.FilePickDialog" target="_top" title="A dialog for picking a CSV file." alt="" coords="713,15,765,27"/>
+<area shape="rect" id="node7" href="#groupbuilder.file_picker_dialog.FilePickDialog" target="_top" title="A dialog for picking a CSV file." alt="" coords="713,15,765,27"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html#groupbuilder.file_picker_dialog.FilePickDialog" title="groupbuilder.file_picker_dialog.FilePickDialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePickDialog</span></code></a>(parent)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.file_picker_dialog.FilePickDialog" title="groupbuilder.file_picker_dialog.FilePickDialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePickDialog</span></code></a>(parent)</p></td>
 <td><p>A dialog for picking a CSV file.</p></td>
 </tr>
 </tbody>
@@ -117,13 +119,13 @@
 <dd><p>Bases: <a class="reference internal" href="../groupbuilder.layout.html#groupbuilder.layout.csv_filepick_dia.CSVPickDialog" title="groupbuilder.layout.csv_filepick_dia.CSVPickDialog"><code class="xref py py-class docutils literal notranslate"><span class="pre">CSVPickDialog</span></code></a></p>
 <p>A dialog for picking a CSV file.</p>
 <p>This dialog allows users to browse and select a CSV file from their filesystem.</p>
-<div class="graphviz"><img src="../_images/inheritance-e2caf9273d959ebe4af07fd8b57570d763897162.png" alt="Inheritance diagram of groupbuilder.file_picker_dialog.FilePickDialog" usemap="#inheritance5a11d2fd1c" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-28390c76ca9e3ce22f00a33245bd45ab855758c0.png" alt="Inheritance diagram of groupbuilder.file_picker_dialog.FilePickDialog" usemap="#inheritance5a11d2fd1c" class="inheritance graphviz" /></div>
 <map id="inheritance5a11d2fd1c" name="inheritance5a11d2fd1c">
 <area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.csv_filepick_dia.CSVPickDialog" target="_top" title="CSVPickDialog" alt="" coords="635,15,690,27"/>
-<area shape="rect" id="node7" href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html#groupbuilder.file_picker_dialog.FilePickDialog" target="_top" title="A dialog for picking a CSV file." alt="" coords="713,15,765,27"/>
+<area shape="rect" id="node7" href="#groupbuilder.file_picker_dialog.FilePickDialog" target="_top" title="A dialog for picking a CSV file." alt="" coords="713,15,765,27"/>
 </map><table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html#groupbuilder.file_picker_dialog.FilePickDialog.__init__" title="groupbuilder.file_picker_dialog.FilePickDialog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.file_picker_dialog.FilePickDialog.__init__" title="groupbuilder.file_picker_dialog.FilePickDialog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
 <td><p>Initialize the FilePickDialog.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.file_picker_dialog.FilePickDialog.on_done" title="groupbuilder.file_picker_dialog.FilePickDialog.on_done"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_done</span></code></a>(event)</p></td>
@@ -134,6 +136,27 @@
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.file_picker_dialog.FilePickDialog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/file_picker_dialog.html#FilePickDialog.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.file_picker_dialog.FilePickDialog.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the FilePickDialog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>wx.Window</em>) – The parent window</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="groupbuilder.file_picker_dialog.FilePickDialog.on_close_window">
 <span class="sig-name descname"><span class="pre">on_close_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/file_picker_dialog.html#FilePickDialog.on_close_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.file_picker_dialog.FilePickDialog.on_close_window" title="Link to this definition"></a></dt>
