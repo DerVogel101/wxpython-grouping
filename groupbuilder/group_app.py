@@ -51,14 +51,12 @@ class GroupApp(AppFrame):
         self.stop_worker_thread()
         event.Skip()
 
-    def on_round_left_click( self, event ):
-        if self.current_round > 0 and self.current_round - 1 < len(self.rounds):
-            self.current_round -= 1
-            self.round_selector_tctrl.SetValue(str(self.current_round + 1))
-            self.render_grid(self.current_round)
-        event.Skip()
-
     def on_round_selector_enter( self, event ):
+        if not self.rounds:
+            self.round_selector_tctrl.SetValue("1")
+            wx.MessageBox("Es wurden noch keine Runden generiert!", "Fehler", wx.OK | wx.ICON_ERROR)
+            event.Skip()
+            return
         try:
             page = int(self.round_selector_tctrl.GetValue())-1
         except ValueError:
@@ -72,13 +70,6 @@ class GroupApp(AppFrame):
             event.Skip()
             return
         self.render_grid(page)
-        event.Skip()
-
-    def on_round_right_click( self, event ):
-        if self.current_round < len(self.rounds) - 1:
-            self.current_round += 1
-            self.round_selector_tctrl.SetValue(str(self.current_round + 1))
-            self.render_grid(self.current_round)
         event.Skip()
 
     def on_csv_load_button_click( self, event ):
@@ -185,6 +176,7 @@ class GroupApp(AppFrame):
         self.rounds.append(round_data)
         self.generated_rounds_number = round_number
         self.max_rounds_number = max_rounds
+        self.round_selector_tctrl.SetMax(round_number)
 
         self.round_progress_text_ctrl.SetValue(f"{round_number} / {max_rounds}")
         self.update_status(paused)

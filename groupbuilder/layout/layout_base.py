@@ -38,47 +38,31 @@ class AppFrame ( wx.Frame ):
         bSizer9 = wx.BoxSizer( wx.HORIZONTAL )
 
         bSizer9.SetMinSize( wx.Size( -1,33 ) )
-        self.round_left_button = wx.Button( self, wx.ID_ANY, _(u"<---"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer9.Add( self.round_left_button, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
-
-        self.m_staticline4 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
-        bSizer9.Add( self.m_staticline4, 0, wx.EXPAND |wx.ALL, 5 )
-
-        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, _(u"Runde:"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.m_staticText8.Wrap( -1 )
-
-        bSizer9.Add( self.m_staticText8, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
-
-        self.round_selector_tctrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_NO_VSCROLL|wx.TE_PROCESS_ENTER )
-        bSizer9.Add( self.round_selector_tctrl, 3, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
-
-        self.m_staticline2 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
-        bSizer9.Add( self.m_staticline2, 0, wx.EXPAND |wx.ALL, 5 )
-
         self.m_staticText9 = wx.StaticText( self, wx.ID_ANY, _(u"Generierte Runden:"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText9.Wrap( -1 )
+
+        self.m_staticText9.SetMinSize( wx.Size( 115,-1 ) )
 
         bSizer9.Add( self.m_staticText9, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         self.round_progress_text_ctrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_NO_VSCROLL|wx.TE_READONLY )
-        bSizer9.Add( self.round_progress_text_ctrl, 3, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        bSizer9.Add( self.round_progress_text_ctrl, 2, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
-        self.m_staticline1 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
-        bSizer9.Add( self.m_staticline1, 0, wx.EXPAND |wx.ALL, 5 )
+        self.round_selector_tctrl = wx.SpinCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.SP_ARROW_KEYS|wx.TE_PROCESS_ENTER, 1, 1, 1 )
+        bSizer9.Add( self.round_selector_tctrl, 3, wx.ALL, 5 )
 
-        self.m_static_text7 = wx.StaticText( self, wx.ID_ANY, _(u"Status:"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.m_static_text7.Wrap( -1 )
 
-        bSizer9.Add( self.m_static_text7, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        bSizer9.Add( ( 0, 0), 6, wx.EXPAND, 5 )
 
-        self.status_text_ctrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_NO_VSCROLL|wx.TE_READONLY )
-        bSizer9.Add( self.status_text_ctrl, 2, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        self.csv_load_button = wx.Button( self, wx.ID_ANY, _(u"CSV Datei laden"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.csv_load_button.SetMinSize( wx.Size( 125,-1 ) )
 
-        self.m_staticline3 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
-        bSizer9.Add( self.m_staticline3, 0, wx.EXPAND |wx.ALL, 5 )
+        bSizer9.Add( self.csv_load_button, 1, wx.ALL, 5 )
 
-        self.round_right_button = wx.Button( self, wx.ID_ANY, _(u"--->"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer9.Add( self.round_right_button, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        self.group_config_button = wx.Button( self, wx.ID_ANY, _(u"Konfigurieren"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.group_config_button.SetMinSize( wx.Size( 125,-1 ) )
+
+        bSizer9.Add( self.group_config_button, 1, wx.ALL, 5 )
 
 
         fgSizer1.Add( bSizer9, 0, wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, 5 )
@@ -86,24 +70,32 @@ class AppFrame ( wx.Frame ):
         bSizer3 = wx.BoxSizer( wx.HORIZONTAL )
 
         bSizer3.SetMinSize( wx.Size( -1,33 ) )
-        self.csv_load_button = wx.Button( self, wx.ID_ANY, _(u"CSV Datei laden"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer3.Add( self.csv_load_button, 1, wx.ALL, 5 )
+        self.m_static_text7 = wx.StaticText( self, wx.ID_ANY, _(u"Generierungs Status:"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_static_text7.Wrap( -1 )
 
-        self.group_config_button = wx.Button( self, wx.ID_ANY, _(u"Gruppenkonfiguration"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer3.Add( self.group_config_button, 1, wx.ALL, 5 )
+        self.m_static_text7.SetMinSize( wx.Size( 115,-1 ) )
 
+        bSizer3.Add( self.m_static_text7, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
-        bSizer3.Add( ( 0, 0), 5, wx.EXPAND, 5 )
+        self.status_text_ctrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_CENTER|wx.TE_NO_VSCROLL|wx.TE_READONLY )
+        bSizer3.Add( self.status_text_ctrl, 2, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         self.pause_button = wx.Button( self, wx.ID_ANY, _(u"Pause / Weiter"), wx.DefaultPosition, wx.DefaultSize, 0 )
         bSizer3.Add( self.pause_button, 1, wx.ALL, 5 )
 
-        self.m_staticText11 = wx.StaticText( self, wx.ID_ANY, _(u"Exportieren:"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT )
+
+        bSizer3.Add( ( 0, 0), 6, wx.EXPAND, 5 )
+
+        self.m_staticText11 = wx.StaticText( self, wx.ID_ANY, _(u"Runden Export zu CSV:"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT )
         self.m_staticText11.Wrap( -1 )
+
+        self.m_staticText11.SetMinSize( wx.Size( 125,-1 ) )
 
         bSizer3.Add( self.m_staticText11, 1, wx.ALIGN_CENTER|wx.ALL, 5 )
 
         self.export_file_picker = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Datei Exportieren"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_OVERWRITE_PROMPT|wx.FLP_SAVE )
+        self.export_file_picker.SetMinSize( wx.Size( 125,-1 ) )
+
         bSizer3.Add( self.export_file_picker, 1, wx.ALL, 5 )
 
 
@@ -145,9 +137,8 @@ class AppFrame ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_CLOSE, self.on_close )
-        self.round_left_button.Bind( wx.EVT_BUTTON, self.on_round_left_click )
+        self.round_selector_tctrl.Bind( wx.EVT_SPINCTRL, self.on_round_selector_enter )
         self.round_selector_tctrl.Bind( wx.EVT_TEXT_ENTER, self.on_round_selector_enter )
-        self.round_right_button.Bind( wx.EVT_BUTTON, self.on_round_right_click )
         self.csv_load_button.Bind( wx.EVT_BUTTON, self.on_csv_load_button_click )
         self.group_config_button.Bind( wx.EVT_BUTTON, self.on_gconfig_button_click )
         self.pause_button.Bind( wx.EVT_BUTTON, self.on_pause_button_click )
@@ -162,14 +153,9 @@ class AppFrame ( wx.Frame ):
     def on_close( self, event ):
         event.Skip()
 
-    def on_round_left_click( self, event ):
-        event.Skip()
-
     def on_round_selector_enter( self, event ):
         event.Skip()
 
-    def on_round_right_click( self, event ):
-        event.Skip()
 
     def on_csv_load_button_click( self, event ):
         event.Skip()
