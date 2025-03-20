@@ -106,6 +106,8 @@ class GroupConfigDialog(GroupConfigurationDialog):
         if needed_ram / available_ram > 0.85:
             self.ram_usage_text.SetForegroundColour(wx.RED)
             self.RequestUserAttention()
+        else:
+            self.ram_usage_text.SetForegroundColour(wx.BLACK)
 
         self.available_ram = available_ram
         self.needed_ram = needed_ram

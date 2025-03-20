@@ -107,7 +107,6 @@ class GroupApp(AppFrame):
             self.grid_data = {i: row[self.csv_surname_index] for i, row in enumerate(self.csv_data)}
         else:
             self.grid_data = {i: f"Person {i + 1}" for i in range(len(self.csv_data))}
-        print(self.grid_data)
         self.group_config_dialog = GroupConfigDialog(self, len(self.csv_data), True)
         self.group_config_dialog.ShowModal()
         if self.group_config_cancel:
