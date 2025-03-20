@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.group_config_dialog &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">wxpython-grouping</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">groupbuilder.group_config_dialog</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for groupbuilder.group_config_dialog</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Group Configuration Dialog Module</span>
+<span class="sd">===============================</span>
+
+<span class="sd">This module provides a dialog interface for configuring group settings, including</span>
+<span class="sd">group size and number of persons, with RAM usage estimation.</span>
+
+<span class="sd">.. inheritance-diagram:: groupbuilder.group_config_dialog</span>
+<span class="sd">   :parts: 1</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :toctree: generated/</span>
+
+<span class="sd">   GroupConfigDialog</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">wx</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.layout.group_conf_dia</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfigurationDialog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupingAlgorithm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.sys_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">SysUtils</span>
+
+<div class="viewcode-block" id="GroupConfigDialog">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupConfigDialog</span><span class="p">(</span><span class="n">GroupConfigurationDialog</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A dialog for configuring group settings.</span>
+
+<span class="sd">    This dialog allows users to specify the number of persons and group size,</span>
+<span class="sd">    provides RAM usage estimation, and warns about potential memory issues.</span>
+
+<span class="sd">    .. inheritance-diagram:: groupbuilder.group_config_dialog.GroupConfigDialog</span>
+<span class="sd">       :parts: 1</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">       :toctree: generated/</span>
+
+<span class="sd">       __init__</span>
+<span class="sd">       on_init</span>
+<span class="sd">       on_person_select</span>
+<span class="sd">       on_person_enter</span>
+<span class="sd">       on_group_select</span>
+<span class="sd">       on_group_enter</span>
+<span class="sd">       on_config_cancel_click</span>
+<span class="sd">       on_config_done_click</span>
+<span class="sd">       person_handler</span>
+<span class="sd">       group_handler</span>
+<span class="sd">       display_ram_usage</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="GroupConfigDialog.__init__">
+<a class="viewcode-back" href="../../builder/generated/groupbuilder.group_config_dialog.GroupConfigDialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">person_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size_locked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the GroupConfigDialog.</span>
+
+<span class="sd">        :param parent: The parent window</span>
+<span class="sd">        :type parent: wx.Window</span>
+<span class="sd">        :param person_size: The initial number of persons, defaults to None</span>
+<span class="sd">        :type person_size: int | None, optional</span>
+<span class="sd">        :param size_locked: Whether the person size is locked, defaults to False</span>
+<span class="sd">        :type size_locked: bool, optional</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GroupConfigDialog</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">person_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">needed_ram</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_ram</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">size_locked</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_init">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_init">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the dialog.</span>
+
+<span class="sd">        Sets initial values for the dialog controls based on current configuration</span>
+<span class="sd">        and displays estimated RAM usage.</span>
+
+<span class="sd">        :param event: The initialization event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">locked</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_comb</span><span class="o">.</span><span class="n">GetValue</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">GetValue</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_ram_usage</span><span class="p">()</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_person_select">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_person_select">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_person_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle person selection event.</span>
+
+<span class="sd">        Delegates to the person_handler method when a person count is selected.</span>
+
+<span class="sd">        :param event: The selection event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person_handler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_person_enter">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_person_enter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_person_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle person enter event.</span>
+
+<span class="sd">        Delegates to the person_handler method when a person count is entered.</span>
+
+<span class="sd">        :param event: The text enter event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person_handler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_group_select">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_group_select">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_group_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle group selection event.</span>
+
+<span class="sd">        Delegates to the group_handler method when a group size is selected.</span>
+
+<span class="sd">        :param event: The selection event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_handler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_group_enter">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_group_enter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_group_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle group enter event.</span>
+
+<span class="sd">        Delegates to the group_handler method when a group size is entered.</span>
+
+<span class="sd">        :param event: The text enter event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_handler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_config_cancel_click">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_config_cancel_click">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_config_cancel_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle cancel button click event.</span>
+
+<span class="sd">        Sets the parent&#39;s group_config_cancel flag to True and closes the dialog.</span>
+
+<span class="sd">        :param event: The button click event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">group_config_cancel</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EndModal</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ID_CANCEL</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.on_config_done_click">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.on_config_done_click">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_config_done_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle done button click event.</span>
+
+<span class="sd">        Warns the user if RAM usage might be excessive, and if they continue,</span>
+<span class="sd">        updates the parent&#39;s configuration and closes the dialog with OK status.</span>
+
+<span class="sd">        :param event: The button click event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">needed_ram</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_ram</span><span class="p">:</span>
+            <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MessageDialog</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                                      <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Die benötigte RAM-Größe (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">needed_ram</span><span class="si">}</span><span class="s2"> MB) ist größer als die verfügbare RAM-Größe (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">available_ram</span><span class="si">}</span><span class="s2"> MB).</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                              <span class="sa">f</span><span class="s2">&quot;Dies könnte zu Performance- oder Stabilitätsproblemen führen.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                              <span class="sa">f</span><span class="s2">&quot;Möchten Sie trotzdem fortfahren?&quot;</span><span class="p">,</span>
+                                      <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;RAM-Größe&quot;</span><span class="p">,</span>
+                                      <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">YES_NO</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_WARNING</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_NO</span><span class="p">:</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+                <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">group_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">person_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EndModal</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.person_handler">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.person_handler">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">person_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle person input events.</span>
+
+<span class="sd">        Validates user input for person count, ensuring it&#39;s a valid number and</span>
+<span class="sd">        consistent with the selected group size.</span>
+
+<span class="sd">        :param event: The input event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">person_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">GetValue</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">person_size</span> <span class="o">&gt;</span> <span class="mi">691337</span><span class="p">:</span>
+                <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s2">&quot;Träum weiter.&quot;</span><span class="p">,</span> <span class="s2">&quot;Zu viele Personen&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">))</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">person_size</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span> <span class="o">=</span> <span class="n">person_size</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Personenanzahl muss größer als Gruppengröße sein.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_ram_usage</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">person_comb</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">))</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bitte gebe eine valide Zahl an.</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Invalide Eingabe&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.group_handler">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.group_handler">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">group_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle group input events.</span>
+
+<span class="sd">        Validates user input for group size, ensuring it&#39;s a valid number and</span>
+<span class="sd">        consistent with the selected person count.</span>
+
+<span class="sd">        :param event: The input event</span>
+<span class="sd">        :type event: wx.Event</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">group_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_comb</span><span class="o">.</span><span class="n">GetValue</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">group_size</span> <span class="o">&gt;</span> <span class="mi">691337</span><span class="p">:</span>
+                <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s2">&quot;Träum weiter.&quot;</span><span class="p">,</span> <span class="s2">&quot;Zu viele Gruppen&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">group_comb</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">))</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">group_size</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span> <span class="o">=</span> <span class="n">group_size</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Gruppengröße muss kleiner als Personenanzahl sein.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_ram_usage</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group_comb</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">))</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bitte gebe eine valide Zahl an.</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Invalide Eingabe&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupConfigDialog.display_ram_usage">
+<a class="viewcode-back" href="../../builder/group_config_dialog.html#groupbuilder.group_config_dialog.GroupConfigDialog.display_ram_usage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">display_ram_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display the RAM usage based on the current group and person sizes.</span>
+
+<span class="sd">        Calculates and displays the estimated RAM usage for the configured group and</span>
+<span class="sd">        person sizes, highlighting excessive usage in red.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">needed_ram</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">GroupingAlgorithm</span><span class="o">.</span><span class="n">get_ops_needed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># MB</span>
+        <span class="n">available_ram</span> <span class="o">=</span> <span class="n">SysUtils</span><span class="o">.</span><span class="n">get_available_memory</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ram_usage_text</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">needed_ram</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">available_ram</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Layout</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">needed_ram</span> <span class="o">/</span> <span class="n">available_ram</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ram_usage_text</span><span class="o">.</span><span class="n">SetForegroundColour</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">RequestUserAttention</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ram_usage_text</span><span class="o">.</span><span class="n">SetForegroundColour</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_ram</span> <span class="o">=</span> <span class="n">available_ram</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">needed_ram</span> <span class="o">=</span> <span class="n">needed_ram</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

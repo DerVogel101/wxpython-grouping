@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Test &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test.groupcalculator_test.TestGroupCalculator" href="generated/test.groupcalculator_test.TestGroupCalculator.html" />
+    <link rel="prev" title="Main Entry Point" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">Main Entry Point</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit Test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#groupcalculator-test-module">GroupCalculator Test Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/test.groupcalculator_test.TestGroupCalculator.html">test.groupcalculator_test.TestGroupCalculator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator._classSetupFailed"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator._classSetupFailed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator._class_cleanups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator._class_cleanups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.setUp"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_can_repeat"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_can_repeat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_create_groups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_create_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_create_multiple_rounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_get_all_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_get_current_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_init_invalid_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_init_valid_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_multiple_rounds_unique_assignments()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_reset_groups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_reset_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_usable_indexes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator.test_visualize_groups()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#why-the-app-is-manually-tested">Why The App Is Manually Tested</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gui-testing-complexity">GUI Testing Complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#framework-limitations">Framework Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#focus-on-core-logic-testing">Focus on Core Logic Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-testing-protocol">Manual Testing Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-considerations">Future Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builder/groupbuilder.html">Groupbuilder package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">wxpython-grouping</a></li>
+      <li class="breadcrumb-item active">Unit Test</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/unit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-test">
+<h1>Unit Test<a class="headerlink" href="#unit-test" title="Link to this heading"></a></h1>
+<p>This is the unit test for the <cite>groupbuilder.groupcalculator</cite> module interface.</p>
+<section id="groupcalculator-test-module">
+<span id="module-test.groupcalculator_test"></span><h2>GroupCalculator Test Module<a class="headerlink" href="#groupcalculator-test-module" title="Link to this heading"></a></h2>
+<p>This module contains unit tests for the GroupCalculator class.</p>
+<div class="graphviz"><img src="_images/inheritance-8f708fb839aa7d0270475a1f1946412f20845b96.png" alt="Inheritance diagram of test.groupcalculator_test" usemap="#inheritance43e319dfdd" class="inheritance graphviz" /></div>
+<map id="inheritance43e319dfdd" name="inheritance43e319dfdd">
+<area shape="rect" id="node2" href="#test.groupcalculator_test.TestGroupCalculator" target="_top" title="Test cases for the GroupCalculator class." alt="" coords="134,5,285,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator" title="test.groupcalculator_test.TestGroupCalculator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestGroupCalculator</span></code></a>([methodName])</p></td>
+<td><p>Test cases for the GroupCalculator class.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.groupcalculator_test.</span></span><span class="sig-name descname"><span class="pre">TestGroupCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Test cases for the GroupCalculator class.</p>
+<p>This test suite verifies the functionality of the GroupCalculator class
+including initialization, group creation, and group management.</p>
+<div class="graphviz"><img src="_images/inheritance-b8a34fa22b49678d3761a6ab2d20a1c9499987b5.png" alt="Inheritance diagram of test.groupcalculator_test.TestGroupCalculator" usemap="#inheritance7112df3333" class="inheritance graphviz" /></div>
+<map id="inheritance7112df3333" name="inheritance7112df3333">
+<area shape="rect" id="node2" href="#test.groupcalculator_test.TestGroupCalculator" target="_top" title="Test cases for the GroupCalculator class." alt="" coords="134,5,285,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.setUp" title="test.groupcalculator_test.TestGroupCalculator.setUp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setUp</span></code></a>()</p></td>
+<td><p>Set up test fixtures before each test method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_valid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with valid parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_invalid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with invalid parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_reset_groups" title="test.groupcalculator_test.TestGroupCalculator.test_reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_reset_groups</span></code></a>()</p></td>
+<td><p>Test resetting groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_create_groups" title="test.groupcalculator_test.TestGroupCalculator.test_create_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_groups</span></code></a>()</p></td>
+<td><p>Test creating groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds" title="test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_multiple_rounds</span></code></a>()</p></td>
+<td><p>Test creating multiple rounds of groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_can_repeat" title="test.groupcalculator_test.TestGroupCalculator.test_can_repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_can_repeat</span></code></a>()</p></td>
+<td><p>Test the can_repeat method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_current_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_current_groups</span></code></a>()</p></td>
+<td><p>Test getting current groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_all_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_all_groups</span></code></a>()</p></td>
+<td><p>Test getting all groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes" title="test.groupcalculator_test.TestGroupCalculator.test_usable_indexes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_usable_indexes</span></code></a>()</p></td>
+<td><p>Test with usable_indexes=True.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups" title="test.groupcalculator_test.TestGroupCalculator.test_visualize_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_visualize_groups</span></code></a>()</p></td>
+<td><p>Test visualize_groups method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments" title="test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_multiple_rounds_unique_assignments</span></code></a>()</p></td>
+<td><p>Test that people are uniquely assigned across rounds.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator._classSetupFailed">
+<span class="sig-name descname"><span class="pre">_classSetupFailed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator._classSetupFailed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator._class_cleanups">
+<span class="sig-name descname"><span class="pre">_class_cleanups</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator._class_cleanups" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.setUp" title="Link to this definition"></a></dt>
+<dd><p>Set up test fixtures before each test method.</p>
+<p>Creates a valid GroupCalculator instance for use in tests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_can_repeat">
+<span class="sig-name descname"><span class="pre">test_can_repeat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_can_repeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_can_repeat" title="Link to this definition"></a></dt>
+<dd><p>Test the can_repeat method.</p>
+<p>Verifies that the can_repeat method correctly calculates the maximum number of rounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_create_groups">
+<span class="sig-name descname"><span class="pre">test_create_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_create_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_create_groups" title="Link to this definition"></a></dt>
+<dd><p>Test creating groups.</p>
+<p>Verifies that groups are correctly created with the right structure and size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds">
+<span class="sig-name descname"><span class="pre">test_create_multiple_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_create_multiple_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds" title="Link to this definition"></a></dt>
+<dd><p>Test creating multiple rounds of groups.</p>
+<p>Verifies that multiple rounds can be created and that they differ from each other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_get_all_groups">
+<span class="sig-name descname"><span class="pre">test_get_all_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups" title="Link to this definition"></a></dt>
+<dd><p>Test getting all groups.</p>
+<p>Verifies that the get_all_groups method returns the correct nested structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_get_current_groups">
+<span class="sig-name descname"><span class="pre">test_get_current_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups" title="Link to this definition"></a></dt>
+<dd><p>Test getting current groups.</p>
+<p>Verifies that the get_current_groups method returns the correct structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters">
+<span class="sig-name descname"><span class="pre">test_init_invalid_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_init_invalid_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters" title="Link to this definition"></a></dt>
+<dd><p>Test initialization with invalid parameters.</p>
+<p>Verifies that appropriate exceptions are raised when invalid parameters are provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters">
+<span class="sig-name descname"><span class="pre">test_init_valid_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_init_valid_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters" title="Link to this definition"></a></dt>
+<dd><p>Test initialization with valid parameters.</p>
+<p>Verifies that a GroupCalculator can be successfully created with valid parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments">
+<span class="sig-name descname"><span class="pre">test_multiple_rounds_unique_assignments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_multiple_rounds_unique_assignments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments" title="Link to this definition"></a></dt>
+<dd><p>Test that people are uniquely assigned across rounds.</p>
+<p>Verifies that each person is never grouped with the same other person twice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_reset_groups">
+<span class="sig-name descname"><span class="pre">test_reset_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_reset_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_reset_groups" title="Link to this definition"></a></dt>
+<dd><p>Test resetting groups.</p>
+<p>Verifies that the reset_groups method properly clears all generated groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_usable_indexes">
+<span class="sig-name descname"><span class="pre">test_usable_indexes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_usable_indexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes" title="Link to this definition"></a></dt>
+<dd><p>Test with usable_indexes=True.</p>
+<p>Verifies that the usable_indexes parameter correctly changes group identifiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.test_visualize_groups">
+<span class="sig-name descname"><span class="pre">test_visualize_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/groupcalculator_test.html#TestGroupCalculator.test_visualize_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups" title="Link to this definition"></a></dt>
+<dd><p>Test visualize_groups method.</p>
+<p>Verifies that the visualize_groups method outputs to console correctly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="why-the-app-is-manually-tested">
+<h1>Why The App Is Manually Tested<a class="headerlink" href="#why-the-app-is-manually-tested" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">GroupApp</span></code> component of our application is tested through manual testing rather than automated unit tests for several reasons:</p>
+<section id="gui-testing-complexity">
+<h2>GUI Testing Complexity<a class="headerlink" href="#gui-testing-complexity" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">GroupApp</span></code> class primarily implements a wxPython graphical user interface with numerous interactive elements:</p>
+<ul class="simple">
+<li><p>Event handlers for various UI controls</p></li>
+<li><p>Complex window layouts and sizing behaviors</p></li>
+<li><p>Modal dialogs for user interaction</p></li>
+<li><p>Dynamic grid-based data display</p></li>
+</ul>
+<p>These GUI components are inherently difficult to test through traditional unit testing frameworks due to:</p>
+<ol class="arabic simple">
+<li><p>Event-driven architecture that relies on user interactions</p></li>
+<li><p>Platform-specific behavior of window rendering</p></li>
+<li><p>Visual elements that require human verification</p></li>
+</ol>
+</section>
+<section id="framework-limitations">
+<h2>Framework Limitations<a class="headerlink" href="#framework-limitations" title="Link to this heading"></a></h2>
+<p>While tools exist for automated GUI testing, they present challenges:</p>
+<ul class="simple">
+<li><p><strong>Setup Complexity</strong>: GUI test frameworks require significant configuration</p></li>
+<li><p><strong>Brittleness</strong>: Tests often break with minor UI changes</p></li>
+<li><p><strong>Non-deterministic Behavior</strong>: Race conditions in event handling</p></li>
+<li><p><strong>Test Environment Requirements</strong>: Need for display servers or virtual displays</p></li>
+</ul>
+</section>
+<section id="focus-on-core-logic-testing">
+<h2>Focus on Core Logic Testing<a class="headerlink" href="#focus-on-core-logic-testing" title="Link to this heading"></a></h2>
+<p>Our testing strategy prioritizes comprehensive unit testing of the core logic:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✓ GroupCalculator - Fully unit tested
+✓ Core algorithms - Fully unit tested
+⨯ GroupApp GUI - Manually tested
+</pre></div>
+</div>
+<p>This approach ensures that the fundamental algorithms (the most critical components) have robust test coverage, while the presentation layer is verified through human interaction.</p>
+</section>
+<section id="manual-testing-protocol">
+<h2>Manual Testing Protocol<a class="headerlink" href="#manual-testing-protocol" title="Link to this heading"></a></h2>
+<p>For the <code class="docutils literal notranslate"><span class="pre">GroupApp</span></code> component, we follow a structured manual testing protocol:</p>
+<ol class="arabic simple">
+<li><p>Verify CSV import/export functionality</p></li>
+<li><p>Test group configuration parameter validation</p></li>
+<li><p>Confirm proper display of generated groups</p></li>
+<li><p>Validate worker thread pause/resume functions</p></li>
+<li><p>Check proper sizing and layout across different window dimensions</p></li>
+<li><p>Test error handling for invalid inputs</p></li>
+</ol>
+</section>
+<section id="future-considerations">
+<h2>Future Considerations<a class="headerlink" href="#future-considerations" title="Link to this heading"></a></h2>
+<p>While current testing relies on manual verification, potential future improvements include:</p>
+<ul class="simple">
+<li><p>Integration testing for key workflows</p></li>
+<li><p>Snapshot testing for UI components</p></li>
+<li><p>Behavior-driven tests for critical user journeys</p></li>
+</ul>
+<p>By combining thorough unit tests for core logic with systematic manual testing of the UI, we maintain high quality while acknowledging the practical limitations of automated GUI testing.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title="Main Entry Point" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/test.groupcalculator_test.TestGroupCalculator.html" class="btn btn-neutral float-right" title="test.groupcalculator_test.TestGroupCalculator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

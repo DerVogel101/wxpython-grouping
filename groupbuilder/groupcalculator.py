@@ -1,3 +1,18 @@
+"""
+Group Calculator Module
+=====================
+
+This module provides the GroupCalculator class for creating and managing groups of people.
+
+.. inheritance-diagram:: groupbuilder.groupcalculator
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   GroupCalculator
+"""
+
 from pydantic import ValidationError
 from typing_extensions import deprecated
 
@@ -16,14 +31,20 @@ class GroupCalculator(GroupCalculatorInterface):
     This class implements the GroupCalculatorInterface and provides functionality
     for creating groups based on a specified amount of people and group size.
 
-    :param amount_people: The total number of people to be divided into groups
-    :type amount_people: int
-    :param group_size: The size of each group
-    :type group_size: int
-    :param usable_indexes: Whether to use indexing based on numbers instead of column letters, defaults to False
-    :type usable_indexes: bool, optional
-    :raises AmountPeopleError: If the amount of people or group size is invalid
-    :raises AmountPeopleError: If the amount of people is less than the group_size
+    .. inheritance-diagram:: groupbuilder.groupcalculator.GroupCalculator
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       reset_groups
+       create_groups
+       visualize_groups
+       can_repeat
+       get_current_groups
+       get_all_groups
+       select_from_csv_file
     """
     def __init__(self, amount_people: int, group_size: int, usable_indexes: bool = False):
         """
@@ -37,6 +58,9 @@ class GroupCalculator(GroupCalculatorInterface):
         :type usable_indexes: bool, optional
         :raises AmountPeopleError: If the amount of people or group size is invalid
         :raises AmountPeopleError: If the amount of people is less than the group_size
+
+        .. autosummary::
+           :toctree: generated/
         """
         try:
             self.__group_config = GroupConfig(amount_people=amount_people, group_size=group_size)
@@ -52,6 +76,10 @@ class GroupCalculator(GroupCalculatorInterface):
         Creates a new GroupingAlgorithm instance with the current configuration.
 
         :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.__algorithm = GroupingAlgorithm(self.__group_config)
 
@@ -63,6 +91,11 @@ class GroupCalculator(GroupCalculatorInterface):
         avoiding placing the same person in the same group.
 
         :return: None
+        :rtype: None
+        :raises StopIteration: If the maximum number of rounds is reached
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.__algorithm.generate_next_round()
 
@@ -73,6 +106,10 @@ class GroupCalculator(GroupCalculatorInterface):
         Displays all groups from all rounds.
 
         :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         groups = self.get_all_groups()
         for rnd in groups:
@@ -85,6 +122,9 @@ class GroupCalculator(GroupCalculatorInterface):
 
         :return: The maximum number of unique rounds
         :rtype: int
+
+        .. autosummary::
+           :toctree: generated/
         """
         return self.__algorithm.get_max_rounds()
 
@@ -95,6 +135,9 @@ class GroupCalculator(GroupCalculatorInterface):
         :return: A dictionary where keys are group identifiers (column letters or indices)
                  and values are lists of people in each group
         :rtype: dict
+
+        .. autosummary::
+           :toctree: generated/
         """
         return {i if self.__ui else number_to_column(i+1): [p for p in g] for i, g in enumerate(self.__algorithm.get_round())}
 
@@ -106,6 +149,9 @@ class GroupCalculator(GroupCalculatorInterface):
                  second level keys are group identifiers, and values are lists of
                  people in each group
         :rtype: dict
+
+        .. autosummary::
+           :toctree: generated/
         """
         data = self.__algorithm.get_all_rounds()
         return {rnd: {i if self.__ui else number_to_column(i+1): [p for p in g] for i, g in enumerate(data[rnd])} for rnd in data}
@@ -122,6 +168,9 @@ class GroupCalculator(GroupCalculatorInterface):
         :type file_path: str
         :return: A list of lists containing the CSV data
         :rtype: list[list[str]]
+
+        .. autosummary::
+           :toctree: generated/
         """
         data, _, _ = detect_csv_separator_and_load(file_path)
         return data

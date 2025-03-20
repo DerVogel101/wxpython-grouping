@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.core.algorithm module &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="groupbuilder.core.algorithm.GroupingAlgorithm" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html" />
+    <link rel="prev" title="Core package" href="groupbuilder.core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.core.html">Core package</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.core.algorithm module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#group-algorithm-module">Group Algorithm Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm"><code class="docutils literal notranslate"><span class="pre">GroupingAlgorithm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="base.html">groupbuilder.core.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model_converter.html">groupbuilder.core.data_model_converter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_models.html">groupbuilder.core.data_models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">groupbuilder.core.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logger.html">groupbuilder.core.logger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys_utils.html">groupbuilder.core.sys_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="groupbuilder.core.html">Core package</a></li>
+      <li class="breadcrumb-item active">groupbuilder.core.algorithm module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/core/algorithm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-groupbuilder.core.algorithm">
+<span id="groupbuilder-core-algorithm-module"></span><h1>groupbuilder.core.algorithm module<a class="headerlink" href="#module-groupbuilder.core.algorithm" title="Link to this heading"></a></h1>
+<section id="group-algorithm-module">
+<h2>Group Algorithm Module<a class="headerlink" href="#group-algorithm-module" title="Link to this heading"></a></h2>
+<p>This module implements efficient algorithms for generating optimal group combinations.</p>
+<div class="graphviz"><img src="../_images/inheritance-485bdd46601a93f07026fb58f58ed11d08df7137.png" alt="Inheritance diagram of groupbuilder.core.algorithm" usemap="#inheritance6531eda561" class="inheritance graphviz" /></div>
+<map id="inheritance6531eda561" name="inheritance6531eda561">
+<area shape="rect" id="node1" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" title="groupbuilder.core.algorithm.GroupingAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupingAlgorithm</span></code></a>(config)</p></td>
+<td><p>Algorithm for generating groups of people with unique combinations.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.core.algorithm.</span></span><span class="sig-name descname"><span class="pre">GroupingAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Algorithm for generating groups of people with unique combinations.</p>
+<p>This class implements an algorithm to generate rounds of groups where:
+1. Each round contains groups of equal size
+2. Each person appears exactly once per round
+3. The algorithm attempts to maximize the number of unique group combinations</p>
+<blockquote>
+<div><p>before repeating any previously formed groups</p>
+</div></blockquote>
+<p>It uses bitmasking for efficient group intersection checks and backtracking
+for finding valid group combinations.</p>
+<div class="graphviz"><img src="../_images/inheritance-ba2bc1641decb479e0c377c5b3f4e4a1779b8002.png" alt="Inheritance diagram of groupbuilder.core.algorithm.GroupingAlgorithm" usemap="#inheritancec27bb38685" class="inheritance graphviz" /></div>
+<map id="inheritancec27bb38685" name="inheritancec27bb38685">
+<area shape="rect" id="node1" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm" target="_top" title="Algorithm for generating groups of people with unique combinations." alt="" coords="5,5,147,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.__init__" title="groupbuilder.core.algorithm.GroupingAlgorithm.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(config)</p></td>
+<td><p>Initialize the GroupingAlgorithm with the given configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_round" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_round</span></code></a>()</p></td>
+<td><p>Get the most recently generated round.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_all_rounds" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_all_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_rounds</span></code></a>()</p></td>
+<td><p>Get all generated rounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round" title="groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_next_round</span></code></a>()</p></td>
+<td><p>Generate the next round of groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_remaining_rounds</span></code></a>()</p></td>
+<td><p>Get the number of remaining rounds that can be generated.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_max_rounds</span></code></a>()</p></td>
+<td><p>Get the maximum number of rounds that can be generated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed" title="groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ops_needed</span></code></a>(amount_people, group_size)</p></td>
+<td><p>Calculate an estimate of the number of operations needed to generate all possible unique round combinations, along with the number of combinations and an approximate amount of RAM needed based on an internal regression model.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__add_next_group">
+<span class="sig-name descname"><span class="pre">__add_next_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_working_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outcast</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_found</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bitmask_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_person_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__add_next_group" title="Link to this definition"></a></dt>
+<dd><p>Recursively add groups to create a valid round.</p>
+<p>This is the core backtracking algorithm that builds valid rounds by:
+1. Finding a group that doesn’t overlap with existing groups
+2. Adding it to the current round
+3. Recursively trying to complete the round with remaining groups
+4. Backtracking if the current path doesn’t lead to a solution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_group</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>]</span>) – Current list of selected groups for this round</p></li>
+<li><p><strong>old_working_set</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>]</span>) – Remaining groups to consider</p></li>
+<li><p><strong>outcast</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>]</span>) – Groups that were rejected in this branch</p></li>
+<li><p><strong>self_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Current recursion depth (group number)</p></li>
+<li><p><strong>max_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Maximum recursion depth (total groups needed)</p></li>
+<li><p><strong>not_found</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Flag indicating if a solution hasn’t been found yet</p></li>
+<li><p><strong>bitmask_cache</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">frozenset</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – Cache of bitmasks for each group for faster intersection checks</p></li>
+<li><p><strong>all_person_mask</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Bitmask representing all people that should be in a round</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>StopIteration</strong> – If no more rounds can be generated</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of (completed groups, remaining groups, rejected groups, solution_not_found flag)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[list[frozenset], list[frozenset], list[frozenset], bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__generate_all_possible_combs">
+<span class="sig-name descname"><span class="pre">__generate_all_possible_combs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__generate_all_possible_combs" title="Link to this definition"></a></dt>
+<dd><p>Generate all possible group combinations.</p>
+<p>Creates all possible group combinations of size <cite>group_size</cite> from the total
+number of people. If the total number is not divisible by group size,
+placeholder people (-1) are added and then removed from the final combinations.</p>
+<p>Sets:
+- <cite>self.__all_combinations</cite>: All possible unique group combinations
+- <cite>self._max_rounds</cite>: Maximum number of rounds that can be generated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.__set_groups_per_round">
+<span class="sig-name descname"><span class="pre">__set_groups_per_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.__set_groups_per_round" title="Link to this definition"></a></dt>
+<dd><p>Calculate the number of groups needed per round.</p>
+<p>Adjusts for cases where the number of people is not evenly divisible
+by the group size by adding virtual placeholders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities">
+<span class="sig-name descname"><span class="pre">_get_max_possibilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm._get_max_possibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Method is deprecated, because it is not accurate anymore, the cause for this is that it does not take into account that the algorithm is not allowed to generate the same group twice.</p>
+</div>
+<p>Calculate an upper bound on the number of rounds possible.</p>
+<p>This method computes an approximate maximum number of rounds that can be generated based on the total number of unique groups
+that can be formed and the number of groups per round. The calculation involves adjusting the number of people to ensure that
+it is divisible by the group size by adding placeholders if necessary.</p>
+<section id="given">
+<h2>Given<a class="headerlink" href="#given" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P\)</span>: Total number of people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span>: Group size.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{remainder}\)</span>: Number of placeholders (added if <span class="math notranslate nohighlight">\(P\)</span> is not divisible by <span class="math notranslate nohighlight">\(G\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{adjusted}\)</span>: Total number of participants (including placeholders).</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span>: The number of groups formed in a round.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{total_groups}\)</span>: The product of binomial coefficients for each group.</p></li>
+</ul>
+</section>
+<section id="formula-steps">
+<h2>Formula Steps<a class="headerlink" href="#formula-steps" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Adjustment of the Number of People</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>Calculate the remainder when the number of people is divided by the group size:</dt><dd><div class="math notranslate nohighlight">
+\[\text{remainder} = P \mod G\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>If the remainder is not zero, increase the number of people by the missing value to allow even group division:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P + (G - \text{remainder}) \quad \text{if } \text{remainder} \neq 0\]</div>
+</dd>
+<dt>If there is no remainder, the number of people remains unchanged:</dt><dd><div class="math notranslate nohighlight">
+\[P_{adjusted} = P\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><strong>Calculation of Groups per Round</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of groups per round is given by:</dt><dd><div class="math notranslate nohighlight">
+\[R = \frac{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><strong>Total Number of Unique Groups (Combinations)</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The number of possible unique groups is given by the binomial coefficient:</dt><dd><div class="math notranslate nohighlight">
+\[\text{total_groups} = \binom{P_{adjusted}}{G}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p><strong>Maximum Number of Rounds</strong></p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>The upper bound for the number of rounds is given by:</dt><dd><div class="math notranslate nohighlight">
+\[\text{max_rounds} = \frac{\text{total_groups}}{R}\]</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>This formula calculates the total number of unique round combinations based on the number of participants and the group size, taking into account any necessary placeholders.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round">
+<span class="sig-name descname"><span class="pre">generate_next_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.generate_next_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round" title="Link to this definition"></a></dt>
+<dd><p>Generate the next round of groups.</p>
+<p>This method attempts to find a valid set of groups for the next round
+where each person appears exactly once and no group has appeared in
+previous rounds if possible.</p>
+<p>Uses bitmasking for efficient group intersection checks and implements
+a backtracking algorithm to find valid group combinations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>StopIteration</strong> – When no more rounds can be generated</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_all_rounds">
+<span class="sig-name descname"><span class="pre">get_all_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_all_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_all_rounds" title="Link to this definition"></a></dt>
+<dd><p>Get all generated rounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary mapping round indices to lists of groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[int, list[frozenset[int]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds">
+<span class="sig-name descname"><span class="pre">get_max_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_max_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds" title="Link to this definition"></a></dt>
+<dd><p>Get the maximum number of rounds that can be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum number of rounds</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ops_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_ops_needed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed" title="Link to this definition"></a></dt>
+<dd><p>Calculate an estimate of the number of operations needed to generate all possible
+unique round combinations, along with the number of combinations and an approximate
+amount of RAM needed based on an internal regression model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method calculates the number of operations needed to generate all possible
+unique round combinations based on the total number of people and the group size.
+The calculation involves determining the number of possible combinations, the worst-case
+backtracking scenario, and an estimate of RAM usage.</p>
+</div>
+<p><strong>Complexity Formula</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: Total number of people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>: Group size.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[O\left(\binom{n}{k} * 2^{n/k} \right)\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[O\left(\frac{n!}{k!(n-k)!} * 2^{n/k} \right)\]</div>
+<p><strong>Given</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{amount_people}\)</span> : The total number of real people.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{group_size}\)</span> : The size of each group.</p></li>
+</ul>
+<p><strong>Formula Steps</strong></p>
+<ol class="arabic" start="0">
+<li><dl>
+<dt><strong>Calculate the Number of People and Group Size</strong></dt><dd><div class="math notranslate nohighlight">
+\[n = \text{amount_people} + (\text{amount_people} \mod \text{group_size})\]</div>
+<div class="math notranslate nohighlight">
+\[k = \text{group_size}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate All Possible Combinations</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{combinations} = \binom{n}{k}\]</div>
+<div style="text-align: center;">
+    Or
+</div><div class="math notranslate nohighlight">
+\[\text{combinations} = \frac{n!}{k!(n-k)!}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Generating a Round</strong></dt><dd><dl>
+<dt>2.1. <strong>Calculate the Number of Groups per Round</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{groups_per_round} = \frac{n}{k}\]</div>
+</dd>
+<dt>2.2. <strong>Calculate the Worst-Case Backtracking Scenario</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{back_track_poss} = 2^{\text{groups_per_round}}\]</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate the Number of Operations Needed</strong></dt><dd><div class="math notranslate nohighlight">
+\[\text{ops_needed} = \text{combinations} * \text{back_track_poss}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Calculate the Approximate Amount of RAM Needed</strong></dt><dd><p>This estimate is determined by a regression model, based on this <a class="reference external" href="https://de.planetcalc.com/5992/?xstring=12720%2091390%20658008%201581580%202123555%202794155%203921225%206210820%207059052%2010009125%2012082785%2021374050%2045379620&amp;ystring=40%2070%20440%20580%20820%201000%201300%202100%202800%203500%204200%208000%2014000&amp;dolinear=1&amp;doquadratic=0&amp;dopower=0&amp;docubic=0&amp;doexponential=0&amp;dologarithmic=0&amp;dohyperbolic=0&amp;doeexponential=0">Website</a>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{ram_needed} = 0.000315294762088087 \times \text{combinations} + 200\]</div>
+</div></blockquote>
+<p>If <span class="math notranslate nohighlight">\(\text{combinations} &gt; 92000\)</span>, use the formula above.
+Then round <span class="math notranslate nohighlight">\(\text{ram_needed}\)</span> up to the nearest multiple of 10.
+Otherwise, default to 100 MB.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount_people</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The total number of people.</p></li>
+<li><p><strong>group_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The size of each group.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing:
+1. The estimated number of operations needed (ops_needed).
+2. The number of combinations.
+3. The approximate amount of RAM needed (in MB).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[int, int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds">
+<span class="sig-name descname"><span class="pre">get_remaining_rounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_remaining_rounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds" title="Link to this definition"></a></dt>
+<dd><p>Get the number of remaining rounds that can be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of remaining rounds</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.algorithm.GroupingAlgorithm.get_round">
+<span class="sig-name descname"><span class="pre">get_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/algorithm.html#GroupingAlgorithm.get_round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.algorithm.GroupingAlgorithm.get_round" title="Link to this definition"></a></dt>
+<dd><p>Get the most recently generated round.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of frozensets representing the groups in the last generated round</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[frozenset[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="groupbuilder.core.html" class="btn btn-neutral float-left" title="Core package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/groupbuilder.core.algorithm.GroupingAlgorithm.html" class="btn btn-neutral float-right" title="groupbuilder.core.algorithm.GroupingAlgorithm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

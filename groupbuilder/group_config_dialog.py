@@ -1,3 +1,19 @@
+"""
+Group Configuration Dialog Module
+===============================
+
+This module provides a dialog interface for configuring group settings, including
+group size and number of persons, with RAM usage estimation.
+
+.. inheritance-diagram:: groupbuilder.group_config_dialog
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   GroupConfigDialog
+"""
+
 import wx
 
 from .layout.group_conf_dia import GroupConfigurationDialog
@@ -8,14 +24,43 @@ class GroupConfigDialog(GroupConfigurationDialog):
     """
     A dialog for configuring group settings.
 
-    :param parent: The parent window.
-    :type parent: wx.Window
-    :param person_size: The initial number of persons, defaults to None.
-    :type person_size: int, optional
-    :param size_locked: Whether the size is locked, defaults to False.
-    :type size_locked: bool, optional
+    This dialog allows users to specify the number of persons and group size,
+    provides RAM usage estimation, and warns about potential memory issues.
+
+    .. inheritance-diagram:: groupbuilder.group_config_dialog.GroupConfigDialog
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       on_init
+       on_person_select
+       on_person_enter
+       on_group_select
+       on_group_enter
+       on_config_cancel_click
+       on_config_done_click
+       person_handler
+       group_handler
+       display_ram_usage
     """
     def __init__(self, parent, person_size: int | None = None, size_locked: bool = False):
+        """
+        Initialize the GroupConfigDialog.
+
+        :param parent: The parent window
+        :type parent: wx.Window
+        :param person_size: The initial number of persons, defaults to None
+        :type person_size: int | None, optional
+        :param size_locked: Whether the person size is locked, defaults to False
+        :type size_locked: bool, optional
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
+        """
         super(GroupConfigDialog, self).__init__(parent)
         self.parent = parent
         self.group_size: int | None = None
@@ -28,8 +73,16 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Initialize the dialog.
 
-        :param event: The event object.
+        Sets initial values for the dialog controls based on current configuration
+        and displays estimated RAM usage.
+
+        :param event: The initialization event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if self.locked:
             self.person_comb.Enable(False)
@@ -43,8 +96,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle person selection event.
 
-        :param event: The event object.
+        Delegates to the person_handler method when a person count is selected.
+
+        :param event: The selection event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.person_handler(event)
 
@@ -52,8 +112,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle person enter event.
 
-        :param event: The event object.
+        Delegates to the person_handler method when a person count is entered.
+
+        :param event: The text enter event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.person_handler(event)
 
@@ -61,8 +128,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle group selection event.
 
-        :param event: The event object.
+        Delegates to the group_handler method when a group size is selected.
+
+        :param event: The selection event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.group_handler(event)
 
@@ -70,8 +144,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle group enter event.
 
-        :param event: The event object.
+        Delegates to the group_handler method when a group size is entered.
+
+        :param event: The text enter event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.group_handler(event)
 
@@ -79,8 +160,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle cancel button click event.
 
-        :param event: The event object.
+        Sets the parent's group_config_cancel flag to True and closes the dialog.
+
+        :param event: The button click event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.parent.group_config_cancel = True
         self.EndModal(wx.ID_CANCEL)
@@ -90,8 +178,16 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle done button click event.
 
-        :param event: The event object.
+        Warns the user if RAM usage might be excessive, and if they continue,
+        updates the parent's configuration and closes the dialog with OK status.
+
+        :param event: The button click event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if self.needed_ram > self.available_ram:
             dialog = wx.MessageDialog(parent=self,
@@ -113,8 +209,16 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle person input events.
 
-        :param event: The event object.
+        Validates user input for person count, ensuring it's a valid number and
+        consistent with the selected group size.
+
+        :param event: The input event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         try:
             person_size = int(self.person_comb.GetValue())
@@ -138,8 +242,16 @@ class GroupConfigDialog(GroupConfigurationDialog):
         """
         Handle group input events.
 
-        :param event: The event object.
+        Validates user input for group size, ensuring it's a valid number and
+        consistent with the selected person count.
+
+        :param event: The input event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         try:
             group_size = int(self.group_comb.GetValue())
@@ -162,6 +274,15 @@ class GroupConfigDialog(GroupConfigurationDialog):
     def display_ram_usage(self):
         """
         Display the RAM usage based on the current group and person sizes.
+
+        Calculates and displays the estimated RAM usage for the configured group and
+        person sizes, highlighting excessive usage in red.
+
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         needed_ram = int(GroupingAlgorithm.get_ops_needed(self.person_size, self.group_size)[2]) # MB
         available_ram = SysUtils.get_available_memory()

@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.algorithm_thread.RoundWorkerThread &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="groupbuilder.csv_name_picker_dialog module" href="../csv_name_picker_dialog.html" />
+    <link rel="prev" title="groupbuilder.algorithm_thread module" href="../algo_thread.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">Main Entry Point</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../groupbuilder.html">Groupbuilder package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../algo_thread.html">groupbuilder.algorithm_thread module</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../algo_thread.html#algorithm-thread-module">Algorithm Thread Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread"><code class="docutils literal notranslate"><span class="pre">RoundWorkerThread</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../file_picker_dialog.html">groupbuilder.file_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../group_app.html">groupbuilder.group_app module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../group_config_dialog.html">groupbuilder.group_config_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupcalc.html">groupbuilder.groupcalculator module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="../groupbuilder.html">Groupbuilder package</a></li>
+          <li class="breadcrumb-item"><a href="../algo_thread.html">groupbuilder.algorithm_thread module</a></li>
+      <li class="breadcrumb-item active">groupbuilder.algorithm_thread.RoundWorkerThread</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/builder/generated/groupbuilder.algorithm_thread.RoundWorkerThread.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="groupbuilder-algorithm-thread-roundworkerthread">
+<h1>groupbuilder.algorithm_thread.RoundWorkerThread<a class="headerlink" href="#groupbuilder-algorithm-thread-roundworkerthread" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.algorithm_thread.RoundWorkerThread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.algorithm_thread.</span></span><span class="sig-name descname"><span class="pre">RoundWorkerThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/groupbuilder/algorithm_thread.html#RoundWorkerThread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.algorithm_thread.RoundWorkerThread" title="Link to this definition"></a></dt>
+<dd><p>A worker thread that generates group assignment rounds in the background.</p>
+<p>This thread handles the execution of the grouping algorithm while allowing
+the main UI thread to remain responsive. It supports pausing, resuming,
+and stopping the generation process.</p>
+<div class="graphviz"><img src="../../_images/inheritance-8761f0aec497f809d89036d7d76644f40ee55dcc.png" alt="Inheritance diagram of groupbuilder.algorithm_thread.RoundWorkerThread" usemap="#inheritance4e05b5adf5" class="inheritance graphviz" /></div>
+<map id="inheritance4e05b5adf5" name="inheritance4e05b5adf5">
+<area shape="rect" id="node1" href="#groupbuilder.algorithm_thread.RoundWorkerThread" target="_top" title="A worker thread that generates group assignment rounds in the background." alt="" coords="125,5,275,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="groupbuilder.algorithm_thread.RoundWorkerThread.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent, config)</p></td>
+<td><p>Initialize the round worker thread.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.run" title="groupbuilder.algorithm_thread.RoundWorkerThread.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
+<td><p>Main execution method of the thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.pause" title="groupbuilder.algorithm_thread.RoundWorkerThread.pause"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pause</span></code></a>()</p></td>
+<td><p>Pause the generation process.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.resume" title="groupbuilder.algorithm_thread.RoundWorkerThread.resume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resume</span></code></a>()</p></td>
+<td><p>Resume the generation process.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.stop" title="groupbuilder.algorithm_thread.RoundWorkerThread.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>()</p></td>
+<td><p>Stop the generation process.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.algorithm_thread.RoundWorkerThread.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/groupbuilder/algorithm_thread.html#RoundWorkerThread.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the round worker thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>object</em>) – The parent object that will receive callback notifications.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="../../core/data_models.html#groupbuilder.core.data_models.GroupConfig" title="groupbuilder.core.data_models.GroupConfig"><em>GroupConfig</em></a>) – Configuration settings for the grouping algorithm.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.algorithm_thread.RoundWorkerThread.__init__" title="groupbuilder.algorithm_thread.RoundWorkerThread.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent, config)</p></td>
+<td><p>Initialize the round worker thread.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">getName</span></code>()</p></td>
+<td><p>Return a string used for identification purposes only.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isDaemon</span></code>()</p></td>
+<td><p>Return whether this thread is a daemon.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_alive</span></code>()</p></td>
+<td><p>Return whether the thread is alive.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">join</span></code>([timeout])</p></td>
+<td><p>Wait until the thread terminates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.pause" title="groupbuilder.algorithm_thread.RoundWorkerThread.pause"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pause</span></code></a>()</p></td>
+<td><p>Pause the generation process.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.resume" title="groupbuilder.algorithm_thread.RoundWorkerThread.resume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resume</span></code></a>()</p></td>
+<td><p>Resume the generation process.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.run" title="groupbuilder.algorithm_thread.RoundWorkerThread.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
+<td><p>Main execution method of the thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setDaemon</span></code>(daemonic)</p></td>
+<td><p>Set whether this thread is a daemon.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setName</span></code>(name)</p></td>
+<td><p>Set the name string for this thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code>()</p></td>
+<td><p>Start the thread's activity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../algo_thread.html#groupbuilder.algorithm_thread.RoundWorkerThread.stop" title="groupbuilder.algorithm_thread.RoundWorkerThread.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>()</p></td>
+<td><p>Stop the generation process.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">daemon</span></code></p></td>
+<td><p>A boolean value indicating whether this thread is a daemon thread.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ident</span></code></p></td>
+<td><p>Thread identifier of this thread or None if it has not been started.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>A string used for identification purposes only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">native_id</span></code></p></td>
+<td><p>Native integral thread ID of this thread, or None if it has not been started.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../algo_thread.html" class="btn btn-neutral float-left" title="groupbuilder.algorithm_thread module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../csv_name_picker_dialog.html" class="btn btn-neutral float-right" title="groupbuilder.csv_name_picker_dialog module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

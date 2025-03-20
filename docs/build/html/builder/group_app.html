@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.group_app module &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="groupbuilder.group_app.GroupApp" href="generated/groupbuilder.group_app.GroupApp.html" />
+    <link rel="prev" title="groupbuilder.file_picker_dialog.FilePickDialog" href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.html">Groupbuilder package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="algo_thread.html">groupbuilder.algorithm_thread module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_picker_dialog.html">groupbuilder.file_picker_dialog module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.group_app module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#group-app-module">Group App Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groupbuilder.group_app.GroupApp"><code class="docutils literal notranslate"><span class="pre">GroupApp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="group_config_dialog.html">groupbuilder.group_config_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupcalc.html">groupbuilder.groupcalculator module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="groupbuilder.html">Groupbuilder package</a></li>
+      <li class="breadcrumb-item active">groupbuilder.group_app module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/builder/group_app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-groupbuilder.group_app">
+<span id="groupbuilder-group-app-module"></span><h1>groupbuilder.group_app module<a class="headerlink" href="#module-groupbuilder.group_app" title="Link to this heading"></a></h1>
+<section id="group-app-module">
+<h2>Group App Module<a class="headerlink" href="#group-app-module" title="Link to this heading"></a></h2>
+<p>This module provides the main application class for the Group Builder application.</p>
+<div class="graphviz"><img src="../_images/inheritance-670fdcbd35b5e2c6195479f089bad0766423999b.png" alt="Inheritance diagram of groupbuilder.group_app" usemap="#inheritance8850ecd557" class="inheritance graphviz" /></div>
+<map id="inheritance8850ecd557" name="inheritance8850ecd557">
+<area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.layout_base.AppFrame" target="_top" title="AppFrame" alt="" coords="655,15,698,28"/>
+<area shape="rect" id="node7" href="#groupbuilder.group_app.GroupApp" target="_top" title="Main application class for the Group Builder application." alt="" coords="722,15,765,28"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp" title="groupbuilder.group_app.GroupApp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupApp</span></code></a>(parent)</p></td>
+<td><p>Main application class for the Group Builder application.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.group_app.</span></span><span class="sig-name descname"><span class="pre">GroupApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../groupbuilder.layout.html#groupbuilder.layout.layout_base.AppFrame" title="groupbuilder.layout.layout_base.AppFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">AppFrame</span></code></a></p>
+<p>Main application class for the Group Builder application.</p>
+<p>This class handles the user interface, CSV data import/export,
+group configuration, and interaction with worker threads for group generation.</p>
+<div class="graphviz"><img src="../_images/inheritance-b284fc81ce50bee470908d041e1bd0cf5894c421.png" alt="Inheritance diagram of groupbuilder.group_app.GroupApp" usemap="#inheritance6198c97061" class="inheritance graphviz" /></div>
+<map id="inheritance6198c97061" name="inheritance6198c97061">
+<area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.layout_base.AppFrame" target="_top" title="AppFrame" alt="" coords="655,15,698,28"/>
+<area shape="rect" id="node7" href="#groupbuilder.group_app.GroupApp" target="_top" title="Main application class for the Group Builder application." alt="" coords="722,15,765,28"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.group_app.GroupApp.html#groupbuilder.group_app.GroupApp.__init__" title="groupbuilder.group_app.GroupApp.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
+<td><p>Initialize the GroupApp.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_close" title="groupbuilder.group_app.GroupApp.on_close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_close</span></code></a>(event)</p></td>
+<td><p>Handle window close event by stopping any running worker threads.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_round_selector_enter" title="groupbuilder.group_app.GroupApp.on_round_selector_enter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_round_selector_enter</span></code></a>(event)</p></td>
+<td><p>Handle round selection input events.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_csv_load_button_click" title="groupbuilder.group_app.GroupApp.on_csv_load_button_click"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_csv_load_button_click</span></code></a>(event)</p></td>
+<td><p>Handle CSV load button click events.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_gconfig_button_click" title="groupbuilder.group_app.GroupApp.on_gconfig_button_click"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_gconfig_button_click</span></code></a>(event)</p></td>
+<td><p>Handle group configuration button click events.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_pause_button_click" title="groupbuilder.group_app.GroupApp.on_pause_button_click"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_pause_button_click</span></code></a>(event)</p></td>
+<td><p>Handle pause button click events.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_csv_export_change" title="groupbuilder.group_app.GroupApp.on_csv_export_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_csv_export_change</span></code></a>(event)</p></td>
+<td><p>Handle CSV export file selection events.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.OnSize" title="groupbuilder.group_app.GroupApp.OnSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnSize</span></code></a>(event)</p></td>
+<td><p>Handle window resize events.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.start_worker_thread" title="groupbuilder.group_app.GroupApp.start_worker_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_worker_thread</span></code></a>()</p></td>
+<td><p>Start the worker thread for generating rounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.on_round_generated" title="groupbuilder.group_app.GroupApp.on_round_generated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_round_generated</span></code></a>(round_data, round_number, ...)</p></td>
+<td><p>Callback method called when a round is generated by the worker thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.update_status" title="groupbuilder.group_app.GroupApp.update_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_status</span></code></a>(paused)</p></td>
+<td><p>Update the UI status based on worker thread state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.render_grid" title="groupbuilder.group_app.GroupApp.render_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render_grid</span></code></a>(page)</p></td>
+<td><p>Render the grid with group assignments for a specific round.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.setup_status" title="groupbuilder.group_app.GroupApp.setup_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_status</span></code></a>()</p></td>
+<td><p>Set up the UI status before starting group generation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.group_app.GroupApp.stop_worker_thread" title="groupbuilder.group_app.GroupApp.stop_worker_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_worker_thread</span></code></a>()</p></td>
+<td><p>Stop the worker thread if it's running.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.OnSize">
+<span class="sig-name descname"><span class="pre">OnSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.OnSize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.OnSize" title="Link to this definition"></a></dt>
+<dd><p>Handle window resize events.</p>
+<p>Adjusts grid column sizes proportionally based on the window width
+to ensure optimal display of information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.SizeEvent</em>) – The size event (optional)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_close">
+<span class="sig-name descname"><span class="pre">on_close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_close" title="Link to this definition"></a></dt>
+<dd><p>Handle window close event by stopping any running worker threads.</p>
+<p>Ensures clean shutdown by stopping any active worker threads before
+the application window closes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.CloseEvent</em>) – The close event</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_csv_export_change">
+<span class="sig-name descname"><span class="pre">on_csv_export_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_csv_export_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_csv_export_change" title="Link to this definition"></a></dt>
+<dd><p>Handle CSV export file selection events.</p>
+<p>Exports the current grid data to the selected CSV file path
+when the user selects a destination file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.FileDirPickerEvent</em>) – The file selection event</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_csv_load_button_click">
+<span class="sig-name descname"><span class="pre">on_csv_load_button_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_csv_load_button_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_csv_load_button_click" title="Link to this definition"></a></dt>
+<dd><p>Handle CSV load button click events.</p>
+<p>Implements the workflow for loading person data from a CSV file:
+1. Show file picker dialog
+2. Show column selection dialog
+3. Show group configuration dialog
+4. Start worker thread with the configured data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.CommandEvent</em>) – The button click event</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_gconfig_button_click">
+<span class="sig-name descname"><span class="pre">on_gconfig_button_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_gconfig_button_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_gconfig_button_click" title="Link to this definition"></a></dt>
+<dd><p>Handle group configuration button click events.</p>
+<p>Opens a dialog for configuring groups without CSV data,
+then starts the worker thread with the specified configuration.
+Uses generic person names (Person 1, Person 2, etc.) instead of CSV data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.CommandEvent</em>) – The button click event</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_pause_button_click">
+<span class="sig-name descname"><span class="pre">on_pause_button_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_pause_button_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_pause_button_click" title="Link to this definition"></a></dt>
+<dd><p>Handle pause button click events.</p>
+<p>Toggles the pause state of the worker thread, providing
+visual feedback in the UI about the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.CommandEvent</em>) – The button click event</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_round_generated">
+<span class="sig-name descname"><span class="pre">on_round_generated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">round_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paused</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_round_generated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_round_generated" title="Link to this definition"></a></dt>
+<dd><p>Callback method called when a round is generated by the worker thread.</p>
+<p>Updates the UI with the new round data, including progress indicators
+and the display of the latest generated round.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>round_data</strong> (<em>list</em><em>[</em><em>frozenset</em><em>[</em><em>int</em><em>]</em><em>]</em>) – The generated round data</p></li>
+<li><p><strong>round_number</strong> (<em>int</em>) – Current round number</p></li>
+<li><p><strong>max_rounds</strong> (<em>int</em>) – Maximum number of rounds</p></li>
+<li><p><strong>paused</strong> (<em>bool</em>) – Whether the worker thread is paused</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.on_round_selector_enter">
+<span class="sig-name descname"><span class="pre">on_round_selector_enter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.on_round_selector_enter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.on_round_selector_enter" title="Link to this definition"></a></dt>
+<dd><p>Handle round selection input events.</p>
+<p>Validates and processes user input in the round selector control,
+ensuring the selected round exists before updating the display.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>wx.CommandEvent</em>) – The event triggered when entering a value in the round selector</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.render_grid">
+<span class="sig-name descname"><span class="pre">render_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.render_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.render_grid" title="Link to this definition"></a></dt>
+<dd><p>Render the grid with group assignments for a specific round.</p>
+<p>Populates the grid with group assignments from the specified round,
+displaying group labels and person names in their assigned groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>page</strong> (<em>int</em>) – Round index to display (0-based)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.setup_status">
+<span class="sig-name descname"><span class="pre">setup_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.setup_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.setup_status" title="Link to this definition"></a></dt>
+<dd><p>Set up the UI status before starting group generation.</p>
+<p>Resets status controls to their initial state and prepares the UI
+for a new round generation process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.start_worker_thread">
+<span class="sig-name descname"><span class="pre">start_worker_thread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.start_worker_thread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.start_worker_thread" title="Link to this definition"></a></dt>
+<dd><p>Start the worker thread for generating rounds.</p>
+<p>Creates and starts a new RoundWorkerThread with the current configuration
+if no worker thread is currently running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.stop_worker_thread">
+<span class="sig-name descname"><span class="pre">stop_worker_thread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.stop_worker_thread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.stop_worker_thread" title="Link to this definition"></a></dt>
+<dd><p>Stop the worker thread if it’s running.</p>
+<p>Safely terminates the worker thread and updates the UI
+to reflect the stopped state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.group_app.GroupApp.update_status">
+<span class="sig-name descname"><span class="pre">update_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paused</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/group_app.html#GroupApp.update_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.group_app.GroupApp.update_status" title="Link to this definition"></a></dt>
+<dd><p>Update the UI status based on worker thread state.</p>
+<p>Updates status indicators and controls to reflect the current
+state of the worker thread (running, paused, or stopped).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>paused</strong> (<em>bool</em>) – Whether the worker thread is paused</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="generated/groupbuilder.file_picker_dialog.FilePickDialog.html" class="btn btn-neutral float-left" title="groupbuilder.file_picker_dialog.FilePickDialog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/groupbuilder.group_app.GroupApp.html" class="btn btn-neutral float-right" title="groupbuilder.group_app.GroupApp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

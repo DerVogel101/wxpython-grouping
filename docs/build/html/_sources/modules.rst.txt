@@ -2,7 +2,11 @@ wxpython-grouping
 =================
 
 .. toctree::
-   :maxdepth: 4
+    :maxdepth: 2
 
-   groupbuilder
-   main
+    main
+    unit
+    builder/groupbuilder
+    groupbuilder.layout
+    core/groupbuilder.core
+    util/groupbuilder.utility

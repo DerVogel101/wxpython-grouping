@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test.groupcalculator_test.TestGroupCalculator &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Groupbuilder package" href="../builder/groupbuilder.html" />
+    <link rel="prev" title="Unit Test" href="../unit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../unit.html">Unit Test</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../unit.html#groupcalculator-test-module">GroupCalculator Test Module</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">test.groupcalculator_test.TestGroupCalculator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator"><code class="docutils literal notranslate"><span class="pre">TestGroupCalculator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="../unit.html">Unit Test</a></li>
+      <li class="breadcrumb-item active">test.groupcalculator_test.TestGroupCalculator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/test.groupcalculator_test.TestGroupCalculator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="test-groupcalculator-test-testgroupcalculator">
+<h1>test.groupcalculator_test.TestGroupCalculator<a class="headerlink" href="#test-groupcalculator-test-testgroupcalculator" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.groupcalculator_test.</span></span><span class="sig-name descname"><span class="pre">TestGroupCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/test/groupcalculator_test.html#TestGroupCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator" title="Link to this definition"></a></dt>
+<dd><p>Test cases for the GroupCalculator class.</p>
+<p>This test suite verifies the functionality of the GroupCalculator class
+including initialization, group creation, and group management.</p>
+<div class="graphviz"><img src="../_images/inheritance-d1d633567bc685a6a35946f62ab53a0306e497f7.png" alt="Inheritance diagram of test.groupcalculator_test.TestGroupCalculator" usemap="#inheritance7112df3333" class="inheritance graphviz" /></div>
+<map id="inheritance7112df3333" name="inheritance7112df3333">
+<area shape="rect" id="node2" href="../unit.html#test.groupcalculator_test.TestGroupCalculator" target="_top" title="Test cases for the GroupCalculator class." alt="" coords="134,5,285,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.setUp" title="test.groupcalculator_test.TestGroupCalculator.setUp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setUp</span></code></a>()</p></td>
+<td><p>Set up test fixtures before each test method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_valid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with valid parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_invalid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with invalid parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_reset_groups" title="test.groupcalculator_test.TestGroupCalculator.test_reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_reset_groups</span></code></a>()</p></td>
+<td><p>Test resetting groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_groups" title="test.groupcalculator_test.TestGroupCalculator.test_create_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_groups</span></code></a>()</p></td>
+<td><p>Test creating groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds" title="test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_multiple_rounds</span></code></a>()</p></td>
+<td><p>Test creating multiple rounds of groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_can_repeat" title="test.groupcalculator_test.TestGroupCalculator.test_can_repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_can_repeat</span></code></a>()</p></td>
+<td><p>Test the can_repeat method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_current_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_current_groups</span></code></a>()</p></td>
+<td><p>Test getting current groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_all_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_all_groups</span></code></a>()</p></td>
+<td><p>Test getting all groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes" title="test.groupcalculator_test.TestGroupCalculator.test_usable_indexes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_usable_indexes</span></code></a>()</p></td>
+<td><p>Test with usable_indexes=True.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups" title="test.groupcalculator_test.TestGroupCalculator.test_visualize_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_visualize_groups</span></code></a>()</p></td>
+<td><p>Test visualize_groups method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments" title="test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_multiple_rounds_unique_assignments</span></code></a>()</p></td>
+<td><p>Test that people are uniquely assigned across rounds.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="test.groupcalculator_test.TestGroupCalculator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.groupcalculator_test.TestGroupCalculator.__init__" title="Link to this definition"></a></dt>
+<dd><p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test.groupcalculator_test.TestGroupCalculator.__init__" title="test.groupcalculator_test.TestGroupCalculator.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([methodName])</p></td>
+<td><p>Create an instance of the class that will use the named test method when executed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addClassCleanup</span></code>(function, /, *args, **kwargs)</p></td>
+<td><p>Same as addCleanup, except the cleanup items are called even if setUpClass fails (unlike tearDownClass).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addCleanup</span></code>(function, /, *args, **kwargs)</p></td>
+<td><p>Add a function, with arguments, to be called when the test is completed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addTypeEqualityFunc</span></code>(typeobj, function)</p></td>
+<td><p>Add a type specific assertEqual style function to compare a type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertAlmostEqual</span></code>(first, second[, places, ...])</p></td>
+<td><p>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the difference between the two objects is more than the given delta.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertCountEqual</span></code>(first, second[, msg])</p></td>
+<td><p>Asserts that two iterables have the same elements, the same number of times, without regard to order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertDictEqual</span></code>(d1, d2[, msg])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertEqual</span></code>(first, second[, msg])</p></td>
+<td><p>Fail if the two objects are unequal as determined by the '==' operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertFalse</span></code>(expr[, msg])</p></td>
+<td><p>Check that the expression is false.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertGreater</span></code>(a, b[, msg])</p></td>
+<td><p>Just like self.assertTrue(a &gt; b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertGreaterEqual</span></code>(a, b[, msg])</p></td>
+<td><p>Just like self.assertTrue(a &gt;= b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIn</span></code>(member, container[, msg])</p></td>
+<td><p>Just like self.assertTrue(a in b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIs</span></code>(expr1, expr2[, msg])</p></td>
+<td><p>Just like self.assertTrue(a is b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIsInstance</span></code>(obj, cls[, msg])</p></td>
+<td><p>Same as self.assertTrue(isinstance(obj, cls)), with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIsNone</span></code>(obj[, msg])</p></td>
+<td><p>Same as self.assertTrue(obj is None), with a nicer default message.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIsNot</span></code>(expr1, expr2[, msg])</p></td>
+<td><p>Just like self.assertTrue(a is not b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertIsNotNone</span></code>(obj[, msg])</p></td>
+<td><p>Included for symmetry with assertIsNone.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertLess</span></code>(a, b[, msg])</p></td>
+<td><p>Just like self.assertTrue(a &lt; b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertLessEqual</span></code>(a, b[, msg])</p></td>
+<td><p>Just like self.assertTrue(a &lt;= b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertListEqual</span></code>(list1, list2[, msg])</p></td>
+<td><p>A list-specific equality assertion.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertLogs</span></code>([logger, level])</p></td>
+<td><p>Fail unless a log message of level <em>level</em> or higher is emitted on <em>logger_name</em> or its children.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertMultiLineEqual</span></code>(first, second[, msg])</p></td>
+<td><p>Assert that two multi-line strings are equal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNoLogs</span></code>([logger, level])</p></td>
+<td><p>Fail unless no log messages of level <em>level</em> or higher are emitted on <em>logger_name</em> or its children.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNotAlmostEqual</span></code>(first, second[, ...])</p></td>
+<td><p>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the difference between the two objects is less than the given delta.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNotEqual</span></code>(first, second[, msg])</p></td>
+<td><p>Fail if the two objects are equal as determined by the '!=' operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNotIn</span></code>(member, container[, msg])</p></td>
+<td><p>Just like self.assertTrue(a not in b), but with a nicer default message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNotIsInstance</span></code>(obj, cls[, msg])</p></td>
+<td><p>Included for symmetry with assertIsInstance.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertNotRegex</span></code>(text, unexpected_regex[, msg])</p></td>
+<td><p>Fail the test if the text matches the regular expression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertRaises</span></code>(expected_exception, *args, **kwargs)</p></td>
+<td><p>Fail unless an exception of class expected_exception is raised by the callable when invoked with specified positional and keyword arguments.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertRaisesRegex</span></code>(expected_exception, ...)</p></td>
+<td><p>Asserts that the message in a raised exception matches a regex.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertRegex</span></code>(text, expected_regex[, msg])</p></td>
+<td><p>Fail the test unless the text matches the regular expression.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertSequenceEqual</span></code>(seq1, seq2[, msg, seq_type])</p></td>
+<td><p>An equality assertion for ordered sequences (like lists and tuples).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertSetEqual</span></code>(set1, set2[, msg])</p></td>
+<td><p>A set-specific equality assertion.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertTrue</span></code>(expr[, msg])</p></td>
+<td><p>Check that the expression is true.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertTupleEqual</span></code>(tuple1, tuple2[, msg])</p></td>
+<td><p>A tuple-specific equality assertion.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertWarns</span></code>(expected_warning, *args, **kwargs)</p></td>
+<td><p>Fail unless a warning of class warnClass is triggered by the callable when invoked with specified positional and keyword arguments.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">assertWarnsRegex</span></code>(expected_warning, ...)</p></td>
+<td><p>Asserts that the message in a triggered warning matches a regexp.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">countTestCases</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">debug</span></code>()</p></td>
+<td><p>Run the test without collecting errors in a TestResult</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">defaultTestResult</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doClassCleanups</span></code>()</p></td>
+<td><p>Execute all class cleanup functions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">doCleanups</span></code>()</p></td>
+<td><p>Execute all cleanup functions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">enterClassContext</span></code>(cm)</p></td>
+<td><p>Same as enterContext, but class-wide.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">enterContext</span></code>(cm)</p></td>
+<td><p>Enters the supplied context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fail</span></code>([msg])</p></td>
+<td><p>Fail immediately, with the given message.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">id</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>([result])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.setUp" title="test.groupcalculator_test.TestGroupCalculator.setUp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setUp</span></code></a>()</p></td>
+<td><p>Set up test fixtures before each test method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setUpClass</span></code>()</p></td>
+<td><p>Hook method for setting up class fixture before running tests in the class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">shortDescription</span></code>()</p></td>
+<td><p>Returns a one-line description of the test, or None if no description has been provided.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">skipTest</span></code>(reason)</p></td>
+<td><p>Skip this test.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subTest</span></code>([msg])</p></td>
+<td><p>Return a context manager that will return the enclosed block of code in a subtest identified by the optional message and keyword parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tearDown</span></code>()</p></td>
+<td><p>Hook method for deconstructing the test fixture after testing it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tearDownClass</span></code>()</p></td>
+<td><p>Hook method for deconstructing the class fixture after running all tests in the class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_can_repeat" title="test.groupcalculator_test.TestGroupCalculator.test_can_repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_can_repeat</span></code></a>()</p></td>
+<td><p>Test the can_repeat method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_groups" title="test.groupcalculator_test.TestGroupCalculator.test_create_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_groups</span></code></a>()</p></td>
+<td><p>Test creating groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds" title="test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_create_multiple_rounds</span></code></a>()</p></td>
+<td><p>Test creating multiple rounds of groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_all_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_all_groups</span></code></a>()</p></td>
+<td><p>Test getting all groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups" title="test.groupcalculator_test.TestGroupCalculator.test_get_current_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_get_current_groups</span></code></a>()</p></td>
+<td><p>Test getting current groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_invalid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with invalid parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters" title="test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_init_valid_parameters</span></code></a>()</p></td>
+<td><p>Test initialization with valid parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments" title="test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_multiple_rounds_unique_assignments</span></code></a>()</p></td>
+<td><p>Test that people are uniquely assigned across rounds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_reset_groups" title="test.groupcalculator_test.TestGroupCalculator.test_reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_reset_groups</span></code></a>()</p></td>
+<td><p>Test resetting groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes" title="test.groupcalculator_test.TestGroupCalculator.test_usable_indexes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_usable_indexes</span></code></a>()</p></td>
+<td><p>Test with usable_indexes=True.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../unit.html#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups" title="test.groupcalculator_test.TestGroupCalculator.test_visualize_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_visualize_groups</span></code></a>()</p></td>
+<td><p>Test visualize_groups method.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">longMessage</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">maxDiff</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../unit.html" class="btn btn-neutral float-left" title="Unit Test" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../builder/groupbuilder.html" class="btn btn-neutral float-right" title="Groupbuilder package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

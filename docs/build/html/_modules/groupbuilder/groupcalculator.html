@@ -1,206 +1,306 @@
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.groupcalculator &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
-<html lang="en" data-content_root="../../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>groupbuilder.groupcalculator &#8212; Student Grouper 1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
-    <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">wxpython-grouping</a></li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">groupbuilder.groupcalculator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for groupbuilder.groupcalculator</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Self</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Group Calculator Module</span>
+<span class="sd">=====================</span>
+
+<span class="sd">This module provides the GroupCalculator class for creating and managing groups of people.</span>
+
+<span class="sd">.. inheritance-diagram:: groupbuilder.groupcalculator</span>
+<span class="sd">   :parts: 1</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :toctree: generated/</span>
+
+<span class="sd">   GroupCalculator</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.core.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">AmountPeopleError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.core.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupCalculatorInterface</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.core.data_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Round</span><span class="p">,</span> <span class="n">Rounds</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="n">Person</span><span class="p">,</span> <span class="n">GroupConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.data_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupingAlgorithm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility.number_to_text</span><span class="w"> </span><span class="kn">import</span> <span class="n">number_to_column</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility.csv_read</span><span class="w"> </span><span class="kn">import</span> <span class="n">detect_csv_separator_and_load</span>
 
 
 <div class="viewcode-block" id="GroupCalculator">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator">[docs]</a>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GroupCalculator</span><span class="p">(</span><span class="n">GroupCalculatorInterface</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount_people</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A calculator for creating and managing groups of people.</span>
+
+<span class="sd">    This class implements the GroupCalculatorInterface and provides functionality</span>
+<span class="sd">    for creating groups based on a specified amount of people and group size.</span>
+
+<span class="sd">    .. inheritance-diagram:: groupbuilder.groupcalculator.GroupCalculator</span>
+<span class="sd">       :parts: 1</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">       :toctree: generated/</span>
+
+<span class="sd">       __init__</span>
+<span class="sd">       reset_groups</span>
+<span class="sd">       create_groups</span>
+<span class="sd">       visualize_groups</span>
+<span class="sd">       can_repeat</span>
+<span class="sd">       get_current_groups</span>
+<span class="sd">       get_all_groups</span>
+<span class="sd">       select_from_csv_file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="GroupCalculator.__init__">
+<a class="viewcode-back" href="../../builder/generated/groupbuilder.groupcalculator.GroupCalculator.html#groupbuilder.groupcalculator.GroupCalculator.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount_people</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">usable_indexes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a new instance of the GroupCalculator class.</span>
-<span class="sd">        :raises AmountPeopleError: If the amount of people or group size is invalid.</span>
-<span class="sd">        :raises AmountPeopleError: If the amount of people is less than the group_size.</span>
-<span class="sd">        :param amount_people: The amount of people.</span>
-<span class="sd">        :param group_size: The group size.</span>
+
+<span class="sd">        :param amount_people: The total number of people to be divided into groups</span>
+<span class="sd">        :type amount_people: int</span>
+<span class="sd">        :param group_size: The size of each group</span>
+<span class="sd">        :type group_size: int</span>
+<span class="sd">        :param usable_indexes: Whether to use indexing based on numbers instead of column letters, defaults to False</span>
+<span class="sd">        :type usable_indexes: bool, optional</span>
+<span class="sd">        :raises AmountPeopleError: If the amount of people or group size is invalid</span>
+<span class="sd">        :raises AmountPeopleError: If the amount of people is less than the group_size</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_group_config</span> <span class="o">=</span> <span class="n">GroupConfig</span><span class="p">(</span><span class="n">amount_people</span><span class="o">=</span><span class="n">amount_people</span><span class="p">,</span> <span class="n">group_size</span><span class="o">=</span><span class="n">group_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__group_config</span> <span class="o">=</span> <span class="n">GroupConfig</span><span class="p">(</span><span class="n">amount_people</span><span class="o">=</span><span class="n">amount_people</span><span class="p">,</span> <span class="n">group_size</span><span class="o">=</span><span class="n">group_size</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">AmountPeopleError</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span> <span class="o">=</span> <span class="n">GroupingAlgorithm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__group_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ui</span> <span class="o">=</span> <span class="n">usable_indexes</span></div>
+
 
 <div class="viewcode-block" id="GroupCalculator.reset_groups">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.reset_groups">[docs]</a>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.reset_groups">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">reset_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Reset the groups and round to be initial.</span>
+<span class="sd">        Reset the groups and round to their initial state.</span>
+
+<span class="sd">        Creates a new GroupingAlgorithm instance with the current configuration.</span>
+
 <span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span> <span class="o">=</span> <span class="n">GroupingAlgorithm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__group_config</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.create_groups">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.create_groups">[docs]</a>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.create_groups">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates the groups, based on the round.</span>
-<span class="sd">        Avoids usage of the same person in the same group.</span>
+<span class="sd">        Creates the groups for the next round.</span>
+
+<span class="sd">        Uses the algorithm to generate the next round of groups,</span>
+<span class="sd">        avoiding placing the same person in the same group.</span>
+
 <span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        :raises StopIteration: If the maximum number of rounds is reached</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span><span class="o">.</span><span class="n">generate_next_round</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.visualize_groups">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.visualize_groups">[docs]</a>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.visualize_groups">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">visualize_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Print the groups in a readable format.</span>
+<span class="sd">        Print the groups in a readable format to the console.</span>
+
+<span class="sd">        Displays all groups from all rounds.</span>
+
 <span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_groups</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">rnd</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">[</span><span class="n">rnd</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gruppe </span><span class="si">{</span><span class="n">rnd</span><span class="o">+</span><span class="mi">1</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.can_repeat">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.can_repeat">[docs]</a>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.can_repeat">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">can_repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the maximum number of unique groups that can be created.</span>
-<span class="sd">        :return int: The maximum number of unique groups.</span>
+
+<span class="sd">        :return: The maximum number of unique rounds</span>
+<span class="sd">        :rtype: int</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span><span class="o">.</span><span class="n">get_max_rounds</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.get_current_groups">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.get_current_groups">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pyd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.get_current_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the current groups.</span>
-<span class="sd">        :return dict: The current groups.</span>
+<span class="sd">        Gets the groups from the current round.</span>
+
+<span class="sd">        :return: A dictionary where keys are group identifiers (column letters or indices)</span>
+<span class="sd">                 and values are lists of people in each group</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">i</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ui</span> <span class="k">else</span> <span class="n">number_to_column</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">g</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span><span class="o">.</span><span class="n">get_round</span><span class="p">())}</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.get_all_groups">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.get_all_groups">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pyd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.get_all_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets all the groups.</span>
-<span class="sd">        :return dict: All the groups.</span>
+<span class="sd">        Gets all groups from all rounds.</span>
+
+<span class="sd">        :return: A nested dictionary where the first level keys are round numbers,</span>
+<span class="sd">                 second level keys are group identifiers, and values are lists of</span>
+<span class="sd">                 people in each group</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algorithm</span><span class="o">.</span><span class="n">get_all_rounds</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">rnd</span><span class="p">:</span> <span class="p">{</span><span class="n">i</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ui</span> <span class="k">else</span> <span class="n">number_to_column</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">g</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">rnd</span><span class="p">])}</span> <span class="k">for</span> <span class="n">rnd</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="GroupCalculator.select_from_csv_file">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">select_from_csv_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">has_header_row</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">student_firstname_col</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
-                             <span class="n">student_lastname_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a class="viewcode-back" href="../../builder/groupcalc.html#groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;Use the &#39;detect_csv_separator_and_load&#39; function from the &#39;csv_read&#39; module instead&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_from_csv_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Selects the students from a CSV file.</span>
-<span class="sd">        :param has_header_row: If the CSV file has a header row.</span>
-<span class="sd">        :param student_firstname_col: The column index or name of the student first name.</span>
-<span class="sd">        :param student_lastname_col: The column index or name of the student last name.</span>
-<span class="sd">        :return: None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+<span class="sd">        Reads the CSV file and prepares the data for selection.</span>
 
+<span class="sd">        .. deprecated:: Use the &#39;detect_csv_separator_and_load&#39; function from the &#39;csv_read&#39; module instead</span>
 
-<div class="viewcode-block" id="GroupCalculator.select_csv_file">
-<a class="viewcode-back" href="../../groupbuilder.html#groupbuilder.groupcalculator.GroupCalculator.select_csv_file">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">select_csv_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Selects the students from a CSV file.</span>
-<span class="sd">        :param file_path: The path to the CSV file.</span>
-<span class="sd">        :return: The column indexes and column names to choose from.</span>
+<span class="sd">        :param file_path: The path to the CSV file</span>
+<span class="sd">        :type file_path: str</span>
+<span class="sd">        :return: A list of lists containing the CSV data</span>
+<span class="sd">        :rtype: list[list[str]]</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="n">data</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_csv_separator_and_load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span></div>
 </div>
 
 </pre></div>
 
+           </div>
           </div>
-          
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Student Grouper</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-
-<search id="searchbox" style="display: none" role="search">
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2025, DerVogel101.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
-      
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

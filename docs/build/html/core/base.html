@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.core.base module &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="groupbuilder.core.base.GroupCalculatorInterface" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html" />
+    <link rel="prev" title="groupbuilder.core.algorithm module" href="algorithm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builder/groupbuilder.html">Groupbuilder package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.core.html">Core package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="algorithm.html">groupbuilder.core.algorithm module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.core.base module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#group-builder-base-module">Group Builder Base Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface"><code class="docutils literal notranslate"><span class="pre">GroupCalculatorInterface</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model_converter.html">groupbuilder.core.data_model_converter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_models.html">groupbuilder.core.data_models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">groupbuilder.core.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logger.html">groupbuilder.core.logger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys_utils.html">groupbuilder.core.sys_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="groupbuilder.core.html">Core package</a></li>
+      <li class="breadcrumb-item active">groupbuilder.core.base module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/core/base.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-groupbuilder.core.base">
+<span id="groupbuilder-core-base-module"></span><h1>groupbuilder.core.base module<a class="headerlink" href="#module-groupbuilder.core.base" title="Link to this heading"></a></h1>
+<section id="group-builder-base-module">
+<h2>Group Builder Base Module<a class="headerlink" href="#group-builder-base-module" title="Link to this heading"></a></h2>
+<p>This module defines abstract interfaces for group calculation functionality.</p>
+<div class="graphviz"><img src="../_images/inheritance-09e3d4b84fec3c7e9deb5da8bf2529cbaab321e3.png" alt="Inheritance diagram of groupbuilder.core.base" usemap="#inheritanceaf1aa8a05c" class="inheritance graphviz" /></div>
+<map id="inheritanceaf1aa8a05c" name="inheritanceaf1aa8a05c">
+<area shape="rect" id="node2" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" title="groupbuilder.core.base.GroupCalculatorInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupCalculatorInterface</span></code></a>(amount_people, ...)</p></td>
+<td><p>Abstract interface for group calculator implementations.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.core.base.</span></span><span class="sig-name descname"><span class="pre">GroupCalculatorInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract interface for group calculator implementations.</p>
+<p>This interface defines the core functionality required for any group calculator
+implementation in the system, ensuring consistent behavior across different
+implementations.</p>
+<div class="graphviz"><img src="../_images/inheritance-46b042c2b57af743d3fcbe95abcc5dffce5df7e0.png" alt="Inheritance diagram of groupbuilder.core.base.GroupCalculatorInterface" usemap="#inheritancefe0ac48196" class="inheritance graphviz" /></div>
+<map id="inheritancefe0ac48196" name="inheritancefe0ac48196">
+<area shape="rect" id="node2" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface.__init__" title="groupbuilder.core.base.GroupCalculatorInterface.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(amount_people, group_size)</p></td>
+<td><p>Initialize a new instance of the GroupCalculator class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.reset_groups" title="groupbuilder.core.base.GroupCalculatorInterface.reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_groups</span></code></a>()</p></td>
+<td><p>Reset the groups and round to initial state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.create_groups" title="groupbuilder.core.base.GroupCalculatorInterface.create_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_groups</span></code></a>()</p></td>
+<td><p>Creates the groups, based on the round.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.visualize_groups" title="groupbuilder.core.base.GroupCalculatorInterface.visualize_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_groups</span></code></a>()</p></td>
+<td><p>Print the groups in a readable format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.can_repeat" title="groupbuilder.core.base.GroupCalculatorInterface.can_repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_repeat</span></code></a>()</p></td>
+<td><p>Calculates the maximum number of unique groups that can be created.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.get_current_groups" title="groupbuilder.core.base.GroupCalculatorInterface.get_current_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_groups</span></code></a>()</p></td>
+<td><p>Gets the current groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.get_all_groups" title="groupbuilder.core.base.GroupCalculatorInterface.get_all_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_groups</span></code></a>()</p></td>
+<td><p>Gets all the groups from all rounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file" title="groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_from_csv_file</span></code></a>(file_path)</p></td>
+<td><p>Reads the CSV file and prepares the data for selection.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.can_repeat">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">can_repeat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.can_repeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.can_repeat" title="Link to this definition"></a></dt>
+<dd><p>Calculates the maximum number of unique groups that can be created.</p>
+<p>This method determines how many rounds of unique group assignments can be
+created given the constraints of the group size and total number of people.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum number of unique groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.create_groups">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.create_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.create_groups" title="Link to this definition"></a></dt>
+<dd><p>Creates the groups, based on the round.</p>
+<p>This method generates new group assignments, ensuring that the same person
+is not placed in the same group multiple times across different rounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.get_all_groups">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_all_groups" title="Link to this definition"></a></dt>
+<dd><p>Gets all the groups from all rounds.</p>
+<p>This method returns all group assignments across all rounds that have
+been created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All the groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.get_current_groups">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.get_current_groups" title="Link to this definition"></a></dt>
+<dd><p>Gets the current groups.</p>
+<p>This method returns the current group assignments for the active round.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.reset_groups">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reset_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.reset_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.reset_groups" title="Link to this definition"></a></dt>
+<dd><p>Reset the groups and round to initial state.</p>
+<p>This method clears any existing group assignments and returns the calculator
+to its initial state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.select_from_csv_file" title="Link to this definition"></a></dt>
+<dd><p>Reads the CSV file and prepares the data for selection.</p>
+<p>This method loads people data from a CSV file to be used in group assignments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – The path to the CSV file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CSV data as a list of rows</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[list[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.core.base.GroupCalculatorInterface.visualize_groups">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visualize_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/core/base.html#GroupCalculatorInterface.visualize_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.core.base.GroupCalculatorInterface.visualize_groups" title="Link to this definition"></a></dt>
+<dd><p>Print the groups in a readable format.</p>
+<p>This method outputs the current group assignments in a human-readable format,
+typically to the console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="algorithm.html" class="btn btn-neutral float-left" title="groupbuilder.core.algorithm module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/groupbuilder.core.base.GroupCalculatorInterface.html" class="btn btn-neutral float-right" title="groupbuilder.core.base.GroupCalculatorInterface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

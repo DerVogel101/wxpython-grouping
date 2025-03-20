@@ -1,0 +1,6 @@
+<map id="inheritance571401cf6a" name="inheritance571401cf6a">
+<area shape="rect" id="node1" href="#groupbuilder.core.logger.ColoredLogger" target="_top" title="A custom logging handler that adds color to output messages." alt="" coords="413,5,527,31"/>
+<area shape="rect" id="node2" title="A handler class which writes logging records, appropriately formatted," alt="" coords="245,5,365,31"/>
+<area shape="rect" id="node3" title="A base class for loggers and handlers which allows them to share" alt="" coords="5,5,77,31"/>
+<area shape="rect" id="node4" title="Handler instances dispatch logging events to specific destinations." alt="" coords="125,5,197,31"/>
+</map>

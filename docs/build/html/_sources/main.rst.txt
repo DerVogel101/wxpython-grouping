@@ -1,5 +1,5 @@
-main module
-===========
+Main Entry Point
+================
 
 .. automodule:: main
    :members:

@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.group_app &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">wxpython-grouping</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">groupbuilder.group_app</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for groupbuilder.group_app</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Group App Module</span>
+<span class="sd">==============</span>
+
+<span class="sd">This module provides the main application class for the Group Builder application.</span>
+
+<span class="sd">.. inheritance-diagram:: groupbuilder.group_app</span>
+<span class="sd">   :parts: 1</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :toctree: generated/</span>
+
+<span class="sd">   GroupApp</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">wx</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">groupbuilder.algorithm_thread</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoundWorkerThread</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">groupbuilder.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.layout.layout_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.csv_name_picker_dialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">NameDialog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.file_picker_dialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilePickDialog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.group_config_dialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfigDialog</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility.number_to_text</span><span class="w"> </span><span class="kn">import</span> <span class="n">number_to_column</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility.grid_export</span><span class="w"> </span><span class="kn">import</span> <span class="n">export_grid_to_csv</span>
+
+<div class="viewcode-block" id="GroupApp">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupApp</span><span class="p">(</span><span class="n">AppFrame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main application class for the Group Builder application.</span>
+
+<span class="sd">    This class handles the user interface, CSV data import/export,</span>
+<span class="sd">    group configuration, and interaction with worker threads for group generation.</span>
+
+<span class="sd">    .. inheritance-diagram:: groupbuilder.group_app.GroupApp</span>
+<span class="sd">       :parts: 1</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">       :toctree: generated/</span>
+
+<span class="sd">       __init__</span>
+<span class="sd">       on_close</span>
+<span class="sd">       on_round_selector_enter</span>
+<span class="sd">       on_csv_load_button_click</span>
+<span class="sd">       on_gconfig_button_click</span>
+<span class="sd">       on_pause_button_click</span>
+<span class="sd">       on_csv_export_change</span>
+<span class="sd">       OnSize</span>
+<span class="sd">       start_worker_thread</span>
+<span class="sd">       on_round_generated</span>
+<span class="sd">       update_status</span>
+<span class="sd">       render_grid</span>
+<span class="sd">       setup_status</span>
+<span class="sd">       stop_worker_thread</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="GroupApp.__init__">
+<a class="viewcode-back" href="../../builder/generated/groupbuilder.group_app.GroupApp.html#groupbuilder.group_app.GroupApp.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the GroupApp.</span>
+
+<span class="sd">        Sets up the application&#39;s initial state, including UI components,</span>
+<span class="sd">        data structures, and state variables for CSV handling, group configuration,</span>
+<span class="sd">        and worker thread management.</span>
+
+<span class="sd">        :param parent: Parent window</span>
+<span class="sd">        :type parent: wx.Window</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GroupApp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_pick_dialog</span><span class="p">:</span> <span class="n">NameDialog</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_dialog</span><span class="p">:</span> <span class="n">FilePickDialog</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_dialog</span><span class="p">:</span> <span class="n">GroupConfigDialog</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_has_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_cancel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_cancel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="p">:</span> <span class="n">RoundWorkerThread</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">generated_rounds_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_rounds_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_round</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Stopped&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">round_progress_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;0 / 0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">SetColLabelValue</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Gruppenzuordnung&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">SetColLabelValue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Person&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_close">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle window close event by stopping any running worker threads.</span>
+
+<span class="sd">        Ensures clean shutdown by stopping any active worker threads before</span>
+<span class="sd">        the application window closes.</span>
+
+<span class="sd">        :param event: The close event</span>
+<span class="sd">        :type event: wx.CloseEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_worker_thread</span><span class="p">()</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_round_selector_enter">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_round_selector_enter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_round_selector_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle round selection input events.</span>
+
+<span class="sd">        Validates and processes user input in the round selector control,</span>
+<span class="sd">        ensuring the selected round exists before updating the display.</span>
+
+<span class="sd">        :param event: The event triggered when entering a value in the round selector</span>
+<span class="sd">        :type event: wx.CommandEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s2">&quot;Es wurden noch keine Runden generiert!&quot;</span><span class="p">,</span> <span class="s2">&quot;Fehler&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">GetValue</span><span class="p">())</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s2">&quot;Bitte eine Zahl eingeben!&quot;</span><span class="p">,</span> <span class="s2">&quot;Fehler&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">)</span> <span class="ow">or</span> <span class="n">page</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s2">&quot;Die Runde existiert nicht!&quot;</span><span class="p">,</span> <span class="s2">&quot;Fehler&quot;</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_ERROR</span><span class="p">)</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render_grid</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_csv_load_button_click">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_csv_load_button_click">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_csv_load_button_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle CSV load button click events.</span>
+
+<span class="sd">        Implements the workflow for loading person data from a CSV file:</span>
+<span class="sd">        1. Show file picker dialog</span>
+<span class="sd">        2. Show column selection dialog</span>
+<span class="sd">        3. Show group configuration dialog</span>
+<span class="sd">        4. Start worker thread with the configured data</span>
+
+<span class="sd">        :param event: The button click event</span>
+<span class="sd">        :type event: wx.CommandEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_worker_thread</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_has_header</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ClearGrid</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_pick_dialog</span> <span class="o">=</span> <span class="n">FilePickDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_pick_dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_cancel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">csv_cancel</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_dialog</span> <span class="o">=</span> <span class="n">NameDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_cancel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">csv_cancel</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_has_header</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">)}</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_name_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">)}</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_surname_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Person </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">))}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_dialog</span> <span class="o">=</span> <span class="n">GroupConfigDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_data</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_config_cancel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group_config_cancel</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_worker_thread</span><span class="p">()</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_gconfig_button_click">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_gconfig_button_click">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_gconfig_button_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle group configuration button click events.</span>
+
+<span class="sd">        Opens a dialog for configuring groups without CSV data,</span>
+<span class="sd">        then starts the worker thread with the specified configuration.</span>
+<span class="sd">        Uses generic person names (Person 1, Person 2, etc.) instead of CSV data.</span>
+
+<span class="sd">        :param event: The button click event</span>
+<span class="sd">        :type event: wx.CommandEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_worker_thread</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_dialog</span> <span class="o">=</span> <span class="n">GroupConfigDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_config_dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_config_cancel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group_config_cancel</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Person </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_worker_thread</span><span class="p">()</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_pause_button_click">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_pause_button_click">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_pause_button_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle pause button click events.</span>
+
+<span class="sd">        Toggles the pause state of the worker thread, providing</span>
+<span class="sd">        visual feedback in the UI about the current state.</span>
+
+<span class="sd">        :param event: The button click event</span>
+<span class="sd">        :type event: wx.CommandEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Bitte warten...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_csv_export_change">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_csv_export_change">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_csv_export_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle CSV export file selection events.</span>
+
+<span class="sd">        Exports the current grid data to the selected CSV file path</span>
+<span class="sd">        when the user selects a destination file.</span>
+
+<span class="sd">        :param event: The file selection event</span>
+<span class="sd">        :type event: wx.FileDirPickerEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">export_grid_to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">GetPath</span><span class="p">())</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.OnSize">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.OnSize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">OnSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle window resize events.</span>
+
+<span class="sd">        Adjusts grid column sizes proportionally based on the window width</span>
+<span class="sd">        to ensure optimal display of information.</span>
+
+<span class="sd">        :param event: The size event (optional)</span>
+<span class="sd">        :type event: wx.SizeEvent</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">GetClientSize</span><span class="p">()</span><span class="o">.</span><span class="n">GetWidth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">10</span>  <span class="c1"># 10 is a magic number / the border width of the grid</span>
+        <span class="n">num_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">GetNumberCols</span><span class="p">()</span>
+        <span class="n">col_width</span> <span class="o">=</span> <span class="n">total_width</span> <span class="o">//</span> <span class="n">num_cols</span>
+
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">SetColSize</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">col_width</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Layout</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">event</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.start_worker_thread">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.start_worker_thread">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_worker_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start the worker thread for generating rounds.</span>
+
+<span class="sd">        Creates and starts a new RoundWorkerThread with the current configuration</span>
+<span class="sd">        if no worker thread is currently running.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.algorithm_thread</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoundWorkerThread</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># &#39;self.algorithm&#39; is an instance of GroupingAlgorithm</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span> <span class="o">=</span> <span class="n">RoundWorkerThread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                                   <span class="n">GroupConfig</span><span class="p">(</span><span class="n">amount_people</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">,</span> <span class="n">group_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_size</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.on_round_generated">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.on_round_generated">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_round_generated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">round_data</span><span class="p">,</span> <span class="n">round_number</span><span class="p">,</span> <span class="n">max_rounds</span><span class="p">,</span> <span class="n">paused</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback method called when a round is generated by the worker thread.</span>
+
+<span class="sd">        Updates the UI with the new round data, including progress indicators</span>
+<span class="sd">        and the display of the latest generated round.</span>
+
+<span class="sd">        :param round_data: The generated round data</span>
+<span class="sd">        :type round_data: list[frozenset[int]]</span>
+<span class="sd">        :param round_number: Current round number</span>
+<span class="sd">        :type round_number: int</span>
+<span class="sd">        :param max_rounds: Maximum number of rounds</span>
+<span class="sd">        :type max_rounds: int</span>
+<span class="sd">        :param paused: Whether the worker thread is paused</span>
+<span class="sd">        :type paused: bool</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">round_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generated_rounds_number</span> <span class="o">=</span> <span class="n">round_number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_rounds_number</span> <span class="o">=</span> <span class="n">max_rounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">SetMax</span><span class="p">(</span><span class="n">round_number</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">round_progress_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">round_number</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">max_rounds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">paused</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.update_status">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.update_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paused</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the UI status based on worker thread state.</span>
+
+<span class="sd">        Updates status indicators and controls to reflect the current</span>
+<span class="sd">        state of the worker thread (running, paused, or stopped).</span>
+
+<span class="sd">        :param paused: Whether the worker thread is paused</span>
+<span class="sd">        :type paused: bool</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="n">paused</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Stopped&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">paused</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Paused&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Running&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.render_grid">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.render_grid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render the grid with group assignments for a specific round.</span>
+
+<span class="sd">        Populates the grid with group assignments from the specified round,</span>
+<span class="sd">        displaying group labels and person names in their assigned groups.</span>
+
+<span class="sd">        :param page: Round index to display (0-based)</span>
+<span class="sd">        :type page: int</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">)</span> <span class="ow">or</span> <span class="n">page</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">DeleteRows</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">GetNumberRows</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">InsertRows</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">person_size</span><span class="p">)</span>
+
+        <span class="n">current_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rounds</span><span class="p">[</span><span class="n">page</span><span class="p">]</span>
+        <span class="n">person_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">current_page</span><span class="p">):</span>
+
+            <span class="n">group_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Gruppe </span><span class="si">{</span><span class="n">page</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}{</span><span class="n">number_to_column</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">person</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+                <span class="n">person</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_data</span><span class="p">[</span><span class="n">person</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">SetCellValue</span><span class="p">(</span><span class="n">person_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">group_str</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">SetCellValue</span><span class="p">(</span><span class="n">person_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">person</span><span class="p">)</span>
+                <span class="n">person_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Refresh</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Layout</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.setup_status">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.setup_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up the UI status before starting group generation.</span>
+
+<span class="sd">        Resets status controls to their initial state and prepares the UI</span>
+<span class="sd">        for a new round generation process.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Setting up...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">round_progress_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;0 / 0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ClearGrid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_round</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">round_selector_tctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupApp.stop_worker_thread">
+<a class="viewcode-back" href="../../builder/group_app.html#groupbuilder.group_app.GroupApp.stop_worker_thread">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_worker_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop the worker thread if it&#39;s running.</span>
+
+<span class="sd">        Safely terminates the worker thread and updates the UI</span>
+<span class="sd">        to reflect the stopped state.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_running</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Stopped&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">Enable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">round_progress_text_ctrl</span><span class="o">.</span><span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;0 / 0&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,3 +1,18 @@
+"""
+Group App Module
+==============
+
+This module provides the main application class for the Group Builder application.
+
+.. inheritance-diagram:: groupbuilder.group_app
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   GroupApp
+"""
+
 import wx
 
 from groupbuilder.algorithm_thread import RoundWorkerThread
@@ -17,15 +32,42 @@ class GroupApp(AppFrame):
     This class handles the user interface, CSV data import/export,
     group configuration, and interaction with worker threads for group generation.
 
-    :param parent: Parent window
-    :type parent: wx.Window
+    .. inheritance-diagram:: groupbuilder.group_app.GroupApp
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       on_close
+       on_round_selector_enter
+       on_csv_load_button_click
+       on_gconfig_button_click
+       on_pause_button_click
+       on_csv_export_change
+       OnSize
+       start_worker_thread
+       on_round_generated
+       update_status
+       render_grid
+       setup_status
+       stop_worker_thread
     """
     def __init__(self, parent):
         """
         Initialize the GroupApp.
 
+        Sets up the application's initial state, including UI components,
+        data structures, and state variables for CSV handling, group configuration,
+        and worker thread management.
+
         :param parent: Parent window
         :type parent: wx.Window
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         super(GroupApp, self).__init__(parent)
         self.csv_pick_dialog: NameDialog | None = None
@@ -63,8 +105,16 @@ class GroupApp(AppFrame):
         """
         Handle window close event by stopping any running worker threads.
 
+        Ensures clean shutdown by stopping any active worker threads before
+        the application window closes.
+
         :param event: The close event
         :type event: wx.CloseEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.stop_worker_thread()
         event.Skip()
@@ -73,10 +123,16 @@ class GroupApp(AppFrame):
         """
         Handle round selection input events.
 
-        Validates and processes user input in the round selector control.
+        Validates and processes user input in the round selector control,
+        ensuring the selected round exists before updating the display.
 
         :param event: The event triggered when entering a value in the round selector
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if not self.rounds:
             self.round_selector_tctrl.SetValue("1")
@@ -102,11 +158,19 @@ class GroupApp(AppFrame):
         """
         Handle CSV load button click events.
 
-        Opens dialogs for selecting a CSV file, configuring name fields,
-        and setting up group configuration before starting the worker thread.
+        Implements the workflow for loading person data from a CSV file:
+        1. Show file picker dialog
+        2. Show column selection dialog
+        3. Show group configuration dialog
+        4. Start worker thread with the configured data
 
         :param event: The button click event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.stop_worker_thread()
         self.csv_path = None
@@ -157,9 +221,15 @@ class GroupApp(AppFrame):
 
         Opens a dialog for configuring groups without CSV data,
         then starts the worker thread with the specified configuration.
+        Uses generic person names (Person 1, Person 2, etc.) instead of CSV data.
 
         :param event: The button click event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.stop_worker_thread()
         self.group_config_dialog = GroupConfigDialog(self)
@@ -176,10 +246,16 @@ class GroupApp(AppFrame):
         """
         Handle pause button click events.
 
-        Toggles pause state of the worker thread.
+        Toggles the pause state of the worker thread, providing
+        visual feedback in the UI about the current state.
 
         :param event: The button click event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if self.worker_thread is None:
             event.Skip()
@@ -196,10 +272,16 @@ class GroupApp(AppFrame):
         """
         Handle CSV export file selection events.
 
-        Exports grid data to the selected CSV file.
+        Exports the current grid data to the selected CSV file path
+        when the user selects a destination file.
 
         :param event: The file selection event
         :type event: wx.FileDirPickerEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         export_grid_to_csv(self.grid, event.GetPath())
         event.Skip()
@@ -208,10 +290,16 @@ class GroupApp(AppFrame):
         """
         Handle window resize events.
 
-        Adjusts grid column sizes based on window width.
+        Adjusts grid column sizes proportionally based on the window width
+        to ensure optimal display of information.
 
         :param event: The size event (optional)
         :type event: wx.SizeEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         total_width = self.GetClientSize().GetWidth() - 10  # 10 is a magic number / the border width of the grid
         num_cols = self.grid.GetNumberCols()
@@ -229,7 +317,14 @@ class GroupApp(AppFrame):
         """
         Start the worker thread for generating rounds.
 
-        Creates and starts a new RoundWorkerThread with the current configuration.
+        Creates and starts a new RoundWorkerThread with the current configuration
+        if no worker thread is currently running.
+
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         from .algorithm_thread import RoundWorkerThread
         if not self.worker_running:
@@ -245,7 +340,8 @@ class GroupApp(AppFrame):
         """
         Callback method called when a round is generated by the worker thread.
 
-        Updates the UI with the new round data.
+        Updates the UI with the new round data, including progress indicators
+        and the display of the latest generated round.
 
         :param round_data: The generated round data
         :type round_data: list[frozenset[int]]
@@ -255,6 +351,11 @@ class GroupApp(AppFrame):
         :type max_rounds: int
         :param paused: Whether the worker thread is paused
         :type paused: bool
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.rounds.append(round_data)
         self.generated_rounds_number = round_number
@@ -268,8 +369,16 @@ class GroupApp(AppFrame):
         """
         Update the UI status based on worker thread state.
 
+        Updates status indicators and controls to reflect the current
+        state of the worker thread (running, paused, or stopped).
+
         :param paused: Whether the worker thread is paused
         :type paused: bool
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.paused = paused
         if self.worker_running:
@@ -286,8 +395,16 @@ class GroupApp(AppFrame):
         """
         Render the grid with group assignments for a specific round.
 
+        Populates the grid with group assignments from the specified round,
+        displaying group labels and person names in their assigned groups.
+
         :param page: Round index to display (0-based)
         :type page: int
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if self.grid_data is None or self.rounds is None:
             return
@@ -313,7 +430,14 @@ class GroupApp(AppFrame):
         """
         Set up the UI status before starting group generation.
 
-        Resets status controls to their initial state.
+        Resets status controls to their initial state and prepares the UI
+        for a new round generation process.
+
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.status_text_ctrl.SetValue("Setting up...")
         self.pause_button.Enable(False)
@@ -326,7 +450,14 @@ class GroupApp(AppFrame):
         """
         Stop the worker thread if it's running.
 
-        Stops the thread and updates the UI status.
+        Safely terminates the worker thread and updates the UI
+        to reflect the stopped state.
+
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         if self.worker_thread is not None:
             self.worker_thread.stop()

@@ -1,0 +1,11 @@
+<map id="inheritance73f27a0d48" name="inheritance73f27a0d48">
+<area shape="rect" id="node1" href="../groupbuilder.layout.html#groupbuilder.layout.csv_name_dia.CSVNameDialog" target="_top" title="CSVNameDialog" alt="" coords="632,15,694,27"/>
+<area shape="rect" id="node7" href="generated/groupbuilder.csv_name_picker_dialog.NameDialog.html#groupbuilder.csv_name_picker_dialog.NameDialog" target="_top" title="Dialog for selecting name and surname columns from a CSV file." alt="" coords="717,15,765,27"/>
+<area shape="rect" id="node2" title="Dialog()" alt="" coords="574,15,609,27"/>
+<area shape="rect" id="node3" title="TopLevelWindow()" alt="" coords="490,15,550,27"/>
+<area shape="rect" id="node4" title="EvtHandler()" alt="" coords="203,15,247,27"/>
+<area shape="rect" id="node5" title="Object()" alt="" coords="142,3,177,15"/>
+<area shape="rect" id="node6" title="Add&#45;on base class for a trackable object." alt="" coords="140,26,179,39"/>
+<area shape="rect" id="node8" title="Common base class for all non&#45;child windows." alt="" coords="400,15,467,27"/>
+<area shape="rect" id="node9" title="Window()" alt="" coords="342,15,377,27"/>
+</map>

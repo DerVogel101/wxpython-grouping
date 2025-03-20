@@ -9,6 +9,7 @@
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
@@ -70,7 +71,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for groupbuilder.core.algorithm</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Group Algorithm Module</span>
+<span class="sd">=====================</span>
+
+<span class="sd">This module implements efficient algorithms for generating optimal group combinations.</span>
+
+<span class="sd">.. inheritance-diagram:: groupbuilder.core.algorithm</span>
+<span class="sd">   :parts: 1</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :toctree: generated/</span>
+
+<span class="sd">   GroupingAlgorithm</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">reduce</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">or_</span>
@@ -80,13 +96,48 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.data_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupConfig</span>
 
 <div class="viewcode-block" id="GroupingAlgorithm">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm">[docs]</a>
+<a class="viewcode-back" href="../../../core/generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GroupingAlgorithm</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Algorithm for generating groups of people with unique combinations.</span>
+
+<span class="sd">    This class implements an algorithm to generate rounds of groups where:</span>
+<span class="sd">    1. Each round contains groups of equal size</span>
+<span class="sd">    2. Each person appears exactly once per round</span>
+<span class="sd">    3. The algorithm attempts to maximize the number of unique group combinations</span>
+<span class="sd">       before repeating any previously formed groups</span>
+
+<span class="sd">    It uses bitmasking for efficient group intersection checks and backtracking</span>
+<span class="sd">    for finding valid group combinations.</span>
+
+<span class="sd">    .. inheritance-diagram:: groupbuilder.core.algorithm.GroupingAlgorithm</span>
+<span class="sd">       :parts: 1</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">       :toctree: generated/</span>
+
+<span class="sd">       __init__</span>
+<span class="sd">       get_round</span>
+<span class="sd">       get_all_rounds</span>
+<span class="sd">       generate_next_round</span>
+<span class="sd">       get_remaining_rounds</span>
+<span class="sd">       get_max_rounds</span>
+<span class="sd">       get_ops_needed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GroupingAlgorithm.__init__">
+<a class="viewcode-back" href="../../../core/generated/groupbuilder.core.algorithm.GroupingAlgorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">GroupConfig</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the GroupingAlgorithm with the given configuration.</span>
+
+<span class="sd">        :param config: Configuration containing group parameters</span>
+<span class="sd">        :type config: GroupConfig</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">amount_people</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">group_size</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__unique_rounds</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unique_rounds</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__groups_per_round</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__set_groups_per_round</span><span class="p">()</span>
@@ -97,11 +148,17 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__set_groups_per_round</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the number of groups needed per round.</span>
+
+<span class="sd">        Adjusts for cases where the number of people is not evenly divisible</span>
+<span class="sd">        by the group size by adding virtual placeholders.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">remainder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
         <span class="k">if</span> <span class="n">remainder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__groups_per_round</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span> <span class="o">-</span> <span class="n">remainder</span><span class="p">))</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_size</span>
@@ -110,6 +167,17 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__generate_all_possible_combs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate all possible group combinations.</span>
+
+<span class="sd">        Creates all possible group combinations of size `group_size` from the total</span>
+<span class="sd">        number of people. If the total number is not divisible by group size,</span>
+<span class="sd">        placeholder people (-1) are added and then removed from the final combinations.</span>
+
+<span class="sd">        Sets:</span>
+<span class="sd">        - `self.__all_combinations`: All possible unique group combinations</span>
+<span class="sd">        - `self._max_rounds`: Maximum number of rounds that can be generated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">people</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">))</span>
 
         <span class="c1"># Add placeholders (-1) for missing people to make total divisible by group size</span>
@@ -129,18 +197,51 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span> <span class="o">=</span> <span class="n">all_combs_set</span>
 
 <div class="viewcode-block" id="GroupingAlgorithm.get_round">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_round">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_round">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_round</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the most recently generated round.</span>
+
+<span class="sd">        :return: List of frozensets representing the groups in the last generated round</span>
+<span class="sd">        :rtype: list[frozenset[int]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="GroupingAlgorithm.get_all_rounds">
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_all_rounds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all generated rounds.</span>
+
+<span class="sd">        :return: Dictionary mapping round indices to lists of groups</span>
+<span class="sd">        :rtype: dict[int, list[frozenset[int]]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span></div>
+
+
 <div class="viewcode-block" id="GroupingAlgorithm.generate_next_round">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.generate_next_round">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_next_round</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of possible unique Round combinations.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate the next round of groups.</span>
+
+<span class="sd">        This method attempts to find a valid set of groups for the next round</span>
+<span class="sd">        where each person appears exactly once and no group has appeared in</span>
+<span class="sd">        previous rounds if possible.</span>
+
+<span class="sd">        Uses bitmasking for efficient group intersection checks and implements</span>
+<span class="sd">        a backtracking algorithm to find valid group combinations.</span>
+
+<span class="sd">        :raises StopIteration: When no more rounds can be generated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span> <span class="o">==</span> <span class="nb">set</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="s2">&quot;No more rounds can be generated.&quot;</span><span class="p">)</span>
         <span class="n">is_reversed</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># TODO: implement reversed generation for multithreading</span>
+
+        <span class="n">all_person_mask</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">or_</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_amount_people</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">combs_iter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">bitmask_cache</span> <span class="o">=</span> <span class="p">{}</span>
@@ -155,7 +256,7 @@
                 <span class="k">break</span>
             <span class="n">new_group</span><span class="p">,</span> <span class="n">new_working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="n">not_found</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add_next_group</span><span class="p">(</span><span class="n">current_groups</span><span class="p">,</span> <span class="n">combs_working</span><span class="p">,</span>
                                                                                    <span class="p">[],</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__groups_per_round</span><span class="p">,</span>
-                                                                                   <span class="kc">False</span><span class="p">,</span> <span class="n">bitmask_cache</span><span class="p">)</span>
+                                                                                   <span class="kc">False</span><span class="p">,</span> <span class="n">bitmask_cache</span><span class="p">,</span> <span class="n">all_person_mask</span><span class="p">)</span>
 
             <span class="n">new_working_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">new_working_set</span><span class="p">)</span>
             <span class="n">new_working_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">outcast</span><span class="p">)</span>
@@ -168,13 +269,34 @@
                 <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="s2">&quot;No more rounds can be generated.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__all_combinations</span> <span class="o">=</span> <span class="n">new_working_set</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_group</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">+=</span> <span class="mi">1</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unique_rounds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">new_group</span><span class="p">))</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__add_next_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_group</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span> <span class="n">old_working_set</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span> <span class="n">outcast</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span>
-                         <span class="n">self_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">not_found</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">bitmask_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+                         <span class="n">self_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">not_found</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">bitmask_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">all_person_mask</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
         <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Recursively add groups to create a valid round.</span>
 
+<span class="sd">        This is the core backtracking algorithm that builds valid rounds by:</span>
+<span class="sd">        1. Finding a group that doesn&#39;t overlap with existing groups</span>
+<span class="sd">        2. Adding it to the current round</span>
+<span class="sd">        3. Recursively trying to complete the round with remaining groups</span>
+<span class="sd">        4. Backtracking if the current path doesn&#39;t lead to a solution</span>
+
+<span class="sd">        :param old_group: Current list of selected groups for this round</span>
+<span class="sd">        :param old_working_set: Remaining groups to consider</span>
+<span class="sd">        :param outcast: Groups that were rejected in this branch</span>
+<span class="sd">        :param self_id: Current recursion depth (group number)</span>
+<span class="sd">        :param max_id: Maximum recursion depth (total groups needed)</span>
+<span class="sd">        :param not_found: Flag indicating if a solution hasn&#39;t been found yet</span>
+<span class="sd">        :param bitmask_cache: Cache of bitmasks for each group for faster intersection checks</span>
+<span class="sd">        :param all_person_mask: Bitmask representing all people that should be in a round</span>
+<span class="sd">        :raises StopIteration: If no more rounds can be generated</span>
+<span class="sd">        :return: Tuple of (completed groups, remaining groups, rejected groups, solution_not_found flag)</span>
+<span class="sd">        :rtype: tuple[list[frozenset], list[frozenset], list[frozenset], bool]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Initialize bitmask cache if not provided</span>
         <span class="k">if</span> <span class="n">bitmask_cache</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bitmask_cache</span> <span class="o">=</span> <span class="p">{}</span>
@@ -182,7 +304,6 @@
         <span class="c1"># Use in-place modifications</span>
         <span class="n">working_set</span> <span class="o">=</span> <span class="n">old_working_set</span>
         <span class="n">working_group</span> <span class="o">=</span> <span class="n">old_group</span>
-
 
         <span class="k">while</span> <span class="n">working_set</span><span class="p">:</span>
             <span class="n">group_comb</span> <span class="o">=</span> <span class="n">working_set</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Efficient O(1) removal instead of iteration</span>
@@ -209,7 +330,7 @@
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">new_group</span><span class="p">,</span> <span class="n">new_working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="n">not_found</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add_next_group</span><span class="p">(</span>
-                        <span class="n">working_group</span><span class="p">,</span> <span class="n">working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="n">self_id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_id</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bitmask_cache</span>
+                        <span class="n">working_group</span><span class="p">,</span> <span class="n">working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="n">self_id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_id</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bitmask_cache</span><span class="p">,</span> <span class="n">all_person_mask</span>
                     <span class="p">)</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">not_found</span><span class="p">:</span>
                         <span class="k">return</span> <span class="n">new_group</span><span class="p">,</span> <span class="n">new_working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="kc">False</span>
@@ -221,24 +342,37 @@
 
                 <span class="n">working_group</span><span class="p">,</span> <span class="n">working_set</span><span class="p">,</span> <span class="n">outcast</span> <span class="o">=</span> <span class="n">new_group</span><span class="p">,</span> <span class="n">new_working_set</span><span class="p">,</span> <span class="n">outcast</span>
 
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">reduce</span><span class="p">(</span><span class="n">or_</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">working_group</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="n">all_person_mask</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">working_group</span><span class="p">,</span> <span class="n">working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="kc">True</span>
+
         <span class="k">return</span> <span class="n">working_group</span><span class="p">,</span> <span class="n">working_set</span><span class="p">,</span> <span class="n">outcast</span><span class="p">,</span> <span class="kc">False</span>
 
-
-
 <div class="viewcode-block" id="GroupingAlgorithm.get_remaining_rounds">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_remaining_rounds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_remaining_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the number of remaining rounds that can be generated.</span>
+
+<span class="sd">        :return: Number of remaining rounds</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_rounds</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_round_ind</span></div>
 
 
 <div class="viewcode-block" id="GroupingAlgorithm.get_max_rounds">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_max_rounds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_max_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the maximum number of rounds that can be generated.</span>
+
+<span class="sd">        :return: Maximum number of rounds</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_rounds</span></div>
 
 
 <div class="viewcode-block" id="GroupingAlgorithm.get_ops_needed">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm.get_ops_needed">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_ops_needed</span><span class="p">(</span><span class="n">amount_people</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -320,7 +454,7 @@
 <span class="sd">            1. The estimated number of operations needed (ops_needed).</span>
 <span class="sd">            2. The number of combinations.</span>
 <span class="sd">            3. The approximate amount of RAM needed (in MB).</span>
-
+<span class="sd">        :rtype: tuple[int, int, int]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 0. Calculate the number of people and group size</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">amount_people</span> <span class="o">+</span> <span class="p">(</span><span class="n">amount_people</span> <span class="o">%</span> <span class="n">group_size</span><span class="p">)</span>
@@ -341,15 +475,16 @@
         <span class="c1"># 4. Calculate the approximate amount of RAM needed, using a regression model</span>
         <span class="k">if</span> <span class="n">combinations</span> <span class="o">&gt;</span> <span class="mi">92000</span><span class="p">:</span>
             <span class="n">ram_needed</span> <span class="o">=</span> <span class="mf">0.000315294762088087</span> <span class="o">*</span> <span class="n">combinations</span> <span class="o">+</span> <span class="mi">200</span>
+            <span class="n">ram_needed</span> <span class="o">*=</span> <span class="mf">1.5</span>  <span class="c1"># Increase due to overhead</span>
             <span class="n">ram_needed</span> <span class="o">=</span> <span class="p">(</span><span class="n">ram_needed</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span> <span class="o">//</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Round up to nearest multiple of 10</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ram_needed</span> <span class="o">=</span> <span class="mi">100</span>
+            <span class="n">ram_needed</span> <span class="o">=</span> <span class="mi">200</span>
 
         <span class="k">return</span> <span class="n">ops_needed</span><span class="p">,</span> <span class="n">combinations</span><span class="p">,</span> <span class="n">ram_needed</span></div>
 
 
 <div class="viewcode-block" id="GroupingAlgorithm._get_max_possibilities">
-<a class="viewcode-back" href="../../../groupbuilder.core.html#groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities">[docs]</a>
+<a class="viewcode-back" href="../../../core/algorithm.html#groupbuilder.core.algorithm.GroupingAlgorithm._get_max_possibilities">[docs]</a>
     <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;This calculation is not accurate anymore.&quot;</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_max_possibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

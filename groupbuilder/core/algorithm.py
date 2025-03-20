@@ -1,3 +1,18 @@
+"""
+Group Algorithm Module
+=====================
+
+This module implements efficient algorithms for generating optimal group combinations.
+
+.. inheritance-diagram:: groupbuilder.core.algorithm
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   GroupingAlgorithm
+"""
+
 import itertools
 import math
 from functools import reduce
@@ -19,6 +34,20 @@ class GroupingAlgorithm:
 
     It uses bitmasking for efficient group intersection checks and backtracking
     for finding valid group combinations.
+
+    .. inheritance-diagram:: groupbuilder.core.algorithm.GroupingAlgorithm
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       get_round
+       get_all_rounds
+       generate_next_round
+       get_remaining_rounds
+       get_max_rounds
+       get_ops_needed
     """
 
     def __init__(self, config: GroupConfig):
@@ -96,6 +125,8 @@ class GroupingAlgorithm:
         :return: List of frozensets representing the groups in the last generated round
         :rtype: list[frozenset[int]]
         """
+        if self._current_round_ind == 0:
+            return {}
         return self._rounds[self._current_round_ind - 1]
 
     def get_all_rounds(self):
@@ -175,6 +206,7 @@ class GroupingAlgorithm:
         :param not_found: Flag indicating if a solution hasn't been found yet
         :param bitmask_cache: Cache of bitmasks for each group for faster intersection checks
         :param all_person_mask: Bitmask representing all people that should be in a round
+        :raises StopIteration: If no more rounds can be generated
         :return: Tuple of (completed groups, remaining groups, rejected groups, solution_not_found flag)
         :rtype: tuple[list[frozenset], list[frozenset], list[frozenset], bool]
         """
@@ -327,7 +359,7 @@ class GroupingAlgorithm:
             1. The estimated number of operations needed (ops_needed).
             2. The number of combinations.
             3. The approximate amount of RAM needed (in MB).
-
+        :rtype: tuple[int, int, int]
         """
         # 0. Calculate the number of people and group size
         n = amount_people + (amount_people % group_size)

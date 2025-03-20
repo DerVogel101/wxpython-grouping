@@ -1,0 +1,11 @@
+<map id="inheritance6198c97061" name="inheritance6198c97061">
+<area shape="rect" id="node1" href="../../groupbuilder.layout.html#groupbuilder.layout.layout_base.AppFrame" target="_top" title="AppFrame" alt="" coords="655,15,698,28"/>
+<area shape="rect" id="node7" href="../group_app.html#groupbuilder.group_app.GroupApp" target="_top" title="Main application class for the Group Builder application." alt="" coords="722,15,765,28"/>
+<area shape="rect" id="node2" title="Frame()" alt="" coords="594,15,630,28"/>
+<area shape="rect" id="node3" title="EvtHandler()" alt="" coords="210,15,256,28"/>
+<area shape="rect" id="node4" title="Object()" alt="" coords="147,3,183,16"/>
+<area shape="rect" id="node5" title="Add&#45;on base class for a trackable object." alt="" coords="145,27,186,40"/>
+<area shape="rect" id="node6" title="TopLevelWindow()" alt="" coords="508,15,570,28"/>
+<area shape="rect" id="node8" title="Common base class for all non&#45;child windows." alt="" coords="415,15,484,28"/>
+<area shape="rect" id="node9" title="Window()" alt="" coords="354,15,391,28"/>
+</map>

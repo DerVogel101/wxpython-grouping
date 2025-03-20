@@ -1,0 +1,11 @@
+<map id="inheritance3c9dba81c7" name="inheritance3c9dba81c7">
+<area shape="rect" id="node1" title="Dialog()" alt="" coords="540,14,573,26"/>
+<area shape="rect" id="node7" href="../groupbuilder.layout.html#groupbuilder.layout.group_conf_dia.GroupConfigurationDialog" target="_top" title="GroupConfigurationDialog" alt="" coords="595,14,680,26"/>
+<area shape="rect" id="node2" title="TopLevelWindow()" alt="" coords="462,14,518,26"/>
+<area shape="rect" id="node3" title="EvtHandler()" alt="" coords="191,14,233,26"/>
+<area shape="rect" id="node4" title="Object()" alt="" coords="134,2,167,14"/>
+<area shape="rect" id="node5" title="Add&#45;on base class for a trackable object." alt="" coords="131,25,169,37"/>
+<area shape="rect" id="node6" href="#groupbuilder.group_config_dialog.GroupConfigDialog" target="_top" title="A dialog for configuring group settings." alt="" coords="702,14,766,26"/>
+<area shape="rect" id="node8" title="Common base class for all non&#45;child windows." alt="" coords="377,14,440,26"/>
+<area shape="rect" id="node9" title="Window()" alt="" coords="322,14,355,26"/>
+</map>

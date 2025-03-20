@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test.groupcalculator_test &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">wxpython-grouping</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">test.groupcalculator_test</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for test.groupcalculator_test</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">GroupCalculator Test Module</span>
+<span class="sd">===========================</span>
+
+<span class="sd">This module contains unit tests for the GroupCalculator class.</span>
+
+<span class="sd">.. inheritance-diagram:: test.groupcalculator_test</span>
+<span class="sd">   :parts: 1</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :toctree: generated/</span>
+
+<span class="sd">   TestGroupCalculator</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">patch</span><span class="p">,</span> <span class="n">MagicMock</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Add parent directory to path to import the module</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;..&#39;</span><span class="p">)))</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">groupbuilder.groupcalculator</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupCalculator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">groupbuilder.core.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">AmountPeopleError</span>
+
+
+<div class="viewcode-block" id="TestGroupCalculator">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestGroupCalculator</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test cases for the GroupCalculator class.</span>
+
+<span class="sd">    This test suite verifies the functionality of the GroupCalculator class</span>
+<span class="sd">    including initialization, group creation, and group management.</span>
+
+<span class="sd">    .. inheritance-diagram:: test.groupcalculator_test.TestGroupCalculator</span>
+<span class="sd">       :parts: 1</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">       :toctree: generated/</span>
+
+<span class="sd">       setUp</span>
+<span class="sd">       test_init_valid_parameters</span>
+<span class="sd">       test_init_invalid_parameters</span>
+<span class="sd">       test_reset_groups</span>
+<span class="sd">       test_create_groups</span>
+<span class="sd">       test_create_multiple_rounds</span>
+<span class="sd">       test_can_repeat</span>
+<span class="sd">       test_get_current_groups</span>
+<span class="sd">       test_get_all_groups</span>
+<span class="sd">       test_usable_indexes</span>
+<span class="sd">       test_visualize_groups</span>
+<span class="sd">       test_multiple_rounds_unique_assignments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestGroupCalculator.setUp">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up test fixtures before each test method.</span>
+
+<span class="sd">        Creates a valid GroupCalculator instance for use in tests.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_people</span> <span class="o">=</span> <span class="mi">12</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_group_size</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span> <span class="o">=</span> <span class="n">GroupCalculator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_people</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_group_size</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_init_valid_parameters">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_valid_parameters">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_init_valid_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test initialization with valid parameters.</span>
+
+<span class="sd">        Verifies that a GroupCalculator can be successfully created with valid parameters.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">calculator</span> <span class="o">=</span> <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">calculator</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_init_invalid_parameters">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_init_invalid_parameters">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_init_invalid_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test initialization with invalid parameters.</span>
+
+<span class="sd">        Verifies that appropriate exceptions are raised when invalid parameters are provided.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Test when people &lt; group_size</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">AmountPeopleError</span><span class="p">):</span>
+            <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="c1"># Test with negative values</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">AmountPeopleError</span><span class="p">):</span>
+            <span class="n">GroupCalculator</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">AmountPeopleError</span><span class="p">):</span>
+            <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_reset_groups">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_reset_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reset_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test resetting groups.</span>
+
+<span class="sd">        Verifies that the reset_groups method properly clears all generated groups.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Generate some groups first</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="c1"># Get current groups</span>
+        <span class="n">current_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">current_groups</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="c1"># Reset groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">reset_groups</span><span class="p">()</span>
+
+        <span class="c1"># Get groups again, should be empty</span>
+        <span class="n">new_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_groups</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_create_groups">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_create_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test creating groups.</span>
+
+<span class="sd">        Verifies that groups are correctly created with the right structure and size.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Initially no groups</span>
+        <span class="n">initial_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">initial_groups</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="c1"># Create groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="c1"># Check that groups were created</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="c1"># Check group structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_people</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_group_size</span><span class="p">)</span>
+
+        <span class="c1"># Check that each group has the correct size</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_group_size</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_create_multiple_rounds">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_create_multiple_rounds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_create_multiple_rounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test creating multiple rounds of groups.</span>
+
+<span class="sd">        Verifies that multiple rounds can be created and that they differ from each other.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create first round</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+        <span class="n">first_round</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+
+        <span class="c1"># Create second round</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+        <span class="n">second_round</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+
+        <span class="c1"># Groups should be different</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">first_round</span><span class="p">,</span> <span class="n">second_round</span><span class="p">)</span>
+
+        <span class="c1"># Get all groups and verify structure</span>
+        <span class="n">all_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_all_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_groups</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Two rounds</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_can_repeat">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_can_repeat">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_can_repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test the can_repeat method.</span>
+
+<span class="sd">        Verifies that the can_repeat method correctly calculates the maximum number of rounds.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">max_rounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">can_repeat</span><span class="p">()</span>
+
+        <span class="c1"># For 12 people in groups of 4, max rounds should be 165</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">max_rounds</span><span class="p">,</span> <span class="mi">165</span><span class="p">)</span>
+
+        <span class="c1"># Test with different parameters</span>
+        <span class="n">calculator</span> <span class="o">=</span> <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">calculator</span><span class="o">.</span><span class="n">can_repeat</span><span class="p">(),</span> <span class="mi">9</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_get_current_groups">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_current_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_get_current_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test getting current groups.</span>
+
+<span class="sd">        Verifies that the get_current_groups method returns the correct structure.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># No groups initially</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">(),</span> <span class="p">{})</span>
+
+        <span class="c1"># Create groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="c1"># Check structure of returned groups</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+
+        <span class="c1"># With 12 people and group size 4, should have 3 groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+
+        <span class="c1"># Check that keys are letters (A, B, C) when usable_indexes is False</span>
+        <span class="n">expected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">expected_keys</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_get_all_groups">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_get_all_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_get_all_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test getting all groups.</span>
+
+<span class="sd">        Verifies that the get_all_groups method returns the correct nested structure.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># No groups initially</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_all_groups</span><span class="p">(),</span> <span class="p">{})</span>
+
+        <span class="c1"># Create two rounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="c1"># Get all groups</span>
+        <span class="n">all_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">get_all_groups</span><span class="p">()</span>
+
+        <span class="c1"># Should have 2 rounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_groups</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Check structure</span>
+        <span class="k">for</span> <span class="n">round_num</span><span class="p">,</span> <span class="n">round_groups</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">round_num</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">round_groups</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">round_groups</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 3 groups per round</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_usable_indexes">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_usable_indexes">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_usable_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test with usable_indexes=True.</span>
+
+<span class="sd">        Verifies that the usable_indexes parameter correctly changes group identifiers.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">calculator</span> <span class="o">=</span> <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">usable_indexes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">get_current_groups</span><span class="p">()</span>
+
+        <span class="c1"># Keys should be integers (0, 1, 2) instead of letters</span>
+        <span class="n">expected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">expected_keys</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_visualize_groups">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_visualize_groups">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_visualize_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test visualize_groups method.</span>
+
+<span class="sd">        Verifies that the visualize_groups method outputs to console correctly.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create some groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="c1"># Mock print function to capture output</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.print&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_print</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">visualize_groups</span><span class="p">()</span>
+
+            <span class="c1"># Should have called print at least once</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">mock_print</span><span class="o">.</span><span class="n">called</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestGroupCalculator.test_multiple_rounds_unique_assignments">
+<a class="viewcode-back" href="../../unit.html#test.groupcalculator_test.TestGroupCalculator.test_multiple_rounds_unique_assignments">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_multiple_rounds_unique_assignments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test that people are uniquely assigned across rounds.</span>
+
+<span class="sd">        Verifies that each person is never grouped with the same other person twice.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        .. autosummary::</span>
+<span class="sd">           :toctree: generated/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create calculator with 6 people in groups of 2</span>
+        <span class="n">calculator</span> <span class="o">=</span> <span class="n">GroupCalculator</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Generate all possible rounds (should be 3 of 5 rounds)</span>
+        <span class="n">max_rounds</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">can_repeat</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_rounds</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">_</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># excpet StopIteration</span>
+                <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
+                    <span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+                <span class="k">break</span>
+            <span class="n">calculator</span><span class="o">.</span><span class="n">create_groups</span><span class="p">()</span>
+
+        <span class="n">all_groups</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">get_all_groups</span><span class="p">()</span>
+
+        <span class="c1"># Check that each person is never in the same group with the same other person twice</span>
+        <span class="n">person_pairings</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">round_num</span><span class="p">,</span> <span class="n">round_groups</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">round_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># Check all pairs of people in this group</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)):</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)):</span>
+                        <span class="n">pair</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+                        <span class="c1"># This pair should not have been seen before</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">person_pairings</span><span class="p">)</span>
+                        <span class="n">person_pairings</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

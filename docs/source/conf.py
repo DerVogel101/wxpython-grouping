@@ -29,9 +29,10 @@ extensions = [
         'sphinx_rtd_theme',
         'sphinx_autodoc_typehints',
         'sphinxcontrib.autodoc_pydantic',
-        'sphinx.ext.deprecated'
+        'sphinx.ext.inheritance_diagram',
 ]
-
+auto_summary = True
+autosummary_generate = True
 templates_path = ['_templates']
 exclude_patterns = ["__pycache__", ".idea"]
 

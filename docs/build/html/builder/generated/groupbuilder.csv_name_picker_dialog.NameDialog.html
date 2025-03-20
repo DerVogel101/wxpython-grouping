@@ -1,0 +1,1656 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.csv_name_picker_dialog.NameDialog &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="groupbuilder.file_picker_dialog module" href="../file_picker_dialog.html" />
+    <link rel="prev" title="groupbuilder.csv_name_picker_dialog module" href="../csv_name_picker_dialog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">Main Entry Point</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../groupbuilder.html">Groupbuilder package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../algo_thread.html">groupbuilder.algorithm_thread module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../csv_name_picker_dialog.html#csv-name-picker-dialog-module">CSV Name Picker Dialog Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog"><code class="docutils literal notranslate"><span class="pre">NameDialog</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../file_picker_dialog.html">groupbuilder.file_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../group_app.html">groupbuilder.group_app module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../group_config_dialog.html">groupbuilder.group_config_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupcalc.html">groupbuilder.groupcalculator module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="../groupbuilder.html">Groupbuilder package</a></li>
+          <li class="breadcrumb-item"><a href="../csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
+      <li class="breadcrumb-item active">groupbuilder.csv_name_picker_dialog.NameDialog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/builder/generated/groupbuilder.csv_name_picker_dialog.NameDialog.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="groupbuilder-csv-name-picker-dialog-namedialog">
+<h1>groupbuilder.csv_name_picker_dialog.NameDialog<a class="headerlink" href="#groupbuilder-csv-name-picker-dialog-namedialog" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.csv_name_picker_dialog.NameDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.csv_name_picker_dialog.</span></span><span class="sig-name descname"><span class="pre">NameDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/groupbuilder/csv_name_picker_dialog.html#NameDialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.csv_name_picker_dialog.NameDialog" title="Link to this definition"></a></dt>
+<dd><p>Dialog for selecting name and surname columns from a CSV file.</p>
+<p>This dialog allows users to load a CSV file, view its contents, and select which
+columns represent names and surnames.</p>
+<div class="graphviz"><img src="../../_images/inheritance-f3da21d7327b8f8900149add6e00978609cf1bbc.png" alt="Inheritance diagram of groupbuilder.csv_name_picker_dialog.NameDialog" usemap="#inheritance73f27a0d48" class="inheritance graphviz" /></div>
+<map id="inheritance73f27a0d48" name="inheritance73f27a0d48">
+<area shape="rect" id="node1" href="../../groupbuilder.layout.html#groupbuilder.layout.csv_name_dia.CSVNameDialog" target="_top" title="CSVNameDialog" alt="" coords="632,15,694,27"/>
+<area shape="rect" id="node7" href="#groupbuilder.csv_name_picker_dialog.NameDialog" target="_top" title="Dialog for selecting name and surname columns from a CSV file." alt="" coords="717,15,765,27"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.csv_name_picker_dialog.NameDialog.__init__" title="groupbuilder.csv_name_picker_dialog.NameDialog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
+<td><p>Initialize the NameDialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_close_window" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_close_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_close_window</span></code></a>(event)</p></td>
+<td><p>Handle the window close event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_header_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_header_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_header_check</span></code></a>(event)</p></td>
+<td><p>Handle the header checkbox event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_name_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_name_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_name_check</span></code></a>(event)</p></td>
+<td><p>Handle selection of name column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_surname_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_surname_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_surname_check</span></code></a>(event)</p></td>
+<td><p>Handle selection of surname column.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_nothing" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_nothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_nothing</span></code></a>(event)</p></td>
+<td><p>Handle event that does nothing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_done_click" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_done_click"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_done_click</span></code></a>(event)</p></td>
+<td><p>Handle the done button click event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_load" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_load</span></code></a>(event)</p></td>
+<td><p>Handle the load button click event.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.csv_name_picker_dialog.NameDialog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/groupbuilder/csv_name_picker_dialog.html#NameDialog.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.csv_name_picker_dialog.NameDialog.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the NameDialog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>wx.Window</em>) – The parent window</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcceptsFocus</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcceptsFocusFromKeyboard</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcceptsFocusRecursively</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddChild</span></code>(self, child)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddFilter</span></code>(filter)</p></td>
+<td><p>Add an event filter whose FilterEvent() method will be called for each and every event processed by wxWidgets.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddMainButtonId</span></code>(id)</p></td>
+<td><p>Adds an identifier to be regarded as a main button for the non- scrolling area of a dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddPendingEvent</span></code>(event)</p></td>
+<td><p>Post an event to be processed later.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdjustForLayoutDirection</span></code>(x, width, widthTotal)</p></td>
+<td><p>Mirror coordinates for RTL layout if this window uses it and if the mirroring is not done automatically like Win32.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlwaysShowScrollbars</span></code>([hflag, vflag])</p></td>
+<td><p>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssociateHandle</span></code>(handle)</p></td>
+<td><p>Associate the window with a new native handle</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BeginRepositioningChildren</span></code>()</p></td>
+<td><p>Prepare for changing positions of multiple child windows.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bind</span></code>(event, handler[, source, id, id2])</p></td>
+<td><p>Bind an event to an event handler.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CacheBestSize</span></code>(size)</p></td>
+<td><p>Sets the cached best size value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CanAcceptFocus</span></code>()</p></td>
+<td><p>Can this window have focus right now?</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CanAcceptFocusFromKeyboard</span></code>()</p></td>
+<td><p>Can this window be assigned focus from keyboard right now?</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CanDoLayoutAdaptation</span></code>()</p></td>
+<td><p>Returns true if this dialog can and should perform layout adaptation using DoLayoutAdaptation(), usually if the dialog is too large to fit on the display.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CanScroll</span></code>(orient)</p></td>
+<td><p>Returns true if this window can have a scroll bar in this orientation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CanSetTransparent</span></code>()</p></td>
+<td><p>Returns true if the platform supports making the window translucent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureMouse</span></code>()</p></td>
+<td><p>Directs all mouse input to this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Center</span></code>([dir])</p></td>
+<td><p>A synonym for Centre().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CenterOnParent</span></code>([dir])</p></td>
+<td><p>A synonym for CentreOnParent().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CenterOnScreen</span></code>([direction])</p></td>
+<td><p>A synonym for CentreOnScreen().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Centre</span></code>([direction])</p></td>
+<td><p>Centres the dialog box on the display.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CentreOnParent</span></code>([direction])</p></td>
+<td><p>Centres the window on its parent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CentreOnScreen</span></code>([direction])</p></td>
+<td><p>Centres the window on screen.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClearBackground</span></code>()</p></td>
+<td><p>Clears the window by filling it with the current background colour.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientToScreen</span></code>(-&gt;)</p></td>
+<td><p>Converts to screen coordinates from coordinates relative to this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientToWindowSize</span></code>(size)</p></td>
+<td><p>Converts client area size size to corresponding window size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Close</span></code>([force])</p></td>
+<td><p>This function simply generates a wxCloseEvent whose handler usually tries to close the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connect</span></code>(id, lastId, eventType, func)</p></td>
+<td><p>Make an entry in the dynamic event table for an event binding.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertDialogPointToPixels</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertDialogSizeToPixels</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertDialogToPixels</span></code>(-&gt; Point)</p></td>
+<td><p>Converts a point or size from dialog units to pixels.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertPixelsToDialog</span></code>(-&gt; Point)</p></td>
+<td><p>Converts a point or size from pixels to dialog units.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Create</span></code>(parent[, id, title, pos, size, ...])</p></td>
+<td><p>Used for two-step dialog box construction.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateAccessible</span></code>()</p></td>
+<td><p>Override to create a specific accessible object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateButtonSizer</span></code>(flags)</p></td>
+<td><p>Creates a sizer with standard buttons.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateSeparatedButtonSizer</span></code>(flags)</p></td>
+<td><p>Creates a sizer with standard buttons using CreateButtonSizer() separated from the rest of the dialog contents by a horizontal wxStaticLine.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateSeparatedSizer</span></code>(sizer)</p></td>
+<td><p>Returns the sizer containing the given one with a separating wxStaticLine if necessarily.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateStdDialogButtonSizer</span></code>(flags)</p></td>
+<td><p>Creates a wxStdDialogButtonSizer with standard buttons.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateTextSizer</span></code>(message[, widthMax])</p></td>
+<td><p>Splits text up at newlines and places the lines into wxStaticText objects with the specified maximum width in a vertical wxBoxSizer.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLG_UNIT</span></code>(dlg_unit)</p></td>
+<td><p>A convenience wrapper for <code class="xref py py-meth docutils literal notranslate"><span class="pre">ConvertDialogToPixels()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeletePendingEvents</span></code>()</p></td>
+<td><p>Deletes all events queued on this event handler using QueueEvent() or AddPendingEvent().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Destroy</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DestroyChildren</span></code>()</p></td>
+<td><p>Destroys all children of a window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DestroyLater</span></code>()</p></td>
+<td><p>Schedules the window to be destroyed in the near future.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Disable</span></code>()</p></td>
+<td><p>Disables the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DisableFocusFromKeyboard</span></code>()</p></td>
+<td><p>Disable giving focus to this window using the keyboard navigation keys.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Disconnect</span></code>(id[, lastId, eventType, func])</p></td>
+<td><p>Remove an event binding by removing its entry in the dynamic event table.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DissociateHandle</span></code>()</p></td>
+<td><p>Dissociate the current native handle from the window</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoEnable</span></code>(self, enable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoFreeze</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoGetBestClientSize</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoGetBestSize</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoGetClientSize</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoGetPosition</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoGetSize</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoLayoutAdaptation</span></code>()</p></td>
+<td><p>Performs layout adaptation, usually if the dialog is too large to fit on the display.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoMoveWindow</span></code>(self, x, y, width, height)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoSetClientSize</span></code>(self, width, height)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoSetSize</span></code>(self, x, y, width, height, sizeFlags)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoSetSizeHints</span></code>(self, minW, minH, maxW, maxH, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoSetWindowVariant</span></code>(self, variant)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoThaw</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoUpdateWindowUI</span></code>(event)</p></td>
+<td><p>Does the window-specific updating after processing the update event.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DragAcceptFiles</span></code>(accept)</p></td>
+<td><p>Enables or disables eligibility for drop file events (OnDropFiles).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Enable</span></code>([enable])</p></td>
+<td><p>Enable or disable the window for user input.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableCloseButton</span></code>([enable])</p></td>
+<td><p>Enables or disables the Close button (most often in the right upper corner of a dialog) and the Close entry of the system menu (most often in the left upper corner of the dialog).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableFullScreenView</span></code>([enable, style])</p></td>
+<td><p>Enables the zoom button to toggle full screen mode.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableLayoutAdaptation</span></code>(enable)</p></td>
+<td><p>A static function enabling or disabling layout adaptation for all dialogs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableMaximizeButton</span></code>([enable])</p></td>
+<td><p>Enables or disables the Maximize button (in the right or left upper corner of a frame or dialog).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableMinimizeButton</span></code>([enable])</p></td>
+<td><p>Enables or disables the Minimize button (in the right or left upper corner of a frame or dialog).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableTouchEvents</span></code>(eventsMask)</p></td>
+<td><p>Request generation of touch events for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnableVisibleFocus</span></code>(self, enabled)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EndModal</span></code>(retCode)</p></td>
+<td><p>Ends a modal dialog, passing a value to be returned from the ShowModal() invocation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EndRepositioningChildren</span></code>()</p></td>
+<td><p>Fix child window positions after setting all of them at once.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FindFocus</span></code>()</p></td>
+<td><p>Finds the window or control which currently has the keyboard focus.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FindWindow</span></code>(-&gt; Window)</p></td>
+<td><p>Find a child of this window, by id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FindWindowById</span></code>(id[, parent])</p></td>
+<td><p>Find the first window with the given id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FindWindowByLabel</span></code>(label[, parent])</p></td>
+<td><p>Find a window by its label.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FindWindowByName</span></code>(name[, parent])</p></td>
+<td><p>Find a window by its name (as given in a window constructor or Create() function call).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fit</span></code>()</p></td>
+<td><p>Sizes the window to fit its best size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FitInside</span></code>()</p></td>
+<td><p>Similar to Fit(), but sizes the interior (virtual) size of a window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Freeze</span></code>()</p></td>
+<td><p>Freezes the window or, in other words, prevents any updates from taking place on screen, the window is not redrawn at all.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FromDIP</span></code>(...)</p></td>
+<td><p>Convert DPI-independent pixel values to the value in pixels appropriate for the current toolkit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FromPhys</span></code>(...)</p></td>
+<td><p>Convert from physical pixels to logical pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAcceleratorTable</span></code>()</p></td>
+<td><p>Gets the accelerator table for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAccessible</span></code>()</p></td>
+<td><p>Returns the accessible object for this window, if any.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAffirmativeId</span></code>()</p></td>
+<td><p>Gets the identifier of the button which works like standard OK button in this dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAutoLayout</span></code>()</p></td>
+<td><p>Returns true if Layout() is called automatically when the window is resized.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBackgroundColour</span></code>()</p></td>
+<td><p>Returns the background colour of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBackgroundStyle</span></code>()</p></td>
+<td><p>Returns the background style of the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBestHeight</span></code>(width)</p></td>
+<td><p>Returns the best height needed by this window if it had the given width.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBestSize</span></code>()</p></td>
+<td><p>This functions returns the best acceptable minimal size for the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBestVirtualSize</span></code>()</p></td>
+<td><p>Return the largest of ClientSize and BestSize (as determined by a sizer, interior children, or other means)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBestWidth</span></code>(height)</p></td>
+<td><p>Returns the best width needed by this window if it had the given height.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetBorder</span></code>(-&gt; Border)</p></td>
+<td><p>Get the window border style from the given flags: this is different from simply doing flags &amp; wxBORDER_MASK because it uses GetDefaultBorder() to translate wxBORDER_DEFAULT to something reasonable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCapture</span></code>()</p></td>
+<td><p>Returns the currently captured window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCaret</span></code>()</p></td>
+<td><p>Returns the caret() associated with the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCharHeight</span></code>()</p></td>
+<td><p>Returns the character height for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCharWidth</span></code>()</p></td>
+<td><p>Returns the average character width for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetChildren</span></code>()</p></td>
+<td><p>Returns a reference to the list of the window's children.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassDefaultAttributes</span></code>([variant])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassInfo</span></code>()</p></td>
+<td><p>This virtual function is redefined for every class that requires run- time type information, when using the wxDECLARE_CLASS macro (or similar).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassName</span></code>()</p></td>
+<td><p>Returns the class name of the C++ class using wxRTTI.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClientAreaOrigin</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClientRect</span></code>()</p></td>
+<td><p>Get the client rectangle in window (i.e. client) coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClientSize</span></code>()</p></td>
+<td><p>Returns the size of the window 'client area' in pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetConstraints</span></code>()</p></td>
+<td><p>Returns a pointer to the window's layout constraints, or NULL if there are none.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetContainingSizer</span></code>()</p></td>
+<td><p>Returns the sizer of which this window is a member, if any, otherwise NULL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetContentProtection</span></code>()</p></td>
+<td><p>Get the current content protection of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetContentScaleFactor</span></code>()</p></td>
+<td><p>Returns the factor mapping logical pixels of this window to physical pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetContentWindow</span></code>()</p></td>
+<td><p>Override this to return a window containing the main content of the dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCursor</span></code>()</p></td>
+<td><p>Return the cursor associated with this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDPI</span></code>()</p></td>
+<td><p>Return the DPI of the display used by this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDPIScaleFactor</span></code>()</p></td>
+<td><p>Returns the ratio of the DPI used by this window to the standard DPI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDefaultAttributes</span></code>()</p></td>
+<td><p>Currently this is the same as calling wxWindow::GetClassDefaultAttributes(wxWindow::GetWindowVariant()).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDefaultBorder</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDefaultBorderForControl</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDefaultItem</span></code>()</p></td>
+<td><p>Returns a pointer to the button which is the default for this window, or NULL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDefaultSize</span></code>()</p></td>
+<td><p>Get the default size for a new top level window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDropTarget</span></code>()</p></td>
+<td><p>Returns the associated drop target, which may be NULL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEffectiveMinSize</span></code>()</p></td>
+<td><p>Merges the window's best size into the min size and returns the result.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEscapeId</span></code>()</p></td>
+<td><p>Gets the identifier of the button to map presses of ESC button to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEventHandler</span></code>()</p></td>
+<td><p>Returns the event handler for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEvtHandlerEnabled</span></code>()</p></td>
+<td><p>Returns true if the event handler is enabled, false otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetExtraStyle</span></code>()</p></td>
+<td><p>Returns the extra style bits for the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFont</span></code>()</p></td>
+<td><p>Returns the font for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetForegroundColour</span></code>()</p></td>
+<td><p>Returns the foreground colour of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFullTextExtent</span></code>(string[, font])</p></td>
+<td><p>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGrandParent</span></code>()</p></td>
+<td><p>Returns the grandparent of a window, or NULL if there isn't one.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGtkWidget</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetHandle</span></code>()</p></td>
+<td><p>Returns the platform-specific handle of the physical window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetHelpText</span></code>()</p></td>
+<td><p>Gets the help text to be used as context-sensitive help for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetHelpTextAtPoint</span></code>(point, origin)</p></td>
+<td><p>Gets the help text to be used as context-sensitive help for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetIcon</span></code>()</p></td>
+<td><p>Returns the standard icon of the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetIcons</span></code>()</p></td>
+<td><p>Returns all icons associated with the window, there will be none of them if neither SetIcon() nor SetIcons() had been called before.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetId</span></code>()</p></td>
+<td><p>Returns the identifier of the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLabel</span></code>()</p></td>
+<td><p>Generic way of getting a label from any window, for identification purposes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLayoutAdaptationDone</span></code>()</p></td>
+<td><p>Returns true if the dialog has been adapted, usually by making it scrollable to work with a small display.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLayoutAdaptationLevel</span></code>()</p></td>
+<td><p>Gets a value representing the aggressiveness of search for buttons and sizers to be in the non-scrolling part of a layout-adapted dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLayoutAdaptationMode</span></code>()</p></td>
+<td><p>Gets the adaptation mode, overriding the global adaptation flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLayoutAdapter</span></code>()</p></td>
+<td><p>A static function getting the current layout adapter object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLayoutDirection</span></code>()</p></td>
+<td><p>Returns the layout direction for this window, Note that wxLayout_Default is returned if layout direction is not supported.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMainButtonIds</span></code>()</p></td>
+<td><p>Returns an array of identifiers to be regarded as the main buttons for the non-scrolling area of a dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMainWindowOfCompositeControl</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMaxClientSize</span></code>()</p></td>
+<td><p>Returns the maximum size of window's client area.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMaxHeight</span></code>()</p></td>
+<td><p>Returns the vertical component of window maximal size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMaxSize</span></code>()</p></td>
+<td><p>Returns the maximum size of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMaxWidth</span></code>()</p></td>
+<td><p>Returns the horizontal component of window maximal size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMinClientSize</span></code>()</p></td>
+<td><p>Returns the minimum size of window's client area, an indication to the sizer layout mechanism that this is the minimum required size of its client area.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMinHeight</span></code>()</p></td>
+<td><p>Returns the vertical component of window minimal size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMinSize</span></code>()</p></td>
+<td><p>Returns the minimum size of the window, an indication to the sizer layout mechanism that this is the minimum required size.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMinWidth</span></code>()</p></td>
+<td><p>Returns the horizontal component of window minimal size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetName</span></code>()</p></td>
+<td><p>Returns the window's name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNextHandler</span></code>()</p></td>
+<td><p>Returns the pointer to the next handler in the chain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNextSibling</span></code>()</p></td>
+<td><p>Returns the next window after this one among the parent's children or NULL if this window is the last child.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrCreateAccessible</span></code>()</p></td>
+<td><p>Returns the accessible object, calling CreateAccessible if necessary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetParent</span></code>()</p></td>
+<td><p>Returns the parent of the window, or NULL if there is no parent.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPopupMenuSelectionFromUser</span></code>(-&gt; int)</p></td>
+<td><p>This function shows a popup menu at the given position in this window and returns the selected id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPosition</span></code>()</p></td>
+<td><p>This gets the position of the window in pixels, relative to the parent window for the child windows or relative to the display origin for the top level windows.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionTuple</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPrevSibling</span></code>()</p></td>
+<td><p>Returns the previous window before this one among the parent's children or  NULL if this window is the first child.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPreviousHandler</span></code>()</p></td>
+<td><p>Returns the pointer to the previous handler in the chain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRect</span></code>()</p></td>
+<td><p>Returns the position and size of the window as a wxRect object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRefData</span></code>()</p></td>
+<td><p>Returns the wxObject::m_refData pointer, i.e. the data referenced by this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReturnCode</span></code>()</p></td>
+<td><p>Gets the return code for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetScreenPosition</span></code>()</p></td>
+<td><p>Returns the window position in screen coordinates, whether the window is a child window or a top level one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetScreenRect</span></code>()</p></td>
+<td><p>Returns the position and size of the window on the screen as a wxRect object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetScrollPos</span></code>(orientation)</p></td>
+<td><p>Returns the built-in scrollbar position.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetScrollRange</span></code>(orientation)</p></td>
+<td><p>Returns the built-in scrollbar range.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetScrollThumb</span></code>(orientation)</p></td>
+<td><p>Returns the built-in scrollbar thumb size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSize</span></code>()</p></td>
+<td><p>Returns the size of the entire window in pixels, including title bar, border, scrollbars, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSizeTuple</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSizer</span></code>()</p></td>
+<td><p>Returns the sizer associated with the window by a previous call to SetSizer(), or NULL.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTextExtent</span></code>(string)</p></td>
+<td><p>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetThemeEnabled</span></code>()</p></td>
+<td><p>Returns true if the window uses the system theme for drawing its background.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTitle</span></code>()</p></td>
+<td><p>Gets a string containing the window title.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTmpDefaultItem</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetToolTip</span></code>()</p></td>
+<td><p>Get the associated tooltip or NULL if none.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetToolTipText</span></code>()</p></td>
+<td><p>Get the text of the associated tooltip or empty string if none.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTopLevelParent</span></code>()</p></td>
+<td><p>Returns the first ancestor of this window which is a top-level window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUpdateClientRect</span></code>()</p></td>
+<td><p>Get the update rectangle bounding box in client coords.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUpdateRegion</span></code>()</p></td>
+<td><p>Returns the region specifying which parts of the window have been damaged.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetValidator</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetVirtualSize</span></code>()</p></td>
+<td><p>This gets the virtual size of the window in pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetVirtualSizeTuple</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWindowBorderSize</span></code>()</p></td>
+<td><p>Returns the size of the left/right and top/bottom borders of this window in x and y components of the result respectively.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWindowStyle</span></code>()</p></td>
+<td><p>See GetWindowStyleFlag() for more info.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWindowStyleFlag</span></code>()</p></td>
+<td><p>Gets the window style that was passed to the constructor or Create() method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWindowVariant</span></code>()</p></td>
+<td><p>Returns the value previously passed to SetWindowVariant().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HandleAsNavigationKey</span></code>(event)</p></td>
+<td><p>This function will generate the appropriate call to Navigate() if the key event is one normally used for keyboard navigation and return true in this case.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HandleWindowEvent</span></code>(event)</p></td>
+<td><p>Shorthand for:</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasCapture</span></code>()</p></td>
+<td><p>Returns true if this window has the current mouse capture.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasExtraStyle</span></code>(exFlag)</p></td>
+<td><p>Returns true if the window has the given exFlag bit set in its extra styles.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasFlag</span></code>(flag)</p></td>
+<td><p>Returns true if the window has the given flag bit set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasFocus</span></code>()</p></td>
+<td><p>Returns true if the window (or in case of composite controls, its main child window) has focus.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasMultiplePages</span></code>()</p></td>
+<td><p>This method should be overridden to return true if this window has multiple pages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasScrollbar</span></code>(orient)</p></td>
+<td><p>Returns true if this window currently has a scroll bar for this orientation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HasTransparentBackground</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hide</span></code>()</p></td>
+<td><p>Equivalent to calling wxWindow::Show(false).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HideWithEffect</span></code>(effect[, timeout])</p></td>
+<td><p>This function hides a window, like Hide(), but using a special visual effect if possible.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HitTest</span></code>(-&gt; HitTest)</p></td>
+<td><p>Return where the given point lies, exactly.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iconize</span></code>([iconize])</p></td>
+<td><p>Iconizes or restores the dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InformFirstDirection</span></code>(self, direction, size, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InheritAttributes</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InheritsBackgroundColour</span></code>()</p></td>
+<td><p>Return true if this window inherits the background colour from its parent.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InheritsForegroundColour</span></code>()</p></td>
+<td><p>Return true if this window inherits the foreground colour from its parent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InitDialog</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidateBestSize</span></code>()</p></td>
+<td><p>Resets the cached best size value so it will be recalculated the next time it is needed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsActive</span></code>()</p></td>
+<td><p>Returns true if this window is currently active, i.e. if the user is currently working with it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsAlwaysMaximized</span></code>()</p></td>
+<td><p>Returns true if this window is expected to be always maximized, either due to platform policy or due to local policy regarding particular class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsBeingDeleted</span></code>()</p></td>
+<td><p>Returns true if this window is in process of being destroyed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsDescendant</span></code>(win)</p></td>
+<td><p>Check if the specified window is a descendant of this one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsDoubleBuffered</span></code>()</p></td>
+<td><p>Returns true if the window contents is double-buffered by the system, i.e. if any drawing done on the window is really done on a temporary backing surface and transferred to the screen all at once later.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsEnabled</span></code>()</p></td>
+<td><p>Returns true if the window is enabled, i.e. if it accepts user input, false otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsExposed</span></code>(-&gt; bool
+ -&gt; bool
+ -&gt; bool)</p></td>
+<td><p>Returns true if the given point or rectangle area has been exposed since the last repaint.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsFocusable</span></code>()</p></td>
+<td><p>Can this window itself have focus?</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsFrozen</span></code>()</p></td>
+<td><p>Returns true if the window is currently frozen by a call to Freeze().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsFullScreen</span></code>()</p></td>
+<td><p>Returns true if the window is in fullscreen mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsIconized</span></code>()</p></td>
+<td><p>Returns true if the dialog box is iconized.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsLayoutAdaptationEnabled</span></code>()</p></td>
+<td><p>A static function returning true if layout adaptation is enabled for all dialogs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMainButtonId</span></code>(id)</p></td>
+<td><p>Returns true if id is in the array of identifiers to be regarded as the main buttons for the non-scrolling area of a dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMaximized</span></code>()</p></td>
+<td><p>Returns true if the window is maximized.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsModal</span></code>()</p></td>
+<td><p>Returns true if the dialog box is modal, false otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsRetained</span></code>()</p></td>
+<td><p>Returns true if the window is retained, false otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsSameAs</span></code>(obj)</p></td>
+<td><p>Returns true if this object has the same data pointer as obj.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsScrollbarAlwaysShown</span></code>(orient)</p></td>
+<td><p>Return whether a scrollbar is always shown.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsShown</span></code>()</p></td>
+<td><p>Returns true if the window is shown, false if it has been hidden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsShownOnScreen</span></code>()</p></td>
+<td><p>Returns true if the window is physically visible on the screen, i.e. it is shown and all its parents up to the toplevel window are shown as well.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsThisEnabled</span></code>()</p></td>
+<td><p>Returns true if this window is intrinsically enabled, false otherwise, i.e. if Enable() Enable(false) had been called.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsTopLevel</span></code>()</p></td>
+<td><p>Returns true if the given window is a top-level one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsTransparentBackgroundSupported</span></code>([reason])</p></td>
+<td><p>Checks whether using transparent background might work.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsUnlinked</span></code>()</p></td>
+<td><p>Returns true if the next and the previous handler pointers of this event handler instance are NULL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Layout</span></code>()</p></td>
+<td><p>Lays out the children using the window sizer or resizes the only child of the window to cover its entire area.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LineDown</span></code>()</p></td>
+<td><p>Same as ScrollLines (1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LineUp</span></code>()</p></td>
+<td><p>Same as ScrollLines (-1).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lower</span></code>()</p></td>
+<td><p>Lowers the window to the bottom of the window hierarchy (Z-order).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacGetMetalAppearance</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacGetTopLevelWindowRef</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacGetUnifiedAppearance</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacIsWindowScrollbar</span></code>(sb)</p></td>
+<td><p>Is the given widget one of this window's built-in scrollbars?  Only applicable on Mac.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacSetMetalAppearance</span></code>(on)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Maximize</span></code>([maximize])</p></td>
+<td><p>Maximizes or restores the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Move</span></code>()</p></td>
+<td><p>Moves the window to the given position.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveAfterInTabOrder</span></code>(win)</p></td>
+<td><p>Moves this window in the tab navigation order after the specified win.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveBeforeInTabOrder</span></code>(win)</p></td>
+<td><p>Same as MoveAfterInTabOrder() except that it inserts this window just before win instead of putting it right after it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveXY</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigate</span></code>([flags])</p></td>
+<td><p>Performs a keyboard navigation action starting from this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NavigateIn</span></code>([flags])</p></td>
+<td><p>Performs a keyboard navigation action inside this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewControlId</span></code>([count])</p></td>
+<td><p>Create a new ID or range of IDs that are not currently in use.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OSXIsModified</span></code>()</p></td>
+<td><p>Returns the current modified state of the wxTopLevelWindow on macOS.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OSXSetModified</span></code>(modified)</p></td>
+<td><p>This function sets the wxTopLevelWindow's modified state on macOS, which currently draws a black dot in the wxTopLevelWindow's close button.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnInternalIdle</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageDown</span></code>()</p></td>
+<td><p>Same as ScrollPages (1).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageUp</span></code>()</p></td>
+<td><p>Same as ScrollPages (-1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PopEventHandler</span></code>([deleteHandler])</p></td>
+<td><p>Removes and returns the top-most event handler on the event handler stack.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PopupMenu</span></code>(-&gt; bool)</p></td>
+<td><p>Pops up the given menu at the specified coordinates, relative to this window, and returns control when the user has dismissed the menu.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostCreate</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostSizeEvent</span></code>()</p></td>
+<td><p>Posts a size event to the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostSizeEventToParent</span></code>()</p></td>
+<td><p>Posts a size event to the parent of this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessEvent</span></code>(self, event)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessEventLocally</span></code>(event)</p></td>
+<td><p>Try to process the event in this handler and all those chained to it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessPendingEvents</span></code>()</p></td>
+<td><p>Processes the pending events previously queued using QueueEvent() or AddPendingEvent(); you must call this function only if you are sure there are pending events for this handler, otherwise a wxCHECK will fail.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessWindowEvent</span></code>(event)</p></td>
+<td><p>Convenient wrapper for ProcessEvent().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessWindowEventLocally</span></code>(event)</p></td>
+<td><p>Wrapper for wxEvtHandler::ProcessEventLocally().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PushEventHandler</span></code>(handler)</p></td>
+<td><p>Pushes this event handler onto the event stack for the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueueEvent</span></code>(event)</p></td>
+<td><p>Queue event for a later processing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Raise</span></code>()</p></td>
+<td><p>Raises the window to the top of the window hierarchy (Z-order).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ref</span></code>(clone)</p></td>
+<td><p>Makes this object refer to the data in clone.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Refresh</span></code>([eraseBackground, rect])</p></td>
+<td><p>Causes this window, and all of its children recursively, to be repainted.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RefreshRect</span></code>(rect[, eraseBackground])</p></td>
+<td><p>Redraws the contents of the given rectangle: only the area inside it will be repainted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegisterHotKey</span></code>(hotkeyId, modifiers, ...)</p></td>
+<td><p>Registers a system wide hotkey.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReleaseMouse</span></code>()</p></td>
+<td><p>Releases mouse input captured with CaptureMouse().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveChild</span></code>(self, child)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveEventHandler</span></code>(handler)</p></td>
+<td><p>Find the given handler in the windows event handler stack and removes (but does not delete) it from the stack.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveFilter</span></code>(filter)</p></td>
+<td><p>Remove a filter previously installed with AddFilter().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reparent</span></code>(newParent)</p></td>
+<td><p>Reparents the window, i.e. the window will be removed from its current parent window (e.g.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestUserAttention</span></code>([flags])</p></td>
+<td><p>Use a system-dependent way to attract users attention to the window when it is in background.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Restore</span></code>()</p></td>
+<td><p>Restore a previously iconized or maximized window to its normal state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RestoreToGeometry</span></code>(ser)</p></td>
+<td><p>Restores the window to the previously saved geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SafelyProcessEvent</span></code>(event)</p></td>
+<td><p>Processes an event by calling ProcessEvent() and handles any exceptions that occur in the process.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SaveGeometry</span></code>(ser)</p></td>
+<td><p>Save the current window geometry to allow restoring it later.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScreenToClient</span></code>(-&gt;)</p></td>
+<td><p>Converts from screen to client window coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScrollLines</span></code>(lines)</p></td>
+<td><p>Scrolls the window by the given number of lines down (if lines is positive) or up.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScrollPages</span></code>(pages)</p></td>
+<td><p>Scrolls the window by the given number of pages down (if pages is positive) or up.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScrollWindow</span></code>(dx, dy[, rect])</p></td>
+<td><p>Physically scrolls the pixels in the window and move child windows accordingly.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendDestroyEvent</span></code>()</p></td>
+<td><p>Generate wxWindowDestroyEvent for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendIdleEvents</span></code>(event)</p></td>
+<td><p>Send idle event to window and all subwindows.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendSizeEvent</span></code>([flags])</p></td>
+<td><p>This function sends a dummy size event to the window allowing it to re-layout its children positions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendSizeEventToParent</span></code>([flags])</p></td>
+<td><p>Safe wrapper for GetParent()-&gt;SendSizeEvent().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetAcceleratorTable</span></code>(accel)</p></td>
+<td><p>Sets the accelerator table for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetAccessible</span></code>(accessible)</p></td>
+<td><p>Sets the accessible for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetAffirmativeId</span></code>(id)</p></td>
+<td><p>Sets the identifier to be used as OK button.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetAutoLayout</span></code>(autoLayout)</p></td>
+<td><p>Determines whether the Layout() function will be called automatically when the window is resized.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetBackgroundColour</span></code>(colour)</p></td>
+<td><p>Sets the background colour of the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetBackgroundStyle</span></code>(style)</p></td>
+<td><p>Sets the background style of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetCanFocus</span></code>(self, canFocus)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetCaret</span></code>(caret)</p></td>
+<td><p>Sets the caret() associated with the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetClientRect</span></code>(rect)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetClientSize</span></code>(-&gt; None)</p></td>
+<td><p>This sets the size of the window client area in pixels.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetConstraints</span></code>(constraints)</p></td>
+<td><p>Sets the window to have the given layout constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetContainingSizer</span></code>(sizer)</p></td>
+<td><p>Used by wxSizer internally to notify the window about being managed by the given sizer.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetContentProtection</span></code>(contentProtection)</p></td>
+<td><p>Set content protection for the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetCursor</span></code>(cursor)</p></td>
+<td><p>Sets the window's cursor.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetDefaultItem</span></code>(win)</p></td>
+<td><p>Changes the default item for the panel, usually win is a button.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetDimensions</span></code>(x, y, width, height[, sizeFlags])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetDoubleBuffered</span></code>(on)</p></td>
+<td><p>Turn on or off double buffering of the window if the system supports it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetDropTarget</span></code>(target)</p></td>
+<td><p>Associates a drop target with this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetEscapeId</span></code>(id)</p></td>
+<td><p>Sets the identifier of the button which should work like the standard &quot;Cancel&quot; button in this dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetEventHandler</span></code>(handler)</p></td>
+<td><p>Sets the event handler for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetEvtHandlerEnabled</span></code>(enabled)</p></td>
+<td><p>Enables or disables the event handler.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetExtraStyle</span></code>(exStyle)</p></td>
+<td><p>Sets the extra style bits for the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetFocus</span></code>()</p></td>
+<td><p>This sets the window to receive keyboard input.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetFocusFromKbd</span></code>()</p></td>
+<td><p>This function is called by wxWidgets keyboard navigation code when the user gives the focus to this window from keyboard (e.g. using TAB key).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetFont</span></code>(font)</p></td>
+<td><p>Sets the font for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetForegroundColour</span></code>(colour)</p></td>
+<td><p>Sets the foreground colour of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetHelpText</span></code>(helpText)</p></td>
+<td><p>Sets the help text to be used as context-sensitive help for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetIcon</span></code>(icon)</p></td>
+<td><p>Sets the icon for this dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetIcons</span></code>(icons)</p></td>
+<td><p>Sets the icons for this dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetId</span></code>(winid)</p></td>
+<td><p>Sets the identifier of the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetInitialSize</span></code>([size])</p></td>
+<td><p>A smart SetSize that will fill in default size components with the window's best size values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLabel</span></code>(label)</p></td>
+<td><p>Sets the window's label.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLayoutAdaptationDone</span></code>(done)</p></td>
+<td><p>Marks the dialog as having been adapted, usually by making it scrollable to work with a small display.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLayoutAdaptationLevel</span></code>(level)</p></td>
+<td><p>Sets the aggressiveness of search for buttons and sizers to be in the non-scrolling part of a layout-adapted dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLayoutAdaptationMode</span></code>(mode)</p></td>
+<td><p>Sets the adaptation mode, overriding the global adaptation flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLayoutAdapter</span></code>(adapter)</p></td>
+<td><p>A static function for setting the current layout adapter object, returning the old adapter.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetLayoutDirection</span></code>(dir)</p></td>
+<td><p>Sets the layout direction for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetMaxClientSize</span></code>(size)</p></td>
+<td><p>Sets the maximum client size of the window, to indicate to the sizer layout mechanism that this is the maximum possible size of its client area.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetMaxSize</span></code>(size)</p></td>
+<td><p>A simpler interface for setting the size hints than SetSizeHints().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetMinClientSize</span></code>(size)</p></td>
+<td><p>Sets the minimum client size of the window, to indicate to the sizer layout mechanism that this is the minimum required size of window's client area.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetMinSize</span></code>(size)</p></td>
+<td><p>A simpler interface for setting the size hints than SetSizeHints().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetName</span></code>(name)</p></td>
+<td><p>Sets the window's name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNextHandler</span></code>(handler)</p></td>
+<td><p>wxWindows cannot be used to form event handler chains; this function thus will assert when called.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetOwnBackgroundColour</span></code>(colour)</p></td>
+<td><p>Sets the background colour of the window but prevents it from being inherited by the children of this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetOwnFont</span></code>(font)</p></td>
+<td><p>Sets the font of the window but prevents it from being inherited by the children of this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetOwnForegroundColour</span></code>(colour)</p></td>
+<td><p>Sets the foreground colour of the window but prevents it from being inherited by the children of this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPalette</span></code>(pal)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPosition</span></code>(pt)</p></td>
+<td><p>Moves the window to the specified position.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPreviousHandler</span></code>(handler)</p></td>
+<td><p>wxWindows cannot be used to form event handler chains; this function thus will assert when called.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetRect</span></code>(rect)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetRefData</span></code>(data)</p></td>
+<td><p>Sets the wxObject::m_refData pointer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetRepresentedFilename</span></code>(filename)</p></td>
+<td><p>Sets the file name represented by this wxTopLevelWindow.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetReturnCode</span></code>(retCode)</p></td>
+<td><p>Sets the return code for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetScrollPos</span></code>(orientation, pos[, refresh])</p></td>
+<td><p>Sets the position of one of the built-in scrollbars.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetScrollbar</span></code>(orientation, position, ...[, ...])</p></td>
+<td><p>Sets the scrollbar properties of a built-in scrollbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetShape</span></code>(-&gt; bool)</p></td>
+<td><p>If the platform supports it, sets the shape of the window to that depicted by region.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSize</span></code>(-&gt; None
+ -&gt; None)</p></td>
+<td><p>Sets the size of the window in pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSizeHints</span></code>()</p></td>
+<td><p>Allows specification of minimum and maximum window sizes, and window size increments.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSizeHintsSz</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSizeWH</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSizer</span></code>(sizer[, deleteOld])</p></td>
+<td><p>Sets the window to have the given layout sizer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSizerAndFit</span></code>(sizer[, deleteOld])</p></td>
+<td><p>Associate the sizer with the window and set the window size and minimal size accordingly.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetThemeEnabled</span></code>(enable)</p></td>
+<td><p>This function tells a window if it should use the system's &quot;theme&quot; code to draw the windows' background instead of its own background drawing code.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetTitle</span></code>(title)</p></td>
+<td><p>Sets the window title.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetTmpDefaultItem</span></code>(win)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetToolTip</span></code>()</p></td>
+<td><p>Attach a tooltip to the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetToolTipString</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetTransparent</span></code>(alpha)</p></td>
+<td><p>If the platform supports it will set the window to be translucent.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetValidator</span></code>(self, validator)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetVirtualSize</span></code>()</p></td>
+<td><p>Sets the virtual size of the window in pixels.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetVirtualSizeWH</span></code>(**kw)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetWindowStyle</span></code>(style)</p></td>
+<td><p>See SetWindowStyleFlag() for more info.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetWindowStyleFlag</span></code>(style)</p></td>
+<td><p>Sets the style of the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetWindowVariant</span></code>(variant)</p></td>
+<td><p>Chooses a different variant of the window display to use.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShouldInheritColours</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShouldPreventAppExit</span></code>()</p></td>
+<td><p>This virtual function is not meant to be called directly but can be overridden to return false (it returns true by default) to allow the application to close even if this, presumably not very important, window is still opened.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Show</span></code>([show])</p></td>
+<td><p>Hides or shows the dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShowFullScreen</span></code>(show[, style])</p></td>
+<td><p>Depending on the value of show parameter the window is either shown full screen or restored to its normal state.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShowModal</span></code>()</p></td>
+<td><p>Shows an application-modal dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShowWindowModal</span></code>()</p></td>
+<td><p>Shows a dialog modal to the parent top level window only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShowWithEffect</span></code>(effect[, timeout])</p></td>
+<td><p>This function shows a window, like Show(), but using a special visual effect if possible.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShowWithoutActivating</span></code>()</p></td>
+<td><p>Show the wxTopLevelWindow, but do not give it keyboard focus.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Thaw</span></code>()</p></td>
+<td><p>Re-enables window updating after a previous call to Freeze().</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToDIP</span></code>(...)</p></td>
+<td><p>Convert pixel values of the current toolkit to DPI-independent pixel values.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToPhys</span></code>(...)</p></td>
+<td><p>Convert from logical pixels to physical pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToggleWindowStyle</span></code>(flag)</p></td>
+<td><p>Turns the given flag on if it's currently turned off and vice versa.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransferDataFromWindow</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransferDataToWindow</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TryAfter</span></code>(self, event)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TryBefore</span></code>(self, event)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnRef</span></code>()</p></td>
+<td><p>Decrements the reference count in the associated data, and if it is zero, deletes the data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnShare</span></code>()</p></td>
+<td><p>This is the same of AllocExclusive() but this method is public.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unbind</span></code>(event[, source, id, id2, handler])</p></td>
+<td><p>Disconnects the event handler binding for event from <cite>self</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unlink</span></code>()</p></td>
+<td><p>Unlinks this event handler from the chain it's part of (if any); then links the &quot;previous&quot; event handler to the &quot;next&quot; one (so that the chain won't be interrupted).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnregisterHotKey</span></code>(hotkeyId)</p></td>
+<td><p>Unregisters a system wide hotkey.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnreserveControlId</span></code>(id[, count])</p></td>
+<td><p>Unreserve an ID or range of IDs that was reserved by NewControlId().</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnsetToolTip</span></code>()</p></td>
+<td><p>Unset any existing tooltip.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Update</span></code>()</p></td>
+<td><p>Calling this method immediately repaints the invalidated area of the window and all of its children recursively (this normally only happens when the flow of control returns to the event loop).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateWindowUI</span></code>([flags])</p></td>
+<td><p>This function sends one or more wxUpdateUIEvent to the window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UseBackgroundColour</span></code>()</p></td>
+<td><p>Return true if a background colour has been set for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UseBgCol</span></code>()</p></td>
+<td><p>Return true if a background colour has been set for this window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UseForegroundColour</span></code>()</p></td>
+<td><p>Return true if a foreground colour has been set for this window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Validate</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WarpPointer</span></code>(x, y)</p></td>
+<td><p>Moves the pointer to the given position on the window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowToClientSize</span></code>(size)</p></td>
+<td><p>Converts window size size to corresponding client area size In other words, the returned value is what would GetClientSize() return if this window had given window size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.csv_name_picker_dialog.NameDialog.__init__" title="groupbuilder.csv_name_picker_dialog.NameDialog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent)</p></td>
+<td><p>Initialize the NameDialog.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_close_window" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_close_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_close_window</span></code></a>(event)</p></td>
+<td><p>Handle the window close event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_done_click" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_done_click"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_done_click</span></code></a>(event)</p></td>
+<td><p>Handle the done button click event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_header_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_header_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_header_check</span></code></a>(event)</p></td>
+<td><p>Handle the header checkbox event.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_load" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_load</span></code></a>(event)</p></td>
+<td><p>Handle the load button click event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_name_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_name_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_name_check</span></code></a>(event)</p></td>
+<td><p>Handle selection of name column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_nothing" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_nothing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_nothing</span></code></a>(event)</p></td>
+<td><p>Handle event that does nothing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../csv_name_picker_dialog.html#groupbuilder.csv_name_picker_dialog.NameDialog.on_surname_check" title="groupbuilder.csv_name_picker_dialog.NameDialog.on_surname_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_surname_check</span></code></a>(event)</p></td>
+<td><p>Handle selection of surname column.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcceleratorTable</span></code></p></td>
+<td><p>GetAcceleratorTable() -&gt; AcceleratorTable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AffirmativeId</span></code></p></td>
+<td><p>GetAffirmativeId() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutoLayout</span></code></p></td>
+<td><p>GetAutoLayout() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackgroundColour</span></code></p></td>
+<td><p>GetBackgroundColour() -&gt; Colour</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackgroundStyle</span></code></p></td>
+<td><p>GetBackgroundStyle() -&gt; BackgroundStyle</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BestSize</span></code></p></td>
+<td><p>GetBestSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BestVirtualSize</span></code></p></td>
+<td><p>GetBestVirtualSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Border</span></code></p></td>
+<td><p>GetBorder(flags) -&gt; Border GetBorder() -&gt; Border</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Caret</span></code></p></td>
+<td><p>GetCaret() -&gt; Caret</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CharHeight</span></code></p></td>
+<td><p>GetCharHeight() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CharWidth</span></code></p></td>
+<td><p>GetCharWidth() -&gt; int</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Children</span></code></p></td>
+<td><p>GetChildren() -&gt; WindowList</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClassInfo</span></code></p></td>
+<td><p>GetClassInfo() -&gt; ClassInfo</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClassName</span></code></p></td>
+<td><p>GetClassName() -&gt; Char</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientAreaOrigin</span></code></p></td>
+<td><p>GetClientAreaOrigin() -&gt; Point</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientRect</span></code></p></td>
+<td><p>GetClientRect() -&gt; Rect</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientSize</span></code></p></td>
+<td><p>GetClientSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraints</span></code></p></td>
+<td><p>GetConstraints() -&gt; LayoutConstraints</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ContainingSizer</span></code></p></td>
+<td><p>GetContainingSizer() -&gt; Sizer</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ContentWindow</span></code></p></td>
+<td><p>GetContentWindow() -&gt; Window</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor</span></code></p></td>
+<td><p>GetCursor() -&gt; Cursor</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultAttributes</span></code></p></td>
+<td><p>GetDefaultAttributes() -&gt; VisualAttributes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultItem</span></code></p></td>
+<td><p>GetDefaultItem() -&gt; Window</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DropTarget</span></code></p></td>
+<td><p>GetDropTarget() -&gt; DropTarget</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EffectiveMinSize</span></code></p></td>
+<td><p>GetEffectiveMinSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Enabled</span></code></p></td>
+<td><p>IsEnabled() -&gt; bool</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EscapeId</span></code></p></td>
+<td><p>GetEscapeId() -&gt; int</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventHandler</span></code></p></td>
+<td><p>GetEventHandler() -&gt; EvtHandler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvtHandlerEnabled</span></code></p></td>
+<td><p>GetEvtHandlerEnabled() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtraStyle</span></code></p></td>
+<td><p>GetExtraStyle() -&gt; long</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Font</span></code></p></td>
+<td><p>GetFont() -&gt; Font</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ForegroundColour</span></code></p></td>
+<td><p>GetForegroundColour() -&gt; Colour</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GrandParent</span></code></p></td>
+<td><p>GetGrandParent() -&gt; Window</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Handle</span></code></p></td>
+<td><p>GetHandle() -&gt; UIntPtr</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HelpText</span></code></p></td>
+<td><p>GetHelpText() -&gt; String</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Icon</span></code></p></td>
+<td><p>GetIcon() -&gt; Icon</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Id</span></code></p></td>
+<td><p>GetId() -&gt; WindowID</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></p></td>
+<td><p>GetLabel() -&gt; String</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayoutAdaptationDone</span></code></p></td>
+<td><p>GetLayoutAdaptationDone() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayoutAdaptationLevel</span></code></p></td>
+<td><p>GetLayoutAdaptationLevel() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayoutAdaptationMode</span></code></p></td>
+<td><p>GetLayoutAdaptationMode() -&gt; DialogLayoutAdaptationMode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayoutDirection</span></code></p></td>
+<td><p>GetLayoutDirection() -&gt; LayoutDirection</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MacMetalAppearance</span></code></p></td>
+<td><p>MacGetMetalAppearance() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MainButtonIds</span></code></p></td>
+<td><p>GetMainButtonIds() -&gt; ArrayInt</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxClientSize</span></code></p></td>
+<td><p>GetMaxClientSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxHeight</span></code></p></td>
+<td><p>GetMaxHeight() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxSize</span></code></p></td>
+<td><p>GetMaxSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxWidth</span></code></p></td>
+<td><p>GetMaxWidth() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinClientSize</span></code></p></td>
+<td><p>GetMinClientSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinHeight</span></code></p></td>
+<td><p>GetMinHeight() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinSize</span></code></p></td>
+<td><p>GetMinSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinWidth</span></code></p></td>
+<td><p>GetMinWidth() -&gt; int</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p>GetName() -&gt; String</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NextHandler</span></code></p></td>
+<td><p>GetNextHandler() -&gt; EvtHandler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OSXModified</span></code></p></td>
+<td><p>OSXIsModified() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parent</span></code></p></td>
+<td><p>GetParent() -&gt; Window</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Position</span></code></p></td>
+<td><p>GetPosition() -&gt; Point</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PreviousHandler</span></code></p></td>
+<td><p>GetPreviousHandler() -&gt; EvtHandler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rect</span></code></p></td>
+<td><p>GetRect() -&gt; Rect</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RefData</span></code></p></td>
+<td><p>GetRefData() -&gt; ObjectRefData</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReturnCode</span></code></p></td>
+<td><p>GetReturnCode() -&gt; int</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScreenPosition</span></code></p></td>
+<td><p>GetScreenPosition() -&gt; Point</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScreenRect</span></code></p></td>
+<td><p>GetScreenRect() -&gt; Rect</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Shown</span></code></p></td>
+<td><p>IsShown() -&gt; bool</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Size</span></code></p></td>
+<td><p>GetSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sizer</span></code></p></td>
+<td><p>GetSizer() -&gt; Sizer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThemeEnabled</span></code></p></td>
+<td><p>GetThemeEnabled() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Title</span></code></p></td>
+<td><p>GetTitle() -&gt; String</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TmpDefaultItem</span></code></p></td>
+<td><p>GetTmpDefaultItem() -&gt; Window</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolTip</span></code></p></td>
+<td><p>GetToolTip() -&gt; ToolTip</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TopLevel</span></code></p></td>
+<td><p>IsTopLevel() -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TopLevelParent</span></code></p></td>
+<td><p>GetTopLevelParent() -&gt; Window</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateClientRect</span></code></p></td>
+<td><p>GetUpdateClientRect() -&gt; Rect</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegion</span></code></p></td>
+<td><p>GetUpdateRegion() -&gt; Region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Validator</span></code></p></td>
+<td><p>GetValidator() -&gt; Validator</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualSize</span></code></p></td>
+<td><p>GetVirtualSize() -&gt; Size</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowStyle</span></code></p></td>
+<td><p>GetWindowStyle() -&gt; long</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowStyleFlag</span></code></p></td>
+<td><p>GetWindowStyleFlag() -&gt; long</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WindowVariant</span></code></p></td>
+<td><p>GetWindowVariant() -&gt; WindowVariant</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../csv_name_picker_dialog.html" class="btn btn-neutral float-left" title="groupbuilder.csv_name_picker_dialog module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../file_picker_dialog.html" class="btn btn-neutral float-right" title="groupbuilder.file_picker_dialog module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

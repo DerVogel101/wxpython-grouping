@@ -1,3 +1,19 @@
+"""
+Algorithm Thread Module
+======================
+
+This module provides threading functionality to execute the grouping algorithm
+in the background while keeping the main UI responsive.
+
+.. inheritance-diagram:: groupbuilder.algorithm_thread
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   RoundWorkerThread
+"""
+
 import threading
 import wx
 
@@ -13,10 +29,17 @@ class RoundWorkerThread(threading.Thread):
     the main UI thread to remain responsive. It supports pausing, resuming,
     and stopping the generation process.
 
-    :param parent: The parent object that will receive callback notifications.
-    :type parent: object
-    :param config: Configuration settings for the grouping algorithm.
-    :type config: GroupConfig
+    .. inheritance-diagram:: groupbuilder.algorithm_thread.RoundWorkerThread
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       run
+       pause
+       resume
+       stop
     """
     def __init__(self, parent, config):
         """
@@ -42,6 +65,8 @@ class RoundWorkerThread(threading.Thread):
         Sets up the GroupingAlgorithm and continuously generates new rounds
         until either stopped or the algorithm reaches its end. Updates the
         parent object with progress information via wx.CallAfter.
+
+        :raises: No explicit exceptions, but may propagate exceptions from GroupingAlgorithm
         """
         wx.CallAfter(self._parent.setup_status)
         self._algorithm = GroupingAlgorithm(self._config)
@@ -63,6 +88,9 @@ class RoundWorkerThread(threading.Thread):
 
         Clears the pause event, causing the thread to wait at the next
         pause_event.wait() call, and updates the UI status.
+
+        :return: None
+        :rtype: None
         """
         self._pause_event.clear()
         wx.CallAfter(self._parent.update_status, True)
@@ -73,6 +101,9 @@ class RoundWorkerThread(threading.Thread):
 
         Sets the pause event, allowing the thread to continue execution,
         and updates the UI status.
+
+        :return: None
+        :rtype: None
         """
         self._pause_event.set()
         wx.CallAfter(self._parent.update_status, False)
@@ -83,6 +114,9 @@ class RoundWorkerThread(threading.Thread):
 
         Sets the stop flag to True, which will cause the run method to
         exit its loop, and updates the worker status in the parent.
+
+        :return: None
+        :rtype: None
         """
         self._stop_flag = True
         self._parent.worker_running = False

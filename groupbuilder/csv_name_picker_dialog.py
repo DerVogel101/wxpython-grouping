@@ -1,3 +1,19 @@
+"""
+CSV Name Picker Dialog Module
+============================
+
+This module provides a dialog interface for selecting name and surname columns
+from a loaded CSV file.
+
+.. inheritance-diagram:: groupbuilder.csv_name_picker_dialog
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   NameDialog
+"""
+
 import wx
 from .utility.csv_read import detect_csv_separator_and_load
 from .utility.nothing import nothing
@@ -11,8 +27,20 @@ class NameDialog(CSVNameDialog):
     This dialog allows users to load a CSV file, view its contents, and select which
     columns represent names and surnames.
 
-    :param parent: The parent window
-    :type parent: wx.Window
+    .. inheritance-diagram:: groupbuilder.csv_name_picker_dialog.NameDialog
+       :parts: 1
+
+    .. autosummary::
+       :toctree: generated/
+
+       __init__
+       on_close_window
+       on_header_check
+       on_name_check
+       on_surname_check
+       on_nothing
+       on_done_click
+       on_load
     """
     def __init__(self, parent):
         """
@@ -20,6 +48,11 @@ class NameDialog(CSVNameDialog):
 
         :param parent: The parent window
         :type parent: wx.Window
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         super(NameDialog, self).__init__(parent)
         self.parent = parent
@@ -34,6 +67,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The window close event
         :type event: wx.CloseEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.parent.csv_cancel = True
         self.EndModal(wx.ID_CANCEL)
@@ -47,6 +85,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The checkbox event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         self.parent.csv_has_header = self.has_header_box.GetValue()
         event.Skip()
@@ -60,6 +103,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The list event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         checked_index = event.GetSelection()
         is_checked = self.check_name.IsChecked(checked_index)
@@ -83,6 +131,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The list event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         checked_index = event.GetSelection()
         is_checked = self.check_sur_name.IsChecked(checked_index)
@@ -105,6 +158,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The event
         :type event: wx.Event
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         nothing()
         event.Skip()
@@ -117,6 +175,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The button event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         # self.parent.csv_name_index = self.check_name.GetSelection()
         # self.parent.csv_surname_index = self.check_sur_name.GetSelection()
@@ -132,6 +195,11 @@ class NameDialog(CSVNameDialog):
 
         :param event: The button event
         :type event: wx.CommandEvent
+        :return: None
+        :rtype: None
+
+        .. autosummary::
+           :toctree: generated/
         """
         data, delimiter, encoding = detect_csv_separator_and_load(self.parent.csv_path)
         self.parent.csv_data = data

@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>groupbuilder.groupcalculator module &mdash; Student Grouper 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="groupbuilder.groupcalculator.GroupCalculator" href="generated/groupbuilder.groupcalculator.GroupCalculator.html" />
+    <link rel="prev" title="groupbuilder.group_config_dialog.GroupConfigDialog" href="generated/groupbuilder.group_config_dialog.GroupConfigDialog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Student Grouper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">wxpython-grouping</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit.html">Unit Test</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="groupbuilder.html">Groupbuilder package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="algo_thread.html">groupbuilder.algorithm_thread module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csv_name_picker_dialog.html">groupbuilder.csv_name_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_picker_dialog.html">groupbuilder.file_picker_dialog module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="group_app.html">groupbuilder.group_app module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="group_config_dialog.html">groupbuilder.group_config_dialog module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">groupbuilder.groupcalculator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#group-calculator-module">Group Calculator Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator"><code class="docutils literal notranslate"><span class="pre">GroupCalculator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../groupbuilder.layout.html">Layout Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core/groupbuilder.core.html">Core package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util/groupbuilder.utility.html">Utility Package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Student Grouper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../modules.html">wxpython-grouping</a></li>
+          <li class="breadcrumb-item"><a href="groupbuilder.html">Groupbuilder package</a></li>
+      <li class="breadcrumb-item active">groupbuilder.groupcalculator module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/builder/groupcalc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-groupbuilder.groupcalculator">
+<span id="groupbuilder-groupcalculator-module"></span><h1>groupbuilder.groupcalculator module<a class="headerlink" href="#module-groupbuilder.groupcalculator" title="Link to this heading"></a></h1>
+<section id="group-calculator-module">
+<h2>Group Calculator Module<a class="headerlink" href="#group-calculator-module" title="Link to this heading"></a></h2>
+<p>This module provides the GroupCalculator class for creating and managing groups of people.</p>
+<div class="graphviz"><img src="../_images/inheritance-9062886c07859bd447461b96f832eb080a1a3176.png" alt="Inheritance diagram of groupbuilder.groupcalculator" usemap="#inheritance74ac35d111" class="inheritance graphviz" /></div>
+<map id="inheritance74ac35d111" name="inheritance74ac35d111">
+<area shape="rect" id="node3" href="../core/generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+<area shape="rect" id="node2" href="#groupbuilder.groupcalculator.GroupCalculator" target="_top" title="A calculator for creating and managing groups of people." alt="" coords="354,5,478,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator" title="groupbuilder.groupcalculator.GroupCalculator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupCalculator</span></code></a>(amount_people, group_size[, ...])</p></td>
+<td><p>A calculator for creating and managing groups of people.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">groupbuilder.groupcalculator.</span></span><span class="sig-name descname"><span class="pre">GroupCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount_people</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usable_indexes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../core/generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" title="groupbuilder.core.base.GroupCalculatorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupCalculatorInterface</span></code></a></p>
+<p>A calculator for creating and managing groups of people.</p>
+<p>This class implements the GroupCalculatorInterface and provides functionality
+for creating groups based on a specified amount of people and group size.</p>
+<div class="graphviz"><img src="../_images/inheritance-a14f7fe7920fd96a1a68f9a05fe4ef0ab2011563.png" alt="Inheritance diagram of groupbuilder.groupcalculator.GroupCalculator" usemap="#inheritance4936dad0e0" class="inheritance graphviz" /></div>
+<map id="inheritance4936dad0e0" name="inheritance4936dad0e0">
+<area shape="rect" id="node3" href="../core/generated/groupbuilder.core.base.GroupCalculatorInterface.html#groupbuilder.core.base.GroupCalculatorInterface" target="_top" title="Abstract interface for group calculator implementations." alt="" coords="125,5,306,31"/>
+<area shape="rect" id="node2" href="#groupbuilder.groupcalculator.GroupCalculator" target="_top" title="A calculator for creating and managing groups of people." alt="" coords="354,5,478,31"/>
+</map><table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/groupbuilder.groupcalculator.GroupCalculator.html#groupbuilder.groupcalculator.GroupCalculator.__init__" title="groupbuilder.groupcalculator.GroupCalculator.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(amount_people, group_size[, ...])</p></td>
+<td><p>Initialize a new instance of the GroupCalculator class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.reset_groups" title="groupbuilder.groupcalculator.GroupCalculator.reset_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_groups</span></code></a>()</p></td>
+<td><p>Reset the groups and round to their initial state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.create_groups" title="groupbuilder.groupcalculator.GroupCalculator.create_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_groups</span></code></a>()</p></td>
+<td><p>Creates the groups for the next round.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.visualize_groups" title="groupbuilder.groupcalculator.GroupCalculator.visualize_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_groups</span></code></a>()</p></td>
+<td><p>Print the groups in a readable format to the console.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.can_repeat" title="groupbuilder.groupcalculator.GroupCalculator.can_repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_repeat</span></code></a>()</p></td>
+<td><p>Calculates the maximum number of unique groups that can be created.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.get_current_groups" title="groupbuilder.groupcalculator.GroupCalculator.get_current_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_groups</span></code></a>()</p></td>
+<td><p>Gets the groups from the current round.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.get_all_groups" title="groupbuilder.groupcalculator.GroupCalculator.get_all_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_groups</span></code></a>()</p></td>
+<td><p>Gets all groups from all rounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file" title="groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_from_csv_file</span></code></a>(file_path)</p></td>
+<td><p>Reads the CSV file and prepares the data for selection.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.can_repeat">
+<span class="sig-name descname"><span class="pre">can_repeat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.can_repeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.can_repeat" title="Link to this definition"></a></dt>
+<dd><p>Calculates the maximum number of unique groups that can be created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum number of unique rounds</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.create_groups">
+<span class="sig-name descname"><span class="pre">create_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.create_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.create_groups" title="Link to this definition"></a></dt>
+<dd><p>Creates the groups for the next round.</p>
+<p>Uses the algorithm to generate the next round of groups,
+avoiding placing the same person in the same group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>StopIteration</strong> – If the maximum number of rounds is reached</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.get_all_groups">
+<span class="sig-name descname"><span class="pre">get_all_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.get_all_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.get_all_groups" title="Link to this definition"></a></dt>
+<dd><p>Gets all groups from all rounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A nested dictionary where the first level keys are round numbers,
+second level keys are group identifiers, and values are lists of
+people in each group</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.get_current_groups">
+<span class="sig-name descname"><span class="pre">get_current_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.get_current_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.get_current_groups" title="Link to this definition"></a></dt>
+<dd><p>Gets the groups from the current round.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary where keys are group identifiers (column letters or indices)
+and values are lists of people in each group</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.reset_groups">
+<span class="sig-name descname"><span class="pre">reset_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.reset_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.reset_groups" title="Link to this definition"></a></dt>
+<dd><p>Reset the groups and round to their initial state.</p>
+<p>Creates a new GroupingAlgorithm instance with the current configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.select_from_csv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.select_from_csv_file" title="Link to this definition"></a></dt>
+<dd><p>Reads the CSV file and prepares the data for selection.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version Use: </span>the ‘detect_csv_separator_and_load’ function from the ‘csv_read’ module instead</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – The path to the CSV file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lists containing the CSV data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[list[str]]</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="groupbuilder.groupcalculator.GroupCalculator.visualize_groups">
+<span class="sig-name descname"><span class="pre">visualize_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/groupbuilder/groupcalculator.html#GroupCalculator.visualize_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#groupbuilder.groupcalculator.GroupCalculator.visualize_groups" title="Link to this definition"></a></dt>
+<dd><p>Print the groups in a readable format to the console.</p>
+<p>Displays all groups from all rounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="generated/groupbuilder.group_config_dialog.GroupConfigDialog.html" class="btn btn-neutral float-left" title="groupbuilder.group_config_dialog.GroupConfigDialog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/groupbuilder.groupcalculator.GroupCalculator.html" class="btn btn-neutral float-right" title="groupbuilder.groupcalculator.GroupCalculator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DerVogel101.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

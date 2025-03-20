@@ -1,3 +1,19 @@
+"""
+Sound Notification Module
+========================
+
+This module provides a cross-platform way to play a sound notification
+that encodes a morse code message.
+
+.. inheritance-diagram:: groupbuilder.utility.nothing
+   :parts: 1
+
+.. autosummary::
+   :toctree: generated/
+
+   nothing
+"""
+
 import sys
 import platform
 
@@ -5,17 +21,25 @@ def nothing():
     """
     Plays a sound sequence based on the operating system.
 
-    On Windows, it plays a series of beeps using the winsound.Beep function.
-    On macOS (Darwin), it plays the Sosumi sound using the afplay command.
-    On other systems, it prints the ASCII bell character.
+    This function plays a morse code sound pattern ("SUS" or "... ..- ...")
+    using the appropriate sound mechanism for the current operating system:
 
-    The sound sequence on Windows is as follows:
-    - Three short beeps
+    - Windows: Uses winsound.Beep with specific frequency and duration
+    - macOS (Darwin): Plays the system Sosumi sound
+    - Other systems: Outputs the ASCII bell character
+
+    The morse code pattern consists of:
+    - Three short beeps (S: ...)
     - A short pause
-    - Three short beeps
-    - A longer beep
+    - Two short beeps and one long beep (U: ..-)
     - A short pause
-    - Three short beeps
+    - Three short beeps (S: ...)
+
+    :return: None
+    :rtype: None
+
+    .. autosummary::
+       :toctree: generated/
     """
     for _ in range(1):
         if platform.system() == "Windows":
