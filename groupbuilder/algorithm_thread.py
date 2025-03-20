@@ -6,7 +6,27 @@ from groupbuilder.core import GroupConfig
 
 
 class RoundWorkerThread(threading.Thread):
+    """
+    A worker thread that generates group assignment rounds in the background.
+
+    This thread handles the execution of the grouping algorithm while allowing
+    the main UI thread to remain responsive. It supports pausing, resuming,
+    and stopping the generation process.
+
+    :param parent: The parent object that will receive callback notifications.
+    :type parent: object
+    :param config: Configuration settings for the grouping algorithm.
+    :type config: GroupConfig
+    """
     def __init__(self, parent, config):
+        """
+        Initialize the round worker thread.
+
+        :param parent: The parent object that will receive callback notifications.
+        :type parent: object
+        :param config: Configuration settings for the grouping algorithm.
+        :type config: GroupConfig
+        """
         super().__init__()
         self._algorithm: GroupingAlgorithm | None = None
         self._parent = parent
@@ -16,6 +36,13 @@ class RoundWorkerThread(threading.Thread):
         self._pause_event.set()
 
     def run(self):
+        """
+        Main execution method of the thread.
+
+        Sets up the GroupingAlgorithm and continuously generates new rounds
+        until either stopped or the algorithm reaches its end. Updates the
+        parent object with progress information via wx.CallAfter.
+        """
         wx.CallAfter(self._parent.setup_status)
         self._algorithm = GroupingAlgorithm(self._config)
         wx.CallAfter(self._parent.update_status, False)
@@ -31,13 +58,31 @@ class RoundWorkerThread(threading.Thread):
                 break
 
     def pause(self):
+        """
+        Pause the generation process.
+
+        Clears the pause event, causing the thread to wait at the next
+        pause_event.wait() call, and updates the UI status.
+        """
         self._pause_event.clear()
         wx.CallAfter(self._parent.update_status, True)
 
     def resume(self):
+        """
+        Resume the generation process.
+
+        Sets the pause event, allowing the thread to continue execution,
+        and updates the UI status.
+        """
         self._pause_event.set()
         wx.CallAfter(self._parent.update_status, False)
 
     def stop(self):
+        """
+        Stop the generation process.
+
+        Sets the stop flag to True, which will cause the run method to
+        exit its loop, and updates the worker status in the parent.
+        """
         self._stop_flag = True
         self._parent.worker_running = False

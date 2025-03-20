@@ -29,6 +29,7 @@ extensions = [
         'sphinx_rtd_theme',
         'sphinx_autodoc_typehints',
         'sphinxcontrib.autodoc_pydantic',
+        'sphinx.ext.deprecated'
 ]
 
 templates_path = ['_templates']
