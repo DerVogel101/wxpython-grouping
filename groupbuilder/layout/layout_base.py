@@ -98,6 +98,11 @@ class AppFrame ( wx.Frame ):
         self.pause_button = wx.Button( self, wx.ID_ANY, _(u"Pause / Weiter"), wx.DefaultPosition, wx.DefaultSize, 0 )
         bSizer3.Add( self.pause_button, 1, wx.ALL, 5 )
 
+        self.m_staticText11 = wx.StaticText( self, wx.ID_ANY, _(u"Exportieren:"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT )
+        self.m_staticText11.Wrap( -1 )
+
+        bSizer3.Add( self.m_staticText11, 1, wx.ALIGN_CENTER|wx.ALL, 5 )
+
         self.export_file_picker = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Datei Exportieren"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_OVERWRITE_PROMPT|wx.FLP_SAVE )
         bSizer3.Add( self.export_file_picker, 1, wx.ALL, 5 )
 

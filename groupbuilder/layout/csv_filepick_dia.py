@@ -29,13 +29,13 @@ class CSVPickDialog ( wx.Dialog ):
         self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, _(u"CSV Datei Auswählen:"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText3.Wrap( -1 )
 
-        bSizer5.Add( self.m_staticText3, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+        bSizer5.Add( self.m_staticText3, 1, wx.ALIGN_CENTER|wx.BOTTOM|wx.LEFT|wx.RIGHT|wx.TOP, 10 )
 
-        self.csv_pick = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a file"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_FILE_MUST_EXIST )
-        bSizer5.Add( self.csv_pick, 0, wx.ALL, 5 )
+        self.csv_pick = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a file"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_FILE_MUST_EXIST|wx.FLP_USE_TEXTCTRL )
+        bSizer5.Add( self.csv_pick, 3, wx.BOTTOM|wx.TOP, 15 )
 
         self.pick_done = wx.Button( self, wx.ID_ANY, _(u"Fertig"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer5.Add( self.pick_done, 0, wx.ALL, 5 )
+        bSizer5.Add( self.pick_done, 1, wx.BOTTOM|wx.LEFT|wx.RIGHT|wx.TOP, 15 )
 
 
         self.SetSizer( bSizer5 )
