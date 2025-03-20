@@ -26,6 +26,8 @@ class CSVNameDialog ( wx.Dialog ):
         self.SetSizeHints( wx.DefaultSize, wx.Size( 1080,720 ) )
 
         fgSizer2 = wx.FlexGridSizer( 3, 3, 0, 0 )
+        fgSizer2.AddGrowableCol( 0 )
+        fgSizer2.AddGrowableRow( 1 )
         fgSizer2.SetFlexibleDirection( wx.BOTH )
         fgSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
@@ -72,6 +74,9 @@ class CSVNameDialog ( wx.Dialog ):
 
         # Cell Defaults
         self.csv_display_grid.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+        self.csv_display_grid.SetMinSize( wx.Size( 500,200 ) )
+        self.csv_display_grid.SetMaxSize( wx.Size( 600,300 ) )
+
         fgSizer2.Add( self.csv_display_grid, 0, wx.ALL, 5 )
 
         check_nameChoices = []

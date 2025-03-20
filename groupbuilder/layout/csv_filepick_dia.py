@@ -20,27 +20,36 @@ _ = gettext.gettext
 class CSVPickDialog ( wx.Dialog ):
 
     def __init__( self, parent ):
-        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Datei auswählen"), pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
+        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Datei auswählen"), pos = wx.DefaultPosition, size = wx.Size( 449,129 ), style = wx.DEFAULT_DIALOG_STYLE )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
+        bSizer9 = wx.BoxSizer( wx.VERTICAL )
+
         bSizer5 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, _(u"CSV Datei Auswählen:"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, _(u"CSV Datei Auswählen:"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTER_HORIZONTAL )
         self.m_staticText3.Wrap( -1 )
 
-        bSizer5.Add( self.m_staticText3, 1, wx.ALIGN_CENTER|wx.BOTTOM|wx.LEFT|wx.RIGHT|wx.TOP, 10 )
+        bSizer5.Add( self.m_staticText3, 1, wx.ALIGN_CENTER|wx.BOTTOM|wx.LEFT|wx.RIGHT|wx.TOP, 15 )
 
         self.csv_pick = wx.FilePickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a file"), _(u"*.csv"), wx.DefaultPosition, wx.DefaultSize, wx.FLP_FILE_MUST_EXIST|wx.FLP_USE_TEXTCTRL )
-        bSizer5.Add( self.csv_pick, 3, wx.BOTTOM|wx.TOP, 15 )
+        bSizer5.Add( self.csv_pick, 2, wx.ALIGN_BOTTOM|wx.BOTTOM|wx.RIGHT|wx.TOP, 15 )
+
+
+        bSizer9.Add( bSizer5, 0, wx.EXPAND, 5 )
+
+        bSizer8 = wx.BoxSizer( wx.VERTICAL )
 
         self.pick_done = wx.Button( self, wx.ID_ANY, _(u"Fertig"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        bSizer5.Add( self.pick_done, 1, wx.BOTTOM|wx.LEFT|wx.RIGHT|wx.TOP, 15 )
+        bSizer8.Add( self.pick_done, 1, wx.ALIGN_RIGHT|wx.BOTTOM|wx.RIGHT, 15 )
 
 
-        self.SetSizer( bSizer5 )
+        bSizer9.Add( bSizer8, 0, wx.EXPAND, 5 )
+
+
+        self.SetSizer( bSizer9 )
         self.Layout()
-        bSizer5.Fit( self )
 
         self.Centre( wx.BOTH )
 

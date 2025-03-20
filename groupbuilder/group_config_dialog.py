@@ -93,19 +93,6 @@ class GroupConfigDialog(GroupConfigurationDialog):
     def display_ram_usage(self):
         needed_ram = int(GroupingAlgorithm.get_ops_needed(self.person_size, self.group_size)[2]) # MB
         available_ram = SysUtils.get_available_memory()
-        self.ram_usage_gauge.SetValue(0)
-        self.ram_usage_gauge.SetRange(available_ram)
-        # FIXME: Colour is not changing under Windows
-        self.ram_usage_gauge.SetBackgroundColour(wx.GREEN)
-        self.ram_usage_text.SetForegroundColour(wx.BLACK)
-
-        if needed_ram > available_ram:
-            self.ram_usage_gauge.SetValue(available_ram)
-        else:
-            self.ram_usage_gauge.SetValue(needed_ram)
-        if (needed_ram / available_ram) > 0.8:
-            self.ram_usage_gauge.SetBackgroundColour(wx.RED)
-            # FIXME: Colour is not changing under Windows
 
         self.ram_usage_text.SetLabel(f"{needed_ram} / {available_ram} MB")
 
