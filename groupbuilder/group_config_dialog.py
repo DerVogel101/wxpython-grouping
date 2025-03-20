@@ -58,13 +58,13 @@ class GroupConfigDialog(GroupConfigurationDialog):
         event.Skip()
 
     def person_handler(self, event):
-        # if self.locked:
-        #     self.person_comb.SetValue(str(self.person_size))
-        #     wx.MessageBox("Die Anzahl der Personen kann nicht geändert werden, wenn die Personenmenge festgelegt ist.",
-        #                   "Gruppengröße festgelegt", wx.OK | wx.ICON_ERROR)
-        #     event.Skip()
         try:
             person_size = int(self.person_comb.GetValue())
+            if person_size > 691337:
+                wx.MessageBox("Träum weiter.", "Zu viele Personen", wx.OK | wx.ICON_ERROR)
+                self.person_comb.SetValue(str(self.person_size))
+                event.Skip()
+                return
             if self.group_size:
                 if person_size > self.group_size:
                     self.person_size = person_size
@@ -79,6 +79,11 @@ class GroupConfigDialog(GroupConfigurationDialog):
     def group_handler(self, event):
         try:
             group_size = int(self.group_comb.GetValue())
+            if group_size > 691337:
+                wx.MessageBox("Träum weiter.", "Zu viele Gruppen", wx.OK | wx.ICON_ERROR)
+                self.group_comb.SetValue(str(self.group_size))
+                event.Skip()
+                return
             if self.person_size:
                 if group_size < self.person_size:
                     self.group_size = group_size

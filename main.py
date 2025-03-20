@@ -4,16 +4,16 @@ import cProfile
 from groupbuilder.groupcalculator import GroupCalculator
 import pprint
 
-calc = GroupCalculator(4, 2)
-calc.create_groups()
-print(calc.get_current_groups())
-calc.create_groups()
-print(calc.get_current_groups())
-pprint.pprint(calc.get_all_groups())
-calc.visualize_groups()
+# calc = GroupCalculator(4, 2)
+# calc.create_groups()
+# print(calc.get_current_groups())
+# calc.create_groups()
+# print(calc.get_current_groups())
+# pprint.pprint(calc.get_all_groups())
+# calc.visualize_groups()
 
 
-exit()
+
 if __name__ == "__main__":
     # print(GroupingAlgorithm(GroupConfig(amount_people=4, group_size=2)).get_max_rounds())
     def main():
